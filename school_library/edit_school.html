@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>HIGH SCHOOL LIBRARY</title>
+        <link rel="stylesheet" href="highSchoolLib.css">
+    </head>
+    <bo>
+        <header>
+            <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+            <div id="mng">
+                <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </form>
+            </div>
+            <form>
+                <input type="submit" value="管理者ログアウト"><!--権限制御の追加がない-->
+            </form>
+        </header>
+        <body>
+            <div class="contents_body">
+                <div id="edit_school">
+                    <form th:action="@{school/add}" th:object="${school}" th:method="post">
+                        <p>
+                            <label for="name">高校名</label>
+                            <input type="text" id="name"></input>
+                        </p>
+                    
+                        <p>
+                            <label for="furigana">高校名（ふりがな）</label>
+                            <input type="text" id="furigana"></input>
+                        </p>
+                        
+                        <p>
+                            <label for="name">高校画像</label>
+                            <input type="button" value="画像選択"></input>
+                        </p>
+                    
+                        <p>
+                            <label for="overview">概要</label>
+                            <textarea id="overview"></textarea>
+                        </p>
+                    
+                        <p>
+                            <label for="phone">TEL</label>
+                            <input type="text" id="phone"></input>
+                        </p>
+                    
+                        <p>
+                            <label for="student">生徒数</label>
+                            <input type="text" id="student"></input>
+                        </p>
+                    
+                    
+                        <p>
+                            <label for="address">所在地</label>
+                            <input for="address" id="addrress"></input>
+                        </p>
+                        <input type="submit" value="決定"></input>
+                    </form>
+                </div>
+            </div>
+        </body>
+        <footer>
+            お問い合わせ：000-0000-0000
+        
+            <br>
+            学校お問い合わせリンク
+            <a href="hoge">www.text.sr.jp</a>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="管理者ログイン">
+            </form>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="学校新規登録"><!--権限制御必要-->
+            </form>
+        </footer>
+    </body>
+</html>

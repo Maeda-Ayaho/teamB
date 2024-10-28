@@ -197,45 +197,16 @@
             </div>
         </div>
         <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学校一覧</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .result {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            display: flex;
-            align-items: center;
-        }
-        .info {
-            margin-right: 16px;
-        }
-        .title {
-            font-weight: bold;
-            cursor: pointer; /* クリック可能にするためのスタイル */
-            color: blue; /* リンク風の色 */
-            text-decoration: underline; /* 下線を追加 */
-        }
-    </style>
-</head>
-<body>
-
-    <h1>学校検索結果</h1>
-    <div>
-        <button onclick="displaySchools(sortSchools('name'))">五十音順</button>
-        <button onclick="displaySchools(sortSchools('rating'))">評価点順</button>
-        <button onclick="displaySchools(sortSchools('score'))">偏差値順</button>
+        <h1>学校検索結果</h1>
+        <div>
+            <button onclick="displaySchools(sortSchools('name'))">五十音順</button>
+            <button onclick="displaySchools(sortSchools('rating'))">評価点順</button>
+            <button onclick="displaySchools(sortSchools('score'))">偏差値順</button>
+        </div>
+        
+        <div id="results"></div>
     </div>
     
-    <div id="results"></div>
-
     <script>
         // サンプルデータ（実際にはサーバーから取得）
         const schools = [
@@ -255,7 +226,7 @@
                 const resultDiv = document.createElement("div");
                 resultDiv.className = "result";
                 resultDiv.onclick = () => { location.href = school.url; }; // クリックで遷移
-
+    
                 const infoDiv = document.createElement("div");
                 infoDiv.className = "info";
                 infoDiv.innerHTML = `<span class="title">${school.name}</span><br>
@@ -275,7 +246,7 @@
                 resultsContainer.appendChild(resultDiv);
             });
         }
-
+    
         // 学校情報をソートする関数
         function sortSchools(criteria) {
             return [...schools].sort((a, b) => {
@@ -288,7 +259,7 @@
                 }
             });
         }
-
+    
         // 初期表示
         displaySchools(schools);
     </script>

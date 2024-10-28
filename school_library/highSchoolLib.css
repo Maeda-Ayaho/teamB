@@ -80,3 +80,6 @@ ul li{
     display: inline-block;
     list-style: none;
 }
+#error {
+    text-align: center;
+}

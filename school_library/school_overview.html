@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>HIGH SCHOOL LIBRARY</title>
+        <link rel="stylesheet" href="overview.css">
+    </head>
+    <bo>
+        <header>
+            <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+            <div id="mng">
+                <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </form>
+            </div>
+            <form>
+                <input type="submit" value="管理者ログイン"><!--権限制御の追加がない-->
+            </form>
+        </header>
+        <body>
+            <div class="contents_body">
+                <div class="school_info">
+                    <div class="mod-school">
+                        <div class="mod-school-inner">
+                            <div class="mod-school-top">
+                                <h1>○○○○高等学校</h1>
+                                <p class="mod-school-caption">(フリガナ)</p>
+                                <p class="mod-school-info">○○県 / 公立 / 共学</p>
+                            </div>
+                            <div class="mod-school-bottom">
+                                <div class="info">
+                                    <p class="school-hensa">偏差値： {学校.偏差値}</p>
+                                    <p class="school-star">img:★★☆☆☆  {評価値の平均値2.2}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="school-image">
+                    <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                </div>
+                <div class="overview">
+                    <h2>概要</h2>
+                    <p>
+                        学校.概要
+                    </p>
+                </div>
+                <div class="post">
+                    <h2>投稿</h2>
+                    <div id="comments">
+                        <div id="comment">
+                            <ul>
+                                <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                                <li>
+                                        在校生or卒業生 / 卒業年度<br>
+                                        <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                        img?総合評価点<br>
+                                        投稿年投稿月(年/月)
+                                </li>
+                            </ul>
+                            <ul>
+                                総合評価
+                                <li>hogehogehoge<br>hogehoge</li>
+                            </ul>
+                        </div>
+                        <div id="comment">
+                            <ul>
+                                <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                                <li>
+                                        在校生or卒業生 / 卒業年度<br>
+                                        <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                        img_総合評価点<br>
+                                        投稿年投稿月(年/月)
+                                </li>
+                            </ul>
+                            <ul>
+                                総合評価
+                                <li>hogehogehoge<br>hogehoge</li>
+                            </ul>
+                        </div>
+                        <div id="comment">
+                            <ul>
+                                <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                                <li>
+                                        在校生or卒業生 / 卒業年度<br>
+                                        <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                        img_総合評価点<br>
+                                        投稿年投稿月(年/月)
+                                </li>
+                            </ul>
+                            <ul>
+                                総合評価
+                                <li>hogehogehoge<br>hogehoge</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        <footer>
+            お問い合わせ：000-0000-00000
+        
+            <br>
+            学校お問い合わせリンク
+            <a href="hoge">www.text.sr.jp</a>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="管理者ログイン">
+            </form>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="学校新規登録"><!--権限制御必要-->
+            </form>
+        </footer>
+    </body>
+</html>

@@ -16,7 +16,7 @@
                 </form>
             </div>
             <form>
-                <input type="submit" value="管理者ログアウト"><!--権限制御の追加がない-->
+                <input type="submit" value="管理者ログイン"><!--権限制御の追加がない-->
             </form>
         </header>
         <body>
@@ -24,39 +24,43 @@
                 <div id="edit_school">
                     <form th:action="@{school/add}" th:object="${school}" th:method="post">
                         <p>
-                            <label for="name">高校名</label>
+                            <label for="name">高校名</label><br>
                             <input type="text" id="name"></input>
                         </p>
                     
                         <p>
-                            <label for="furigana">高校名（ふりがな）</label>
+                            <label for="furigana">高校名（ふりがな）</label><br>
                             <input type="text" id="furigana"></input>
                         </p>
                         
                         <p>
-                            <label for="name">高校画像</label>
+                            <label for="name">高校画像</label><br>
                             <input type="button" value="画像選択"></input>
                         </p>
                     
                         <p>
-                            <label for="overview">概要</label>
+                            <label for="overview">概要</label><br>
                             <textarea id="overview"></textarea>
                         </p>
                     
                         <p>
-                            <label for="phone">TEL</label>
+                            <label for="phone">電話番号</label><br>
                             <input type="text" id="phone"></input>
                         </p>
                     
                         <p>
-                            <label for="student">生徒数</label>
-                            <input type="text" id="student"></input>
+                            <label for="institution">国公私立：</label>
+                            <!-- <input type="checkbox" name="立" value="すべて">すべて -->
+                            <input type="checkbox" name="立" value="公立">公立
+                            <input type="checkbox" name="立" value="私立">私立
+                            <input type="checkbox" name="立" value="国立">国立
                         </p>
-                    
-                    
                         <p>
-                            <label for="address">所在地</label>
-                            <input for="address" id="addrress"></input>
+                            <label for="school_type">男女共学：</label>
+                            <!-- <input type="checkbox" name="学" value="すべて">すべて -->
+                            <input type="checkbox" name="学" value="男子校">男子校
+                            <input type="checkbox" name="学" value="女子校">女子校
+                            <input type="checkbox" name="学" value="共学">共学
                         </p>
                         <input type="submit" value="決定"></input>
                     </form>

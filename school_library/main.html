@@ -16,7 +16,7 @@
                 </form>
             </div>
             <form>
-                <input type="submit" value="管理者ログアウト"><!--権限制御の追加がない-->
+                <input type="submit" value="管理者ログイン"><!--権限制御の追加がない-->
             </form>
         </header>
         <body>
@@ -25,7 +25,7 @@
                 <div id="search"><!---->
                     <form th:action="@{school/add}" th:object="${school}" th:method="post">
                         <p>
-                            <label for="prefecture">都道府県</label>
+                            <label for="prefecture">都道府県：</label>
                             <select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
                                 <option value=""></option>
                                 <option value="北海道">北海道</option>
@@ -79,11 +79,11 @@
                             
                         </p>
                         <p>
-                            <label for="search_h">高校名で検索</label>
+                            <label for="search_h">高校名で検索：</label>
                             <input type="text" id="keyword" name="keyword">
                         </p>
                         <p>
-                            <label for="deviation">偏差値</label>
+                            <label for="deviation">偏差値：</label>
                             <select name="max" id="select_max">
                                 <option value="">--</option>
                                 <option value="28">28</option>
@@ -195,14 +195,14 @@
                             </select>
                         </p>
                         <p>
-                            <label for="institution">国公私立</label>
+                            <label for="institution">国公私立：</label>
                             <!-- <input type="checkbox" name="立" value="すべて">すべて -->
                             <input type="checkbox" name="立" value="公立">公立
                             <input type="checkbox" name="立" value="私立">私立
                             <input type="checkbox" name="立" value="国立">国立
                         </p>
                         <p>
-                            <label for="school_type">男女共学</label>
+                            <label for="school_type">男女共学：</label>
                             <!-- <input type="checkbox" name="学" value="すべて">すべて -->
                             <input type="checkbox" name="学" value="男子校">男子校
                             <input type="checkbox" name="学" value="女子校">女子校
@@ -214,16 +214,25 @@
                 <h2>総合ランキング</h2>
                 <div class="school_rank">
                     <ul><!--やり方がスマートじゃないが、これしか思いつかなった-->
-                        <li>学校<br>hoge</li>
-                        <li>学校<br>hoge</li>
-                        <li>学校<br>hoge</li>
-                        <li>学校<br>hoge</li>
-                        <li>学校<br>hoge</li>
+                        <li>image<br>school.name<br>概要</li>
+                        <li>image<br>school.name<br>概要</li>
+                        <li>image<br>school.name<br>概要</li>
+                        <li>image<br>school.name<br>概要</li>
+                        <li>image<br>school.name<br>概要</li>
                     </ul>
                 </div>
-                <h2>直近の投稿</h2>
-                <div id="recently_comment">
-                    調整中
+                <h2>直近投稿</h2>
+                <div id="comment">
+                    <ul>
+                        <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                        <li>
+                                在校生or卒業生 / 卒業年度<br>
+                                <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                img?総合評価点<br>
+                                投稿年投稿月(年/月)
+                        </li>
+                    </ul>
+                </dd>
                 </div>
             </div>
         </body>

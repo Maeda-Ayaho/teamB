@@ -1,0 +1,296 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title},~{::body/content()})}">
+    <title>
+        高校ナビ
+    </title>
+    <link rel="stylesheet" href="searchResults.css">
+    <body>
+        <div class="contents_body">
+            <h2>検索条件</h2>
+            <div id="search"><!---->
+                <form th:action="@{school/add}" th:object="${school}" th:method="post">
+                    <p>
+                        <label for="prefecture">都道府県</label>
+                        <select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
+                            <option value=""></option>
+                            <option value="北海道">北海道</option>
+                            <option value="青森県">青森県</option>
+                            <option value="岩手県">岩手県</option>
+                            <option value="宮城県">宮城県</option>
+                            <option value="秋田県">秋田県</option>
+                            <option value="山形県">山形県</option>
+                            <option value="福島県">福島県</option>
+                            <option value="茨城県">茨城県</option>
+                            <option value="栃木県">栃木県</option>
+                            <option value="群馬県">群馬県</option>
+                            <option value="埼玉県">埼玉県</option>
+                            <option value="千葉県">千葉県</option>
+                            <option value="東京都">東京都</option>
+                            <option value="神奈川県">神奈川県</option>
+                            <option value="新潟県">新潟県</option>
+                            <option value="富山県">富山県</option>
+                            <option value="石川県">石川県</option>
+                            <option value="福井県">福井県</option>
+                            <option value="山梨県">山梨県</option>
+                            <option value="長野県">長野県</option>
+                            <option value="岐阜県">岐阜県</option>
+                            <option value="静岡県">静岡県</option>
+                            <option value="愛知県">愛知県</option>
+                            <option value="三重県">三重県</option>
+                            <option value="滋賀県">滋賀県</option>
+                            <option value="京都府">京都府</option>
+                            <option value="大阪府">大阪府</option>
+                            <option value="兵庫県">兵庫県</option>
+                            <option value="奈良県">奈良県</option>
+                            <option value="和歌山県">和歌山県</option>
+                            <option value="鳥取県">鳥取県</option>
+                            <option value="島根県">島根県</option>
+                            <option value="岡山県">岡山県</option>
+                            <option value="広島県">広島県</option>
+                            <option value="山口県">山口県</option>
+                            <option value="徳島県">徳島県</option>
+                            <option value="香川県">香川県</option>
+                            <option value="愛媛県">愛媛県</option>
+                            <option value="高知県">高知県</option>
+                            <option value="福岡県">福岡県</option>
+                            <option value="佐賀県">佐賀県</option>
+                            <option value="長崎県">長崎県</option>
+                            <option value="熊本県">熊本県</option>
+                            <option value="大分県">大分県</option>
+                            <option value="宮崎県">宮崎県</option>
+                            <option value="鹿児島県">鹿児島県</option>
+                            <option value="沖縄県">沖縄県</option>
+                        </select>
+                        
+                    </p>
+                    <p>
+                        <label for="search_h">高校名で検索</label>
+                        <input type="text" id="keyword" name="keyword">
+                    </p>
+                    <p>
+                        <label for="deviation">偏差値</label>
+                        <select name="max" id="select_max">
+                            <option value="">--</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <option value="60">60</option>
+                            <option value="61">61</option>
+                            <option value="62">62</option>
+                            <option value="63">63</option>
+                            <option value="64">64</option>
+                            <option value="65">65</option>
+                            <option value="66">66</option>
+                            <option value="67">67</option>
+                            <option value="68">68</option>
+                            <option value="69">69</option>
+                            <option value="70">70</option>
+                            <option value="71">71</option>
+                            <option value="72">72</option>
+                            <option value="73">73</option>
+                            <option value="74">74</option>
+                            <option value="75">75</option>
+                            <option value="76">76</option>
+                            <option value="77">77</option>
+                            <option value="78">78</option>
+                        </select>
+                        ~
+                        <select name="min" id="select_min">
+                            <option value="">--</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <option value="60">60</option>
+                            <option value="61">61</option>
+                            <option value="62">62</option>
+                            <option value="63">63</option>
+                            <option value="64">64</option>
+                            <option value="65">65</option>
+                            <option value="66">66</option>
+                            <option value="67">67</option>
+                            <option value="68">68</option>
+                            <option value="69">69</option>
+                            <option value="70">70</option>
+                            <option value="71">71</option>
+                            <option value="72">72</option>
+                            <option value="73">73</option>
+                            <option value="74">74</option>
+                            <option value="75">75</option>
+                            <option value="76">76</option>
+                            <option value="77">77</option>
+                            <option value="78">78</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="institution">国公私立</label>
+                        <input type="radio" name="立" value="すべて">すべて
+                        <input type="radio" name="立" value="公立">公立
+                        <input type="radio" name="立" value="私立">私立
+                        <input type="radio" name="立" value="国立">国立
+                    </p>
+                    <p>
+                        <label for="school_type">男女共学</label>
+                        <input type="radio" name="学" value="すべて">すべて
+                        <input type="radio" name="学" value="男子校">男子校
+                        <input type="radio" name="学" value="女子校">女子校
+                        <input type="radio" name="学" value="共学">共学
+                    </p>
+                    <input type="submit" value="検索">
+                </form>
+            </div>
+        </div>
+        <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学校一覧</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .result {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            align-items: center;
+        }
+        .info {
+            margin-right: 16px;
+        }
+        .title {
+            font-weight: bold;
+            cursor: pointer; /* クリック可能にするためのスタイル */
+            color: blue; /* リンク風の色 */
+            text-decoration: underline; /* 下線を追加 */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>学校検索結果</h1>
+    <div>
+        <button onclick="displaySchools(sortSchools('name'))">五十音順</button>
+        <button onclick="displaySchools(sortSchools('rating'))">評価点順</button>
+        <button onclick="displaySchools(sortSchools('score'))">偏差値順</button>
+    </div>
+    
+    <div id="results"></div>
+
+    <script>
+        // サンプルデータ（実際にはサーバーから取得）
+        const schools = [
+            { name: "学校A", score: 70, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 120, url: "schoolA.html" },
+            { name: "学校B", score: 65, image: "https://via.placeholder.com/100", rating: 3, ratingImage: "https://via.placeholder.com/20", postCount: 80, url: "schoolB.html" },
+            { name: "学校C", score: 75, image: "https://via.placeholder.com/100", rating: 5, ratingImage: "https://via.placeholder.com/20", postCount: 200, url: "schoolC.html" },
+            { name: "学校D", score: 60, image: "https://via.placeholder.com/100", rating: 2, ratingImage: "https://via.placeholder.com/20", postCount: 50, url: "schoolD.html" },
+            { name: "学校E", score: 80, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 150, url: "schoolE.html" },
+        ];
+    
+        const resultsContainer = document.getElementById("results");
+    
+        // 学校データを表示する関数
+        function displaySchools(schoolData) {
+            resultsContainer.innerHTML = ''; // クリア
+            schoolData.forEach(school => {
+                const resultDiv = document.createElement("div");
+                resultDiv.className = "result";
+                resultDiv.onclick = () => { location.href = school.url; }; // クリックで遷移
+
+                const infoDiv = document.createElement("div");
+                infoDiv.className = "info";
+                infoDiv.innerHTML = `<span class="title">${school.name}</span><br>
+                                     <span class="score">偏差値: ${school.score}</span><br>
+                                     <span class="rating">評価点: ${school.rating}</span>
+                                     <img src="${school.ratingImage}" alt="評価点: ${school.rating}" style="width: 20px; vertical-align: middle; margin-left: 5px;">
+                                     <span class="postCount">口コミ件数: ${school.postCount}</span>`;
+                
+                const img = document.createElement("img");
+                img.src = school.image;
+                img.alt = school.name;
+                img.style.width = "100px"; 
+                img.style.height = "80px"; 
+                
+                resultDiv.appendChild(infoDiv);
+                resultDiv.appendChild(img);
+                resultsContainer.appendChild(resultDiv);
+            });
+        }
+
+        // 学校情報をソートする関数
+        function sortSchools(criteria) {
+            return [...schools].sort((a, b) => {
+                if (criteria === 'name') {
+                    return a.name.localeCompare(b.name); // 五十音順
+                } else if (criteria === 'rating') {
+                    return b.rating - a.rating; // 評価点順
+                } else if (criteria === 'score') {
+                    return b.score - a.score; // 偏差値順
+                }
+            });
+        }
+
+        // 初期表示
+        displaySchools(schools);
+    </script>
+</body>
+</html>

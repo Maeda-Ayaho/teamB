@@ -230,12 +230,12 @@
                 const infoDiv = document.createElement("div");
                 infoDiv.className = "info";
                 infoDiv.innerHTML = `<span class="title">${school.name}</span><br>
-                                     <span class="score">偏差値: ${school.score}</span>
-                                     <span class="rating">評価点: ${school.rating}</span>
-                                     <img src="${school.ratingImage}" alt="評価点: ${school.rating}" style="width: 20px; vertical-align: middle; margin-left: 5px;">
-                                     <span class="postCount">口コミ件数: ${school.postCount}</span><br>
-                                     <span class="gender">${school.gender}</span>
-                                     <span class="prefecture">/ ${school.prefecture}</span>`;
+                                    <span class="score">偏差値: ${school.score}</span>
+                                    <img src="${school.ratingImage}" alt="評価点: ${school.rating}" style="width: 20px; vertical-align: middle; margin-left: 5px;">
+                                    <span class="rating">${school.rating}</span>
+                                    <span class="postCount">口コミ件数: ${school.postCount}</span><br>
+                                    <span class="gender">${school.gender}</span>
+                                    <span class="prefecture">/ ${school.prefecture}</span>`;
     
                 const img = document.createElement("img");
                 img.src = school.image;

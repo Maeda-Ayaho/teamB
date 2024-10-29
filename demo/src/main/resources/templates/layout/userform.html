@@ -1,7 +1,9 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title},~{::body/content()})}">
-    <title>
-        投稿入力
-    </title>
+    <head>
+        <meta charset="UTF-8">
+        <title>HIGH SCHOOL LIBRARY</title>
+        <link rel="stylesheet" href="highSchoolLib.css">
+    </head>
     <style>
         .required {
             display: inline-block; /* インラインブロックで配置 */
@@ -13,34 +15,49 @@
             font-size: 12px; /* 文字サイズを小さく */
         }
     </style>
-    
+    <header>
+        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <div id="mng">
+            <form>
+                <input type="submit" value="学校登録"><!--権限制御の追加がない-->
+                <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+            </form>
+            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                <span>
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </span>
+            </form>
+        </div>
+    </header>
     <body>
         <div class="contents_body">
             <h2>コメント送信フォーム</h2>
             <div id="search"><!---->
                 <form th:action="@{user/add}" th:object="${user}" th:method="post">
                     <p>
-                        <label for="comment_title">タイトル：</label><!-- コメントタイトル -->
+                        <label for="comment_title">タイトル</label><!-- コメントタイトル -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="comment_title" name="comment_title">
-                        <label for="inputField"><span class="required">必須</span></label>
                     </p>
                     <p>
-                        <label for="institution">ステータス：</label><!-- 在校生か卒業生 -->
+                        <label for="institution">ステータス</label><!-- 在校生か卒業生 -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="radio" name="生" value="在校生">在校生
                         <input type="radio" name="生" value="卒業生">卒業生
-                        <label for="inputField"><span class="required">必須</span></label>
                     </p>
                     <p>
-                        <label for="enrollment" >年度入力：</label><!-- 何年に入学したか -->
+                        <label for="enrollment" >年度入力</label><!-- 何年に入学したか -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="enrollment" name="enrollment" placeholder="半角数字四桁：2000">
-                        <label for="inputField"><span class="required">必須</span></label>
                     </p>
                     <p>
-                        <label for="institution">性別：</label><!-- 在校生か卒業生 -->
+                        <label for="institution">性別</label><!-- 在校生か卒業生 -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="radio" name="性" value="男">男
                         <input type="radio" name="性" value="女">女
                         <input type="radio" name="性" value="その他">その他
-                        <label for="inputField"><span class="required">必須</span></label>
                     </p>
                     <p>
                         <label for="overall_comment">総合評価コメント</label>
@@ -48,8 +65,8 @@
                         <textarea id="overall_comment" name="overall_comment" rows="4" cols="50"></textarea>
                     </p>
                     <p>
-                        <label for="environment">環境評価：</label><!-- 環境評価点 -->
-                        <label for="inputField"><span class="required">必須</span></label>
+                        <label for="environment">環境評価</label><!-- 環境評価点 -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="radio" name="environment" value="1">1
                         <input type="radio" name="environment" value="2">2
                         <input type="radio" name="environment" value="3">3
@@ -62,8 +79,8 @@
                         <textarea id="environment_comment" name="environment_comment" rows="4" cols="50"></textarea>
                     </p>
                     <p>
-                        <label for="club">部活動評価：</label><!-- 部活動評価点 -->
-                        <label for="inputField"><span class="required">必須</span></label>
+                        <label for="club">部活動評価</label><!-- 部活動評価点 -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="radio" name="club" value="1">1
                         <input type="radio" name="club" value="2">2
                         <input type="radio" name="club" value="3">3
@@ -76,8 +93,8 @@
                         <textarea id="club_comment" name="club_comment" rows="4" cols="50"></textarea>
                     </p>
                     <p>
-                        <label for="event">イベント評価：</label><!-- イベントに対する評価点 -->
-                        <label for="inputField"><span class="required">必須</span></label>
+                        <label for="event">イベント評価</label><!-- イベントに対する評価点 -->
+                        <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="radio" name="event" value="1">1
                         <input type="radio" name="event" value="2">2
                         <input type="radio" name="event" value="3">3
@@ -94,4 +111,10 @@
             </div>
         </div>
     </body>
+    <footer>
+        <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+            <label>お問い合わせ：000-0000-00000</label>　　　　　　
+            <input type="submit" value="管理者ログイン">
+        </form>
+    </footer>
 </html>

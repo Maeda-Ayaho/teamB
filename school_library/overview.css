@@ -1,20 +1,21 @@
 body{
     background-color: #FFFFFF;
     padding: 0;
-    margin: 0;
+    margin: 10;
 }
-
 header{
-    font-size: 2rem;
-    background-color: #f0f8ff;
+    font-size: 20px;
+    background-color: #d0dfec;
     border-bottom: solid "808080";
-    height: 120px;
+    height: 100px;
     margin-top: 20px;
     white-space: nowrap;
     display:flex;
+    text-align: right;
+    align-items: flex-end;
 }
 footer{
-    background-color: #f0f8ff;
+    background-color: #d0dfec;
     height: 120px;
     white-space: nowrap;
 }
@@ -23,21 +24,36 @@ footer{
 div {
     display: block;
 }
+.contents-body {
+    padding: 0 ;
+    margin: 0;
+}
 .mod-school-caption { /*学校名のフリガナ */
     font-size: 12px;
     font-weight: 700;
     color: #999;
     margin: 0;
+    padding: 0;
+    display:flex;
 }
 .mod-school-top { /* TOP学校上部 */
+    font-size: 20px;
+    background-color: #cbec9f;
     margin: 0 0;
+    padding-right: 40px;
+    border-bottom: 1px solid gray;
+}
+.mod-school-one {
+    font-size: 30px;
+}
+.mod-school-bottom { /* TOP学校上部 */
+    background-color: #cbec9f;
+    margin: 0 0;
+    padding-right: 40px;
+    border-bottom: 1px solid gray;
 }
 .mod-school-info { /* 学校詳細全体 */
     font-size: 11px;
-}
-.mod-school-top { /*  校名・フリガナ * /
-    padding-right: 40px;
-    border-bottom: 1px solid gray;
 }
 .mod-school-inner {
     padding-right: 400px;
@@ -66,6 +82,16 @@ dd {
     height:100px;
 }
 #commentsss > ul li {/*学校のランキングを横に並べたい*/
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+    list-style: none;
+}
+#overview > p{
+    background-color: #cbec9f;
+}
+ul li{
+    background-color: #cbec9f;
     margin-left: 0.5em;
     margin-right: 0.5em;
     display: inline-block;

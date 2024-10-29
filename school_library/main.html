@@ -9,15 +9,19 @@
         <header>
             <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
             <div id="mng">
+                <form>
+                    <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
+                    <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+                </form>
                 <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
-                    <label for="search_h">高校名で検索</label>
-                    <input type="text" id="keyword" name="keyword">
-                    <input type="submit" value="検索">
+                    <span>
+                        <label for="search_h">高校名で検索</label>
+                        <input type="text" id="keyword" name="keyword">
+                        <input type="submit" value="検索">
+                    </span>
+
                 </form>
             </div>
-            <form>
-                <input type="submit" value="管理者ログイン"><!--権限制御の追加がない-->
-            </form>
         </header>
         <body>
             <div class="contents_body">
@@ -214,11 +218,11 @@
                 <h2>総合ランキング</h2>
                 <div class="school_rank">
                     <ul><!--やり方がスマートじゃないが、これしか思いつかなった-->
-                        <li>image<br>school.name<br>概要</li>
-                        <li>image<br>school.name<br>概要</li>
-                        <li>image<br>school.name<br>概要</li>
-                        <li>image<br>school.name<br>概要</li>
-                        <li>image<br>school.name<br>概要</li>
+                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
+                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
+                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
+                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
+                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
                     </ul>
                 </div>
                 <h2>直近投稿</h2>
@@ -228,7 +232,25 @@
                         <li>
                                 在校生or卒業生 / 卒業年度<br>
                                 <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
-                                img?総合評価点<br>
+                                img★総合評価点<br>
+                                投稿年投稿月(年/月)
+                        </li>
+                    </ul>
+                    <ul>
+                        <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                        <li>
+                                在校生or卒業生 / 卒業年度<br>
+                                <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                img★総合評価点<br>
+                                投稿年投稿月(年/月)
+                        </li>
+                    </ul>
+                    <ul>
+                        <img id="top" src="image.png" width="100" height="100" alt="高校の写真">
+                        <li>
+                                在校生or卒業生 / 卒業年度<br>
+                                <a href="link_to_comment_overview"><br>投稿タイトル</a><br>
+                                img★総合評価点<br>
                                 投稿年投稿月(年/月)
                         </li>
                     </ul>
@@ -237,16 +259,9 @@
             </div>
         </body>
         <footer>
-            お問い合わせ：000-0000-00000
-        
-            <br>
-            学校お問い合わせリンク
-            <a href="hoge">www.text.sr.jp</a>
             <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <label>お問い合わせ：000-0000-00000</label>　　　　　　
                 <input type="submit" value="管理者ログイン">
-            </form>
-            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
-                <input type="submit" value="学校新規登録"><!--権限制御必要-->
             </form>
         </footer>
     </body>

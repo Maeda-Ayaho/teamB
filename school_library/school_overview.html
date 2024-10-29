@@ -9,30 +9,34 @@
         <header>
             <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
             <div id="mng">
+                <form>
+                    <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
+                    <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+                </form>
                 <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
-                    <label for="search_h">高校名で検索</label>
-                    <input type="text" id="keyword" name="keyword">
-                    <input type="submit" value="検索">
+                    <span>
+                        <label for="search_h">高校名で検索</label>
+                        <input type="text" id="keyword" name="keyword">
+                        <input type="submit" value="検索">
+                    </span>
+
                 </form>
             </div>
-            <form>
-                <input type="submit" value="管理者ログイン"><!--権限制御の追加がない-->
-            </form>
         </header>
         <body>
-            <div class="contents_body">
-                <div class="school_info">
+            <div class="contents-body">
+                <div class="school-info">
                     <div class="mod-school">
                         <div class="mod-school-inner">
                             <div class="mod-school-top">
-                                <h1>○○○○高等学校</h1>
-                                <p class="mod-school-caption">(フリガナ)</p>
-                                <p class="mod-school-info">○○県 / 公立 / 共学</p>
+                                <div class="mod-school-one">○○○○高等学校　偏差値： {学校.偏差値}</div>
+                                <div class="mod-school-caption">(ふりがな)</div><div class="school-star">img:★★☆☆☆  {評価値の平均値2.2}</div>
+                                <!-- <p class="mod-school-info">○○県 / 公立 / 共学</p> -->
                             </div>
                             <div class="mod-school-bottom">
                                 <div class="info">
-                                    <p class="school-hensa">偏差値： {学校.偏差値}</p>
-                                    <p class="school-star">img:★★☆☆☆  {評価値の平均値2.2}</p>
+
+                                    
                                 </div>
                             </div>
                         </div>
@@ -100,16 +104,9 @@
             </div>
         </body>
         <footer>
-            お問い合わせ：000-0000-00000
-        
-            <br>
-            学校お問い合わせリンク
-            <a href="hoge">www.text.sr.jp</a>
             <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <label>お問い合わせ：000-0000-00000</label>　　　　　　
                 <input type="submit" value="管理者ログイン">
-            </form>
-            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
-                <input type="submit" value="学校新規登録"><!--権限制御必要-->
             </form>
         </footer>
     </body>

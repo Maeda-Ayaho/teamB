@@ -1,8 +1,26 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title},~{::body/content()})}">
-    <title>
-        高校ナビ
-    </title>
-    <link rel="stylesheet" href="searchResults.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>高校ナビ</title>
+        <link rel="stylesheet" href="highSchoolLib.css">
+        <link rel="stylesheet" href="searchResults.css">
+    </head>
+    <header>
+        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <div id="mng">
+            <form>
+                <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
+                <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+            </form>
+            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                <span>
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </span>
+            </form>
+        </div>
+    </header>
     <body>
         <div class="contents_body">
             <h2>検索条件</h2>
@@ -263,6 +281,12 @@
         }
         // 初期表示
         displaySchools(schools);
-    </script>    
+    </script>
 </body>
+<footer>
+    <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+        <label>お問い合わせ：000-0000-00000</label>
+        <input type="submit" value="管理者ログイン">
+    </form>
+</footer>
 </html>

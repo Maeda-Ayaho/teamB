@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
+    <header>
+        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <div id="mng">
+            <form>
+                <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
+                <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+            </form>
+            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                <span>
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </span>
+            </form>
+        </div>
+    </header>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +39,12 @@
             color: #0d1b30;
         }
     </style>
+    <meta charset="UTF-8">
+    <title>HIGH SCHOOL LIBRARY</title>
+    <link rel="stylesheet" href="highSchoolLib.css">
 </head>
 <body>
+    <br>
     <div class="message">
         完了しました
     </div>
@@ -33,6 +53,12 @@
     </div><br>
     <div class="message3">
         タブを閉じてください
-    </div><br>
+    </div><br><br>
 </body>
+<footer>
+    <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+        <label>お問い合わせ：000-0000-00000</label>
+        <input type="submit" value="管理者ログイン">
+    </form>
+</footer>
 </html>

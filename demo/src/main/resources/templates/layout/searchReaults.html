@@ -210,11 +210,11 @@
     <script>
         // サンプルデータ（実際にはサーバーから取得）
         const schools = [
-            { name: "学校A", score: 70, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 120, url: "schoolA.html" },
-            { name: "学校B", score: 65, image: "https://via.placeholder.com/100", rating: 3, ratingImage: "https://via.placeholder.com/20", postCount: 80, url: "schoolB.html" },
-            { name: "学校C", score: 75, image: "https://via.placeholder.com/100", rating: 5, ratingImage: "https://via.placeholder.com/20", postCount: 200, url: "schoolC.html" },
-            { name: "学校D", score: 60, image: "https://via.placeholder.com/100", rating: 2, ratingImage: "https://via.placeholder.com/20", postCount: 50, url: "schoolD.html" },
-            { name: "学校E", score: 80, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 150, url: "schoolE.html" },
+            { name: "学校A", score: 70, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 120, url: "schoolA.html", gender: "共学", prefecture: "東京都" },
+            { name: "学校B", score: 65, image: "https://via.placeholder.com/100", rating: 3, ratingImage: "https://via.placeholder.com/20", postCount: 80, url: "schoolB.html", gender: "男子", prefecture: "大阪府" },
+            { name: "学校C", score: 75, image: "https://via.placeholder.com/100", rating: 5, ratingImage: "https://via.placeholder.com/20", postCount: 200, url: "schoolC.html", gender: "女子", prefecture: "北海道" },
+            { name: "学校D", score: 60, image: "https://via.placeholder.com/100", rating: 2, ratingImage: "https://via.placeholder.com/20", postCount: 50, url: "schoolD.html", gender: "共学", prefecture: "福岡県" },
+            { name: "学校E", score: 80, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 150, url: "schoolE.html", gender: "女子", prefecture: "愛知県" },
         ];
     
         const resultsContainer = document.getElementById("results");
@@ -230,16 +230,18 @@
                 const infoDiv = document.createElement("div");
                 infoDiv.className = "info";
                 infoDiv.innerHTML = `<span class="title">${school.name}</span><br>
-                                     <span class="score">偏差値: ${school.score}</span><br>
+                                     <span class="score">偏差値: ${school.score}</span>
                                      <span class="rating">評価点: ${school.rating}</span>
                                      <img src="${school.ratingImage}" alt="評価点: ${school.rating}" style="width: 20px; vertical-align: middle; margin-left: 5px;">
-                                     <span class="postCount">口コミ件数: ${school.postCount}</span>`;
-                
+                                     <span class="postCount">口コミ件数: ${school.postCount}</span><br>
+                                     <span class="gender">${school.gender}</span>
+                                     <span class="prefecture">/ ${school.prefecture}</span>`;
+    
                 const img = document.createElement("img");
                 img.src = school.image;
                 img.alt = school.name;
-                img.style.width = "100px"; 
-                img.style.height = "80px"; 
+                img.style.width = "100px";
+                img.style.height = "80px";
                 
                 resultDiv.appendChild(infoDiv);
                 resultDiv.appendChild(img);
@@ -259,9 +261,8 @@
                 }
             });
         }
-    
         // 初期表示
         displaySchools(schools);
-    </script>
+    </script>    
 </body>
 </html>

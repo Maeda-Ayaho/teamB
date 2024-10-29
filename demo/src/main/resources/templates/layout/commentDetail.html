@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>投稿詳細ページ</title>
+    <link rel="stylesheet" href="/commentDetail.css">
+    <style>
+        .post-header {
+            display: flex;
+            align-items: center; /* 垂直方向に中央揃え */
+        }
+
+        .gender-image, .rating-image {
+            width: 30px; /* 画像のサイズ */
+            height: 30px; /* 画像のサイズ */
+        }
+
+        .gender-image {
+            margin-right: 10px; /* タイトルとのスペース */
+        }
+
+        .rating-image {
+            margin-left: 5px; /* 評価画像とのスペース */
+        }
+
+        body {
+            font-family: Arial, sans-serif; /* フォントの設定 */
+            margin: 20px;
+        }
+
+        h2 {
+            display: inline; /* タイトルをアイコンの横に並べる */
+        }
+
+        h3 {
+            margin-top: 20px; /* 各見出しの上にスペースを追加 */
+        }
+
+        p {
+            margin: 5px 0; /* 各段落の上下にスペースを追加 */
+        }
+    </style>
+</head>
+<body>
+    <div th:each="post : ${posts}">
+        <div class="post-info" style="display: flex; align-items: center;">
+            <p th:text="${post.postStatus} + ' / '">〇〇生 /</p>
+            <p th:text="${post.postYear} + '年入学'">2000年入学</p>
+            <form action="/delete" method="POST" style="margin-left: 10px;">
+                <button type="submit" class="delete-button">削除</button>
+            </form>
+        </div>
+        
+        <div class="post-header">
+            <div style="display: flex; align-items: center;">
+                <img th:src="${post.postGender == '男' ? '/male.png' : (post.postGender == '女' ? '/female.png' : '/other.png')}"
+                     alt="性別アイコン" class="gender-image"/>
+            </div>
+            <h2 th:text="${post.postTitle}">タイトル</h2>
+
+            <!-- 評価アイコンを表示 -->
+            <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+                <div style="display: flex; align-items: center;">
+                    <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
+                                  item.itemTotalScore == 4 ? '/score_4.png' :
+                                  item.itemTotalScore == 3 ? '/score_3.png' :
+                                  item.itemTotalScore == 2 ? '/score_2.png' :
+                                  '/score_1.png'}"
+                         alt="評価アイコン" class="rating-image"/>
+                    <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点</p>
+                </div>
+            </div>
+        </div>
+        
+        <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04/01</p>
+        
+        <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+            <p th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">[環境:3 | 部活動:3 | イベント:3]</p>
+            
+            <h3>総合評価</h3>
+            <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
+            
+            <h3>環境コメント</h3>
+            <p th:text="${item.itemEnvironmentComment}">環境に関するコメント</p>
+
+            <h3>部活動コメント</h3>
+            <p th:text="${item.itemClubComment}">部活動に関するコメント</p>
+            
+            <h3>イベントコメント</h3>
+            <p th:text="${item.itemEventComment}">イベントに関するコメント</p>
+        </div>
+    </div>
+</body>
+</html>
+

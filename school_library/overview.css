@@ -1,0 +1,122 @@
+body{
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 10;
+}
+header{
+    font-size: 20px;
+    background-color: #d0dfec;
+    border-bottom: solid "808080";
+    height: 100px;
+    margin-top: 20px;
+    white-space: nowrap;
+    display:flex;
+    text-align: right;
+    align-items: flex-end;
+}
+footer{
+    background-color: #d0dfec;
+    height: 120px;
+    white-space: nowrap;
+}
+
+
+div {
+    display: block;
+}
+.contents-body {
+    padding: 0 ;
+    margin: 0;
+}
+.mod-school-caption { /*学校名のフリガナ */
+    font-size: 12px;
+    font-weight: 700;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    display:flex;
+}
+.mod-school-top { /* TOP学校上部 */
+    font-size: 20px;
+    background-color: #cbec9f;
+    margin: 0 0;
+    padding-right: 40px;
+    border-bottom: 1px solid gray;
+}
+.mod-school-one {
+    font-size: 30px;
+}
+.mod-school-bottom { /* TOP学校上部 */
+    background-color: #cbec9f;
+    margin: 0 0;
+    padding-right: 40px;
+    border-bottom: 1px solid gray;
+}
+.mod-school-info { /* 学校詳細全体 */
+    font-size: 11px;
+}
+.mod-school-inner {
+    padding-right: 400px;
+    border-top:1px solid gray;
+    border-bottom:1px solid gray;
+}
+.school-image {
+    margin: 40px 0 20px;
+    text-align: center;
+}
+h1 {
+    margin: 0 0;
+}
+dd {
+    margin: 0 0;
+    display: block;
+    margin-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+#overview > p{
+    background-color: #cbec9f;
+}
+ul li{
+    background-color: #cbec9f;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+    list-style: none;
+}
+.post-header {
+    display: flex;
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.gender-image, .rating-image {
+    width: 30px; /* 画像のサイズ */
+    height: 30px; /* 画像のサイズ */
+}
+
+.gender-image {
+    margin-right: 10px; /* タイトルとのスペース */
+}
+
+.rating-image {
+    margin-left: 5px; /* 評価画像とのスペース */
+}
+
+body {
+    font-family: Arial, sans-serif; /* フォントの設定 */
+    margin: 20px;
+}
+
+h2 {
+    display: inline; /* タイトルをアイコンの横に並べる */
+}
+
+h3 {
+    margin-top: 20px; /* 各見出しの上にスペースを追加 */
+}
+
+p {
+    margin: 5px 0; /* 各段落の上下にスペースを追加 */
+}
+#comment {
+    border-top: solid 0.5px;
+}

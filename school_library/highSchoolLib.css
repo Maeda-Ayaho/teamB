@@ -1,0 +1,82 @@
+body{
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+}
+header{
+    font-size: 2rem;
+    background-color: #f0f8ff;
+    border-bottom: solid "808080";
+    height: 120px;
+    margin-top: 20px;
+    white-space: nowrap;
+    display:flex;
+}
+footer{
+    background-color: #f0f8ff;
+    height: 120px;
+    white-space: nowrap;
+}
+.mainbody{
+    display: flex;
+    float: left;
+    margin: 0 30px 0 30px;
+    white-space: nowrap;
+}
+.sidebar{
+    width: 250px;
+}
+.nav{
+    height: 150px;
+}
+li[class=nav]{
+    height: 30px;
+    color: #808080;
+}
+.contents{
+    width: 70%;
+    margin: 0 30px 0 30px;
+}
+.contents_body {
+    padding: 0 30px;
+}
+.content {
+    padding: 0 30px;
+}
+#mng{
+    color: gray;
+    padding-left:0;
+}
+#search{
+    background-color: #ffe4e1;
+    
+}
+#school_rank{
+    background-color: #ffe4e1;
+}
+#recently_comment{
+    background-color: #ffe4e1;
+}
+#edit_school{
+    background-color: #ffe4e1;
+}
+#recently_comment ul li, #recently_comment ol li {
+    border-left: solid 6px #2d8fdd;/*左側の線*/
+    background: #f1f8ff;/*背景色*/
+    margin-bottom: 3px;/*下のバーとの余白*/
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none!important;/*ポチ消す*/
+}
+#school_rank > ul li {/*学校のランキングを横に並べたい*/
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+    list-style: none;
+}
+ul li{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+    list-style: none;
+}

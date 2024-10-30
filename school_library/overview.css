@@ -73,20 +73,6 @@ dd {
     margin-inline-start: 40px;
     unicode-bidi: isolate;
 }
-#comments {
-    border: 3px solid rgb(174, 223, 243);
-    margin: 6px;
-}
-#comment top{
-    width: 100px;
-    height:100px;
-}
-#commentsss > ul li {/*学校のランキングを横に並べたい*/
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    display: inline-block;
-    list-style: none;
-}
 #overview > p{
     background-color: #cbec9f;
 }
@@ -96,4 +82,41 @@ ul li{
     margin-right: 0.5em;
     display: inline-block;
     list-style: none;
+}
+.post-header {
+    display: flex;
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.gender-image, .rating-image {
+    width: 30px; /* 画像のサイズ */
+    height: 30px; /* 画像のサイズ */
+}
+
+.gender-image {
+    margin-right: 10px; /* タイトルとのスペース */
+}
+
+.rating-image {
+    margin-left: 5px; /* 評価画像とのスペース */
+}
+
+body {
+    font-family: Arial, sans-serif; /* フォントの設定 */
+    margin: 20px;
+}
+
+h2 {
+    display: inline; /* タイトルをアイコンの横に並べる */
+}
+
+h3 {
+    margin-top: 20px; /* 各見出しの上にスペースを追加 */
+}
+
+p {
+    margin: 5px 0; /* 各段落の上下にスペースを追加 */
+}
+#comment {
+    border-top: solid 0.5px;
 }

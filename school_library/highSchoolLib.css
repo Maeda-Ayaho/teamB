@@ -15,7 +15,7 @@ header{
     align-items: flex-end;
 }
 footer{
-    background-color: #b2d9fc;
+    background-color: #d0dfec;
     height: 120px;
     white-space: nowrap;
 }
@@ -54,10 +54,10 @@ footer{
     background-color: #cbec9f;
 }
 #recently_comment{
-    background-color: #edffd6;
+    background-color: #cbec9f;
 }
 #edit_school{
-    background-color: #edffd6;
+    background-color: #cbec9f;
 }
 #recently_comment ul li, #recently_comment ol li {
     border-left: solid 6px #2d8fdd;/*左側の線*/
@@ -92,4 +92,42 @@ ul li{
     font-weight: bold; /* 太字 */
     border-radius: 3px; /* 角を少し丸める */
     font-size: 12px; /* 文字サイズを小さく */
+}
+#top {
+    height: 100px;
+    width: 175px;
+}
+.post-header {
+    display: flex;
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.gender-image, .rating-image {
+    width: 30px; /* 画像のサイズ */
+    height: 30px; /* 画像のサイズ */
+}
+
+.gender-image {
+    margin-right: 10px; /* タイトルとのスペース */
+}
+
+.rating-image {
+    margin-left: 5px; /* 評価画像とのスペース */
+}
+
+body {
+    font-family: Arial, sans-serif; /* フォントの設定 */
+    margin: 20px;
+}
+
+h2 {
+    display: inline; /* タイトルをアイコンの横に並べる */
+}
+
+h3 {
+    margin-top: 20px; /* 各見出しの上にスペースを追加 */
+}
+
+p {
+    margin: 5px 0; /* 各段落の上下にスペースを追加 */
 }

@@ -84,3 +84,12 @@ ul li{
 #error {
     text-align: center;
 }
+.required {
+    display: inline-block; /* インラインブロックで配置 */
+    border: 1px solid red; /* 赤い枠線 */
+    padding: 1px 2px; /* 内側の余白 */
+    color: red; /* 文字色 */
+    font-weight: bold; /* 太字 */
+    border-radius: 3px; /* 角を少し丸める */
+    font-size: 12px; /* 文字サイズを小さく */
+}

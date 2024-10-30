@@ -1,0 +1,77 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title},~{::body/content()})}">
+    <title>
+        投稿入力
+    </title>
+    <body>
+        <div class="contents_body">
+            <h2>コメント送信フォーム</h2>
+            <div id="search"><!---->
+                <form th:action="@{user/add}" th:object="${user}" th:method="post">
+                    <p>
+                        <label for="comment_title">タイトル：</label><!-- コメントタイトル -->
+                        <input type="text" id="comment_title" name="comment_title">
+                    </p>
+                    <p>
+                        <label for="institution">ステータス：</label><!-- 在校生か卒業生 -->
+                        <input type="radio" name="生" value="在校生">在校生
+                        <input type="radio" name="生" value="卒業生">卒業生
+                    </p>
+                    <p>
+                        <label for="enrollment" >年度入力：</label><!-- 何年に入学したか -->
+                        <input type="text" id="enrollment" name="enrollment" placeholder="半角数字四桁：2000">
+                    </p>
+                    <p>
+                        <label for="institution">性別：</label><!-- 在校生か卒業生 -->
+                        <input type="radio" name="性" value="男">男
+                        <input type="radio" name="性" value="女">女
+                        <input type="radio" name="性" value="その他">その他
+                    </p>
+                    <p>
+                        <label for="overall_comment">総合評価コメント</label><br><!-- 総合評価に対するコメント -->
+                        <textarea id="overall_comment" name="overall_comment" rows="4" cols="50"></textarea>
+                    </p>
+                    <p>
+                        <label for="environment">環境評価：</label><!-- 環境評価点 -->
+                        <input type="radio" name="environment" value="1">1
+                        <input type="radio" name="environment" value="2">2
+                        <input type="radio" name="environment" value="3">3
+                        <input type="radio" name="environment" value="4">4
+                        <input type="radio" name="environment" value="5">5
+                    </p>
+                    <p>
+                        <label for="environment_comment">環境コメント</label><br><!-- 環境に関するコメント -->
+                        <textarea id="environment_comment" name="environment_comment" rows="4" cols="50"></textarea>
+                    </p>
+                    <p>
+                        <label for="club">部活動評価：</label><!-- 部活動評価点 -->
+                        <input type="radio" name="club" value="1">1
+                        <input type="radio" name="club" value="2">2
+                        <input type="radio" name="club" value="3">3
+                        <input type="radio" name="club" value="4">4
+                        <input type="radio" name="club" value="5">5
+                    </p>
+                    <p>
+                        <label for="club_comment">部活動コメント</label><br><!-- 部活動に関するコメント -->
+                        <textarea id="club_comment" name="club_comment" rows="4" cols="50"></textarea>
+                    </p>
+                    <p>
+                        <label for="event">イベント評価：</label><!-- イベントに対する評価点 -->
+                        <input type="radio" name="event" value="1">1
+                        <input type="radio" name="event" value="2">2
+                        <input type="radio" name="event" value="3">3
+                        <input type="radio" name="event" value="4">4
+                        <input type="radio" name="event" value="5">5
+                    </p>
+                    <p>
+                        <label for="event_comment">イベントコメント</label><br><!-- イベントに関するコメント -->
+                        <textarea id="event_comment" name="event_comment" rows="4" cols="50"></textarea>
+                    </p>
+                    <input type="submit" value="送信">
+                </form>
+            </div>
+        </div>
+        <form action="index.html" method="get">
+            <button type="submit">戻る</button>
+        </form>
+    </body>
+</html>

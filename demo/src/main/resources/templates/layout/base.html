@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title,body)">
+    <head>
+        <meta charset="UTF-8">
+        <title>HIGH SCHOOL LIBRARY</title>
+        <link rel="stylesheet" href="highSchoolLib.css">
+    </head>
+    <bo>
+        <header>
+            <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+            <div id="mng">
+                <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </form>
+            </div>
+            <form>
+                <input type="submit" value="管理者ログアウト"><!--権限制御の追加がない-->
+            </form>
+        </header>
+        <body>
+            <div class="container">
+                <div id="body" th:replace="${body}"></div>
+            </div>
+        </body>
+        <footer>
+            お問い合わせ：000-0000-00000
+
+            <br>
+            学校お問い合わせリンク
+            <a href="hoge">www.text.sr.jp</a>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="管理者ログイン">
+            </form>
+            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
+                <input type="submit" value="学校新規登録"><!--権限制御必要-->
+            </form>
+        </footer>
+    </body>
+</html>

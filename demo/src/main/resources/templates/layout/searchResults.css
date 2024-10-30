@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 縦中央揃え */
+}
+.result img {
+    width: 100px; /* 画像のサイズ */
+    height: auto;
+    margin-left: 10px; /* 画像と情報の間に余白を追加 */
+}
+.info {
+    flex-grow: 1; /* 情報部分が残りのスペースを占める */
+}
+.title {
+    font-size: 1.2em;
+    color: #0066cc;
+}
+.score {
+    color: #666;
+}

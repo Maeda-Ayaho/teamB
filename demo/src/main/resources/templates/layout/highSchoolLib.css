@@ -1,0 +1,59 @@
+body{
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+}
+header{
+    font-size: 2rem;
+    background-color: #ffe4e1;
+    border-bottom: solid "808080";
+    height: 120px;
+    margin-top: 20px;
+    white-space: nowrap;
+    display:flex;
+}
+footer{
+    background-color: #ffe4e1;
+    height: 120px;
+    white-space: nowrap;
+}
+.mainbody{
+    display: flex;
+    float: left;
+    margin: 0 30px 0 30px;
+    white-space: nowrap;
+}
+.sidebar{
+    width: 250px;
+}
+.nav{
+    height: 150px;
+}
+li[class=nav]{
+    height: 30px;
+    color: #808080;
+}
+.contents{
+    width: 70%;
+    margin: 0 30px 0 30px;
+}
+.contents_body {
+    padding: 0 30px;
+}
+.content {
+    padding: 0 30px;
+}
+#mng{
+    color: gray;
+    padding-left:0;
+}
+#search{
+    background-color: #f0f8ff;
+    
+}
+#ranking{
+    background-color: #f0f8ff;
+}
+#recently_comment{
+    background-color: #f0f8ff;
+}

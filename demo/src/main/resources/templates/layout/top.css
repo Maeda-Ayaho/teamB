@@ -1,12 +1,16 @@
-body{/**/
+body{
     background-color: #FFFFFF;
-    padding: 0;
     margin: 10;
+    padding: 0 120px;
+}
+element.style {
+    margin-top: 0;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 header{
     font-size: 20px;
     background-color: #d0dfec;
-    border-bottom: solid "808080";
     height: 100px;
     margin-top: 20px;
     white-space: nowrap;
@@ -16,20 +20,8 @@ header{
 }
 footer{
     background-color: #d0dfec;
-    height: 120px;
+    height: 100px;
     white-space: nowrap;
-}
-.mainbody{
-    display: flex;
-    float: left;
-    margin: 0 30px 0 30px;
-    white-space: nowrap;
-}
-.sidebar{
-    width: 250px;
-}
-.nav{
-    height: 150px;
 }
 .contents{
     width: 70%;
@@ -46,15 +38,19 @@ footer{
     padding-left:0;
 }
 #search{
+    font-size: 18px;
+    padding: 20px;
     background-color: #cbec9f;
     border: solid 0.5px;
     border-radius: 5ps;
+    field-sizing: 40px;
 }
 #school_rank ul li{
     background-color: #cbec9f;
 }
-#recently_comment{
-    background-color: #cbec9f;
+button {
+    width: 60px;
+    height: 36px;
 }
 #edit_school{
     background-color: #cbec9f;
@@ -67,6 +63,14 @@ footer{
     padding: 0.5em;
     list-style-type: none!important;/*ポチ消す*/
 }
+
+#comment {
+    background-color: #cbec9f;
+    border: solid 1px;
+    margin: 10px;
+    padding: 10px;
+}
+
 #school_rank > ul li {/*学校のランキングを横に並べたい*/
     background-color: #cbec9f;
     margin-left: 0.5em;
@@ -130,4 +134,16 @@ h3 {
 
 p {
     margin: 5px 0; /* 各段落の上下にスペースを追加 */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+}
+.message {
+    font-size: 48px;
+    color: #5461db;
+}
+.message2 {
+    font-size: 24px;
+    color: #5461db;
 }

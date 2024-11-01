@@ -13,8 +13,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "")
-public class Item {
+@Table(name = "School_evaluations")
+public class School_evaluations {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,10 +56,10 @@ public class Item {
     @Column(name = "total_comment", length = 400)
     private String totalComment; // 総合コメント
 
-    public Item() {
+    public School_evaluations() {
     }
 
-    public Item(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
+    public School_evaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
                 Double totalScore, String environmentComment, String clubComment,
                 String eventComment, String totalComment) {
         this.postId = postId;

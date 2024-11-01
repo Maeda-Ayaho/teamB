@@ -92,7 +92,7 @@
                         <label for="deviation">偏差値：</label>
                         　　　<select name="max" id="select_max">
                             <option value="">--</option>
-                            <option value="28">28</option>
+                            <option value="2        8">28</option>
                             <option value="29">29</option>
                             <option value="30">30</option>
                             <option value="31">31</option>
@@ -202,7 +202,7 @@
                     </p>
                     <p>
                         <label for="institution">国公私立：</label>
-                        　<!-- <input type="checkbox" name="立" value="すべて">すべて -->
+                        　　<!-- <input type="checkbox" name="立" value="すべて">すべて -->
                         <input type="checkbox" name="立" value="公立">公立
                         <input type="checkbox" name="立" value="私立">私立
                         <input type="checkbox" name="立" value="国立">国立
@@ -210,7 +210,7 @@
                     <p>
                         <label for="school_type">男女共学：</label>
                         <!-- <input type="checkbox" name="学" value="すべて">すべて -->
-                        　<input type="checkbox" name="学" value="男子校">男子校
+                        　　<input type="checkbox" name="学" value="男子校">男子校
                         <input type="checkbox" name="学" value="女子校">女子校
                         <input type="checkbox" name="学" value="共学">共学
                     </p>
@@ -281,6 +281,45 @@
                         <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
                     </div>
                 </div>
+            </div>
+            <div id="comment">
+                <div th:each="post : ${posts}">
+                    <div class="post-info" style="display: flex; align-items: center;">
+                        <p th:text="${post.postStatus} + ' / '">〇〇生 /</p>
+                        <p th:text="${post.postYear} + '年入学'">2000年入学</p>
+                    </div>
+
+                    <div class="post-header">
+                        <div style="display: flex; align-items: center;">
+                            <img th:src="${post.postGender == '男' ? '/male.png' : (post.postGender == '女' ? '/female.png' : '/other.png')}"
+                                alt="性別アイコン" class="gender-image" />
+                        </div>
+                        <h2 th:text="${post.postTitle}">タイトル</h2>
+
+                        <!-- 評価アイコンを表示 -->
+                        <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+                            <div style="display: flex; align-items: center;">
+                                <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
+                                                    item.itemTotalScore == 4 ? '/score_4.png' :
+                                                    item.itemTotalScore == 3 ? '/score_3.png' :
+                                                    item.itemTotalScore == 2 ? '/score_2.png' :
+                                                    '/score_1.png'}" alt="評価アイコン" class="rating-image" />
+                                <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
+
+                    <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+                        <p
+                            th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
+                            [環境:3 | 部活動:3 | イベント:3]</p>
+
+                        <h3>総合評価</h3>
+                        <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
+                    </div>
+                </div>
                 <div id="comment">
                     <div th:each="post : ${posts}">
                         <div class="post-info" style="display: flex; align-items: center;">
@@ -303,62 +342,25 @@
                                                     item.itemTotalScore == 3 ? '/score_3.png' :
                                                     item.itemTotalScore == 2 ? '/score_2.png' :
                                                     '/score_1.png'}" alt="評価アイコン" class="rating-image" />
-                                    <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点</p>
+                                    <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点
+                                    </p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
-
-                        <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                            <p
-                                th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
-                                [環境:3 | 部活動:3 | イベント:3]</p>
-
-                            <h3>総合評価</h3>
-                            <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
-                        </div>
-                    </div>
-                    <div id="comment">
-                        <div th:each="post : ${posts}">
-                            <div class="post-info" style="display: flex; align-items: center;">
-                                <p th:text="${post.postStatus} + ' / '">〇〇生 /</p>
-                                <p th:text="${post.postYear} + '年入学'">2000年入学</p>
-                            </div>
-
-                            <div class="post-header">
-                                <div style="display: flex; align-items: center;">
-                                    <img th:src="${post.postGender == '男' ? '/male.png' : (post.postGender == '女' ? '/female.png' : '/other.png')}"
-                                        alt="性別アイコン" class="gender-image" />
-                                </div>
-                                <h2 th:text="${post.postTitle}">タイトル</h2>
-
-                                <!-- 評価アイコンを表示 -->
-                                <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                                    <div style="display: flex; align-items: center;">
-                                        <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
-                                                    item.itemTotalScore == 4 ? '/score_4.png' :
-                                                    item.itemTotalScore == 3 ? '/score_3.png' :
-                                                    item.itemTotalScore == 2 ? '/score_2.png' :
-                                                    '/score_1.png'}" alt="評価アイコン" class="rating-image" />
-                                        <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
-
-                            <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                                <p
-                                    th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
-                                    [環境:3 | 部活動:3 | イベント:3]</p>
-
-                                <h3>総合評価</h3>
-                                <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
                             </div>
                         </div>
                     </div>
+                    <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
+
+                    <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+                        <p
+                            th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
+                            [環境:3 | 部活動:3 | イベント:3]</p>
+
+                        <h3>総合評価</h3>
+                        <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <footer>
         <form th:action="@{school/add}" th:object="${admin}" th:method="post">

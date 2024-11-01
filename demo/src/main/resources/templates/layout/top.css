@@ -64,6 +64,13 @@ button {
     list-style-type: none!important;/*ポチ消す*/
 }
 
+#comment {
+    background-color: #cbec9f;
+    border: solid 1px;
+    margin: 10px;
+    padding: 10px;
+}
+
 #school_rank > ul li {/*学校のランキングを横に並べたい*/
     background-color: #cbec9f;
     margin-left: 0.5em;

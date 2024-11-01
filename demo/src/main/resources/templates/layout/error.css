@@ -4,6 +4,11 @@ body{
     padding: 0;
     margin: 10;
 }
+element.style {
+    margin-top: 0;
+    margin-left: 120px;
+    margin-right: 120px;
+}
 header{
     font-size: 20px;
     background-color: #d0dfec;

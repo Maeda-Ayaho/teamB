@@ -1,0 +1,43 @@
+body{
+    background-color: #FFFFFF;
+    margin: 20px;
+    padding: 20px;
+}
+header{
+    font-size: 20px;
+    background-color: #d0dfec;
+    border-bottom: solid "808080";
+    height: 100px;
+    margin: 20px;
+    white-space: nowrap;
+    display:flex;
+    text-align: right;
+    align-items: flex-end;
+}
+footer{
+    background-color: #d0dfec;
+    height: 120px;
+    margin: 20px;
+    white-space: nowrap;
+}
+
+/* 本cssの特殊部分 */
+.required {
+    display: inline-block; /* インラインブロックで配置 */
+    border: 1px solid red; /* 赤い枠線 */
+    padding: 1px 2px; /* 内側の余白 */
+    color: red; /* 文字色 */
+    font-weight: bold; /* 太字 */
+    border-radius: 3px; /* 角を少し丸める */
+    font-size: 12px; /* 文字サイズを小さく */
+}
+.contents_body {
+    background-color: #cbec9f;
+    border: solid 0.5px;
+    border-radius: 5ps;
+    margin: 20px;
+    padding: 20px;
+}
+h2 {
+    margin: 20px;
+}

@@ -1,7 +1,15 @@
-import javax.persistence.*; // JPA関連のインポート
-import javax.validation.constraints.NotBlank; // バリデーションアノテーション
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+package com.example.demo.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "schools", uniqueConstraints = @UniqueConstraint(columnNames = {"prefecture", "name"}))

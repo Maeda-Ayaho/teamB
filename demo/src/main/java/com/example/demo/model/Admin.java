@@ -1,11 +1,18 @@
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+package com.example.demo.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "items")
-public class Item {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +29,10 @@ public class Item {
     @Column(name = "password", nullable = false)
     private String password; // パスワード
 
-    public Item() {
+    public Admin() {
     }
 
-    public Item(String username, String password) {
+    public Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }

@@ -1,14 +1,19 @@
-import javax.validation.constraints.Size;
+package com.example.demo.model;
 
-import org.antlr.v4.runtime.misc.NotNull;
+
+
+import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "items")
+@Table(name = "")
 public class Item {
 
     @Id

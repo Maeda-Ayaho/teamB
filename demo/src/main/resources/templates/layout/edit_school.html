@@ -26,11 +26,12 @@
         <body>
             <div class="contents_body">
                 <div id="edit_school">
-                    <form th:action="@{school/add}" th:object="${school}" th:method="post">
+                    <!-- <form th:action="@{school/add}" th:object="${school}" th:method="post"> -->
+                        <form th:action="@{/schools/add}" th:object="${school}" th:method="post">
                         <p>
                             <label for="name">高校名</label>
                             <label for="inputField"><span class="required">必須</span></label><br>
-                            <input type="text" id="name" placeholder=""></input>
+                            <input type="text" id="name" name="name" th:field="*{name}" placeholder="">
                         </p>
                         <p>
                             <label for="prefecture">都道府県</label>

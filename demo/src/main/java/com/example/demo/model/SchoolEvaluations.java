@@ -1,20 +1,17 @@
 package com.example.demo.model;
 
-
-
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "School_evaluations")
-public class School_evaluations {
+@Table(name = "school_evaluations") // テーブル名も小文字にすることが一般的
+public class SchoolEvaluations {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,12 +53,12 @@ public class School_evaluations {
     @Column(name = "total_comment", length = 400)
     private String totalComment; // 総合コメント
 
-    public School_evaluations() {
+    public SchoolEvaluations() {
     }
 
-    public School_evaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
-                Double totalScore, String environmentComment, String clubComment,
-                String eventComment, String totalComment) {
+    public SchoolEvaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
+                             Double totalScore, String environmentComment, String clubComment,
+                             String eventComment, String totalComment) {
         this.postId = postId;
         this.environmentScore = environmentScore;
         this.clubScore = clubScore;
@@ -73,7 +70,7 @@ public class School_evaluations {
         this.totalComment = totalComment;
     }
 
-    // Getters and Setters
+    // Getter と Setter の追加
     public Long getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,20 +18,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/", "/login", "/public/**")
-                .permitAll() //★全権限参照可能となる
-                //.anyRequest().authenticated() // その他は認証を要求
-            )
             //ログイン成功時の処理
             .formLogin(login -> login
-                .loginPage("/login") // ログインページの指定
-                .permitAll() // ログインページは誰でもアクセス可能
+                // ログインページを表示するURL(POST)
+                .loginPage("/login")
+                // ログイン処理を行うURL(GET)
+                //.loginProcessingUrl("/login")
+                // ログインできなかった時のURL
+                .failureUrl("/login?error")
+                // ログインページは誰でもアクセス可能
+                .permitAll()
             )
             .logout(logout -> logout
                 .permitAll() // ログアウトは誰でも可能
+            )
+            .authorizeHttpRequests(authz -> authz
+                // resourceフォルダ直下
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+                    .permitAll() //全権限アクセス可能
+                
+                .requestMatchers("/", "/login", "/public/**")
+                .permitAll() //★全権限参照可能となる
+                //.anyRequest().authenticated() // その他は認証を要求
             );
+
 
         return http.build();
     }

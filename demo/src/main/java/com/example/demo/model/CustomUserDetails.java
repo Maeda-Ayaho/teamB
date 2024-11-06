@@ -11,27 +11,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 // Spring Securityの認証クラスとして認識される
 public class CustomUserDetails implements UserDetails {
     // 自作のUserクラスを持つように拡張する
-    private Admin admin;
+    private User user;
 		
-    public CustomUserDetails(Admin admin) {
-        this.admin = admin;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return admin.getAuthorities().stream()
+        return user.getAuthorities().stream()
             .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
             .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return admin.getPassword(); // カスタム Admin エンティティのパスワードを返す
+        return user.getPassword(); // カスタム User エンティティのパスワードを返す
     }
 
     @Override
     public String getUsername() {
-        return admin.getUsername(); // カスタム Admin エンティティのユーザー名を返す
+        return user.getUsername(); // カスタム User エンティティのユーザー名を返す
     }
 
     @Override
@@ -51,11 +51,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return admin.isEnabled(); // カスタム Admin エンティティでユーザーが有効かどうかを返す
+        return user.isEnabled(); // カスタム User エンティティでユーザーが有効かどうかを返す
     }
 
-    // カスタム Admin エンティティにアクセスするための追加メソッド
-    public Admin getUser() {
-        return admin;
+    // カスタム User エンティティにアクセスするための追加メソッド
+    public User getUser() {
+        return user;
     }
 }

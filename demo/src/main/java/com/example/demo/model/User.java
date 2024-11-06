@@ -12,28 +12,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "admin")
-public class Admin {
-
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // ID (bigserial)
+    private Long id;
 
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "エラーメッセージ")
-    @Column(name = "username", nullable = false)
-    private String username; // ユーザー名
-
-    @NotBlank
-    @Size(min = 8, max = 20)
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "エラーメッセージ")
-    @Column(name = "password", nullable = false)
-    private String password; // パスワード
+    // アカウント
+    @Column(nullable = false, unique = true)
+    private String username;
+    
+    // パスワード
+    @Column(nullable = false)
+    private String password;
 
     // 有効・無効フラグ
     @Column(nullable = false)
@@ -41,16 +34,16 @@ public class Admin {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "admin_authority",
-        joinColumns = @JoinColumn(name = "admin_id"),
+        name = "user_authority",
+        joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
     private Set<Authority> authorities;
 
-    public Admin() {
+    public User() {
     }
 
-    public Admin(Long id, String username, String password, boolean enabled, Set<Authority> authorities) {
+    public User(Long id, String username, String password, boolean enabled, Set<Authority> authorities) {
         this.id = id;
         this.username = username;
         this.password = password;

@@ -21,15 +21,15 @@ public class Authority {
     private String authority;
 
     @ManyToMany(mappedBy = "authorities")
-    private Set<Admin> admin;
+    private Set<User> user;
 
     public Authority() {
     }
 
-    public Authority(Long id, String authority, Set<Admin> admin) {
+    public Authority(Long id, String authority, Set<User> user) {
         this.id = id;
         this.authority = authority;
-        this.admin = admin;
+        this.user = user;
     }
 
     public Long getId() {
@@ -48,11 +48,11 @@ public class Authority {
         this.authority = authority;
     }
 
-    public Set<Admin> getUser() {
-        return admin;
+    public Set<User> getUser() {
+        return user;
     }
 
-    public void setUser(Set<Admin> admin) {
-        this.admin = admin;
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
 }

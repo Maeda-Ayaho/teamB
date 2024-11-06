@@ -21,7 +21,7 @@ public class SecurityConfig {
             //ログイン成功時の処理
             .formLogin(login -> login
                 // ログインページを表示するURL(POST)
-                .loginPage("/login")
+                //.loginPage("/login")
                 // ログイン処理を行うURL(GET)
                 //.loginProcessingUrl("/login")
                 // ログインできなかった時のURL
@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                     .permitAll() //全権限アクセス可能
                 
-                .requestMatchers("/", "/login", "/public/**")
+                .requestMatchers("/")
                 .permitAll() //★全権限参照可能となる
                 //.anyRequest().authenticated() // その他は認証を要求
             );

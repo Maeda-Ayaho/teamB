@@ -1,7 +1,8 @@
 body{
+    font-family: Arial, sans-serif;
     background-color: #FFFFFF;
-    margin: 20px;
-    padding: 20px;
+    margin: 10;
+    padding: 0 120px;
 }
 element.style {
     margin-top: 0;
@@ -11,9 +12,8 @@ element.style {
 header{
     font-size: 20px;
     background-color: #d0dfec;
-    border-bottom: solid "808080";
     height: 100px;
-    margin: 20px;
+    margin-top: 20px;
     white-space: nowrap;
     display:flex;
     text-align: right;
@@ -21,9 +21,19 @@ header{
 }
 footer{
     background-color: #d0dfec;
-    height: 120px;
-    margin: 20px;
+    height: 100px;
     white-space: nowrap;
+}
+.contents{
+    width: 70%;
+    margin: 0 30px 0 30px;
+}
+.contents_body {
+    background-color: #cbec9f;
+    border: solid 0.5px;
+    border-radius: 5ps;
+    margin: 20px;
+    padding: 20px;
 }
 
 /* 本cssの特殊部分 */
@@ -35,13 +45,6 @@ footer{
     font-weight: bold; /* 太字 */
     border-radius: 3px; /* 角を少し丸める */
     font-size: 12px; /* 文字サイズを小さく */
-}
-.contents_body {
-    background-color: #cbec9f;
-    border: solid 0.5px;
-    border-radius: 5ps;
-    margin: 20px;
-    padding: 20px;
 }
 h2 {
     margin: 20px;

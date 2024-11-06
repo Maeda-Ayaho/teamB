@@ -1,8 +1,8 @@
 body{
+    font-family: Arial, sans-serif;
     background-color: #FFFFFF;
     margin: 10;
-    padding: 0;
-    margin: 10;
+    padding: 0 120px;
 }
 element.style {
     margin-top: 0;
@@ -12,7 +12,6 @@ element.style {
 header{
     font-size: 20px;
     background-color: #d0dfec;
-    border-bottom: solid "808080";
     height: 100px;
     margin-top: 20px;
     white-space: nowrap;
@@ -22,13 +21,22 @@ header{
 }
 footer{
     background-color: #d0dfec;
-    height: 120px;
+    height: 100px;
     white-space: nowrap;
 }
-
-.do {
-    margin: 20px;
+.contents{
+    width: 70%;
+    margin: 0 30px 0 30px;
 }
+.contents_body {
+    background-color: #cbec9f;
+    border: solid 0.5px;
+    border-radius: 5ps;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* 本cssの特殊部分 */
 
 #error{
     margin: 20px;

@@ -11,6 +11,6 @@ public class IndexController {
     @GetMapping
     public String index(@AuthenticationPrincipal UserDetails currentUser, Model model) {
         model.addAttribute("username", currentUser.getUsername());
-        return "top";
+        return "layout/top";
     }
 }

@@ -26,11 +26,13 @@ public class SecurityConfig {
                 //.loginProcessingUrl("/login")
                 // ログインできなかった時のURL
                 .failureUrl("/login?error")
+                .defaultSuccessUrl("/")
                 // ログインページは誰でもアクセス可能
                 .permitAll()
             )
             .logout(logout -> logout
-                .permitAll() // ログアウトは誰でも可能
+                .logoutSuccessUrl("/login")
+                //.permitAll() // ログアウトは誰でも可能
             )
             .authorizeHttpRequests(authz -> authz
                 // resourceフォルダ直下

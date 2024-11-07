@@ -30,6 +30,6 @@ public class SearchSchoolController {
 
         List<School> schools = searchschoolservice.dynamicSearchSchools(prefecture, name, establishmentType, genderType, deviationValueMin, deviationValueMax);
         model.addAttribute("schools", schools);
-        return "searchResults"; // 検索結果を表示するページ
+        return "search-result"; // 検索結果を表示するページ
     }
 }

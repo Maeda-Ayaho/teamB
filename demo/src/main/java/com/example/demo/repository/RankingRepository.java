@@ -12,7 +12,7 @@ import com.example.demo.model.School;
 @Repository
 public interface RankingRepository extends JpaRepository<School, Long> {
 
-    @Query("SELECT new com.example.demo.model.RankingData(s.image, s.name, AVG(se.totalScore), COUNT(p.id), s.deviationValue) "
+    @Query("SELECT s.image, s.name, AVG(se.totalScore), COUNT(p.id), s.deviationValue"
             +
             "FROM School s " +
             "LEFT JOIN Post p ON p.school.id = s.id " +

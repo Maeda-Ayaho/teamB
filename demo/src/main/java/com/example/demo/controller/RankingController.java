@@ -14,7 +14,7 @@ import com.example.demo.service.RankingService;
 public class RankingController {
 
     @Autowired
-    private RankingService rankingService;
+    private final RankingService rankingService;
 
     @GetMapping("/ranking")
     public String showRanking(Model model) {

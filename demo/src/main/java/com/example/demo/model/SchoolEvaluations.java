@@ -2,19 +2,20 @@ package com.example.demo.model;
 
 
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "School_evaluations")
-public class School_evaluations {
+@Table(name = "school_evaluations")
+public class SchoolEvaluations {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,10 @@ public class School_evaluations {
     @NotNull
     @Column(name = "post_id", nullable = false)
     private Long postId; // 投稿ID (外部キー)
+
+    @NotNull
+    @Column(name = "school_id", nullable = false)
+    private Long schoolId; // 学校ID (外部キー)
 
     @NotNull
     @Column(name = "environment_score", nullable = false)
@@ -56,13 +61,22 @@ public class School_evaluations {
     @Column(name = "total_comment", length = 400)
     private String totalComment; // 総合コメント
 
-    public School_evaluations() {
+    @ManyToOne
+    @JoinColumn(name = "school_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private School school; // 学校エンティティとのリレーション
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Post post; // 投稿エンティティとのリレーション
+    
+    public SchoolEvaluations() {
     }
 
-    public School_evaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
+    public SchoolEvaluations(Long postId, Long schoolId, Integer environmentScore, Integer clubScore, Integer eventScore,
                 Double totalScore, String environmentComment, String clubComment,
                 String eventComment, String totalComment) {
         this.postId = postId;
+        this.schoolId = schoolId;
         this.environmentScore = environmentScore;
         this.clubScore = clubScore;
         this.eventScore = eventScore;
@@ -71,6 +85,14 @@ public class School_evaluations {
         this.clubComment = clubComment;
         this.eventComment = eventComment;
         this.totalComment = totalComment;
+    }
+
+    public Long getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Long schoolId) {
+        this.schoolId = schoolId;
     }
 
     // Getters and Setters

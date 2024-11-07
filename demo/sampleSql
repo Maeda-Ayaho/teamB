@@ -1,75 +1,99 @@
-データベース名 high_school_navi
-パスワード password00
-ユーザー userB
-
-INSERT INTO admin (admin_user_name, admin_password)
+INSERT INTO admin (username, password)
 VALUES ('userB', 'password00');
 
 
-INSERT INTO school (
-    school_id, school_name, school_name_kana, 
-    school_prefecture, school_deviation_value, school_picture, 
-    school_hp, school_address, school_phone_number, 
-    school_gender, school_public, school_text
-) VALUES 
-    (DEFAULT, '東京大学附属高等学校', 'とうきょうだいがくふぞくこうとうがっこう', '東京都', 70, 'tokyo_high.jpg', 'https://www.u-tokyo.ac.jp', '東京都文京区本郷7-3-1', 351234567, '男女共学', '国立', '東京大学の附属高校で、進学実績が優れています。'),
-    (DEFAULT, '早稲田大学高等学院', 'わせだだいがくこうとうがくいん', '東京都', 68, 'waseda_high.jpg', 'https://www.waseda.jp', '東京都新宿区西早稲田1-6-1', 352345678, '男女共学', '私立', '早稲田大学への進学に強い高校です。'),
-    (DEFAULT, '慶應義塾高等学校', 'けいおうぎじゅくこうとうがっこう', '東京都', 66, 'keio_high.jpg', 'https://www.keio.ac.jp', '東京都港区三田2-15-45', 353456789, '男女共学', '私立', '歴史ある名門高校です。'),
-    (DEFAULT, '大阪大学附属高等学校', 'おおさかだいがくふぞくこうとうがっこう', '大阪府', 65, 'osaka_high.jpg', 'https://www.osaka-u.ac.jp', '大阪府吹田市山田丘1-1', 668765432, '男女共学', '国立', '大阪大学の附属高校で、多様な学びを提供しています。'),
-    (DEFAULT, '名古屋大学附属高等学校', 'なごやだいがくふぞくこうとうがっこう', '愛知県', 64, 'nagoya_high.jpg', 'https://www.nagoya-u.ac.jp', '愛知県名古屋市千種区不老町', 521234567, '男女共学', '国立で、研究が盛んな高校です。'),
-    (DEFAULT, '九州大学附属高等学校', 'きゅうしゅうだいがくふぞくこうとうがっこう', '福岡県', 63, 'kyushu_high.jpg', 'https://www.kyushu-u.ac.jp', '福岡県福岡市西区元岡744', 929876543, '男女共学', '国際的な教育に力を入れています。'),
-    (DEFAULT, '北海道大学附属高等学校', 'ほっかいどうだいがくふぞくこうとうがっこう', '北海道', 62, 'hokkaido_high.jpg', 'https://www.hokudai.ac.jp', '北海道札幌市北区北8条西5丁目', 111234567, '男女共学', '広大なキャンパスを持ち、豊かな自然に囲まれています。'),
-    (DEFAULT, '立命館高等学校', 'りつめいかんこうとうがっこう', '京都府', 61, 'ritsumeikan_high.jpg', 'https://www.ritsumei.ac.jp', '京都府京都市北区等持院北町56-1', 751234567, '男女共学', '国際教育に注力した私立高校です。'),
-    (DEFAULT, '同志社高等学校', 'どうししゃこうとうがっこう', '京都府', 60, 'doshisha_high.jpg', 'https://www.doshisha.ac.jp', '京都府京田辺市興戸内畑47', 774234567, '男女共学', '歴史と伝統を重んじる私立高校です。'),
-    (DEFAULT, '中央大学附属高等学校', 'ちゅうおうだいがくふぞくこうとうがっこう', '東京都', 59, 'chuo_high.jpg', 'https://www.chuo-u.ac.jp', '東京都八王子市犬目町', 421234567, '男女共学', '実学教育を重視した教育を提供します。'),
-    (DEFAULT, '法政大学高等学校', 'ほうせいだいがくこうとうがっこう', '東京都', 58, 'hosei_high.jpg', 'https://www.hosei.ac.jp', '東京都多摩市立野1-5-1', 422345678, '男女共学', '多様な学部と教育プログラムを持つ高校です。'),
-    (DEFAULT, '早稲田摂陵高等学校', 'わせだせつりゅうこうとうがっこう', '大阪府', 57, 'waseda_setsuriyu_high.jpg', 'https://www.waseda-setsuriyu.ed.jp', '大阪府和泉市肥子町2-1', 721234567, '男女共学', 'スポーツが盛んな私立高校です。'),
-    (DEFAULT, '横浜国立大学附属高等学校', 'よこはまこくりつだいがくふぞくこうとうがっこう', '神奈川県', 56, 'yokohama_high.jpg', 'https://www.ynu.ac.jp', '神奈川県横浜市保土ヶ谷区常盤台79-5', 451234567, '男女共学', '横浜市の国立高校で、地域貢献に努めています。'),
-    (DEFAULT, '金沢大学附属高等学校', 'かなざわだいがくふぞくこうとうがっこう', '石川県', 55, 'kanazawa_high.jpg', 'https://www.kanazawa-u.ac.jp', '石川県金沢市角間町', 761234567, '男女共学', '北陸地域の教育をリードする高校です。'),
-    (DEFAULT, '静岡大学附属高等学校', 'しずおかだいがくふぞくこうとうがっこう', '静岡県', 54, 'shizuoka_high.jpg', 'https://www.shizuoka.ac.jp', '静岡県静岡市駿河区大谷888', 541234567, '男女共学', '地域貢献を重視した教育を行っています。'),
-    (DEFAULT, '熊本大学附属高等学校', 'くまもとだいがくふぞくこうとうがっこう', '熊本県', 53, 'kumamoto_high.jpg', 'https://www.kumamoto-u.ac.jp', '熊本県熊本市中央区黒髪2-40-1', 961234567, '男女共学', '九州の中心的な教育機関です。'),
-    (DEFAULT, '大分大学附属高等学校', 'おおいただいがくふぞくこうとうがっこう', '大分県', 52, 'oita_high.jpg', 'https://www.oita-u.ac.jp', '大分県大分市津留323', 971234567, '男女共学', '地方創生に貢献する教育を行っています。'),
-    (DEFAULT, '長崎大学附属高等学校', 'ながさきだいがくふぞくこうとうがっこう', '長崎県', 51, 'nagasaki_high.jpg', 'https://www.nagasaki-u.ac.jp', '長崎県長崎市文教町1-14', 951234567, '男女共学', '国際交流が盛んな私立高校です。');
-
+INSERT INTO schools (
+    id, name, name_furigana,
+    prefecture, deviation_value, image,
+    homepage, address, phone_number,
+    gender_type, establishment_type, description
+) VALUES
+    (1, '東京大学附属高等学校', 'とうきょうだいがくふぞくこうとうがっこう', '東京都', 70, 'tokyo_high.jpg', 'https://www.u-tokyo.ac.jp', '東京都文京区本郷7-3-1', '0351234567', '共学', '国立', '東京大学の附属高校で、進学実績が優れています。'),
+    (2, '早稲田大学高等学院', 'わせだだいがくこうとうがくいん', '東京都', 68, 'waseda_high.jpg', 'https://www.waseda.jp', '東京都新宿区西早稲田1-6-1', '0352345678', '共学', '私立', '早稲田大学への進学に強い高校です。'),
+    (3, '慶應義塾高等学校', 'けいおうぎじゅくこうとうがっこう', '東京都', 66, 'keio_high.jpg', 'https://www.keio.ac.jp', '東京都港区三田2-15-45', '0353456789', '共学', '私立', '歴史ある名門高校です。'),
+    (4, '大阪大学附属高等学校', 'おおさかだいがくふぞくこうとうがっこう', '大阪府', 65, 'osaka_high.jpg', 'https://www.osaka-u.ac.jp', '大阪府吹田市山田丘1-1', '0668765432', '共学', '国立', '大阪大学の附属高校で、多様な学びを提供しています。'),
+    (5, '名古屋大学附属高等学校', 'なごやだいがくふぞくこうとうがっこう', '愛知県', 64, 'nagoya_high.jpg', 'https://www.nagoya-u.ac.jp', '愛知県名古屋市千種区不老町', '0521234567', '共学', '国立', '国立で、研究が盛んな高校です。'),
+    (6, '九州大学附属高等学校', 'きゅうしゅうだいがくふぞくこうとうがっこう', '福岡県', 63, 'kyushu_high.jpg', 'https://www.kyushu-u.ac.jp', '福岡県福岡市西区元岡744', '0929876543', '共学', '国立', '国際的な教育に力を入れています。'),
+    (7, '北海道大学附属高等学校', 'ほっかいどうだいがくふぞくこうとうがっこう', '北海道', 62, 'hokkaido_high.jpg', 'https://www.hokudai.ac.jp', '北海道札幌市北区北8条西5丁目', '0111234567', '共学', '国立', '広大なキャンパスを持ち、豊かな自然に囲まれています。'),
+    (8, '立命館高等学校', 'りつめいかんこうとうがっこう', '京都府', 61, 'ritsumeikan_high.jpg', 'https://www.ritsumei.ac.jp', '京都府京都市北区等持院北町56-1', '0751234567', '共学', '私立', '国際教育に注力した私立高校です。'),
+    (9, '同志社高等学校', 'どうししゃこうとうがっこう', '京都府', 60, 'doshisha_high.jpg', 'https://www.doshisha.ac.jp', '京都府京田辺市興戸内畑47', '0774234567', '共学', '私立', '歴史と伝統を重んじる私立高校です。'),
+    (10, '中央大学附属高等学校', 'ちゅうおうだいがくふぞくこうとうがっこう', '東京都', 59, 'chuo_high.jpg', 'https://www.chuo-u.ac.jp', '東京都八王子市犬目町', '0421234567', '共学', '国立', '実学教育を重視した教育を提供します。'),
+    (11, '法政大学高等学校', 'ほうせいだいがくこうとうがっこう', '東京都', 58, 'hosei_high.jpg', 'https://www.hosei.ac.jp', '東京都多摩市立野1-5-1', '0422345678', '共学', '公立', '多様な学部と教育プログラムを持つ高校です。'),
+    (12, '早稲田摂陵高等学校', 'わせだせつりゅうこうとうがっこう', '大阪府', 57, 'waseda_setsuriyu_high.jpg', 'https://www.waseda-setsuriyu.ed.jp', '大阪府和泉市肥子町2-1', '0721234567', '共学', '私立', 'スポーツが盛んな私立高校です。'),
+    (13, '横浜国立大学附属高等学校', 'よこはまこくりつだいがくふぞくこうとうがっこう', '神奈川県', 56, 'yokohama_high.jpg', 'https://www.ynu.ac.jp', '神奈川県横浜市保土ヶ谷区常盤台79-5', '0451234567', '共学', '国立', '横浜市の国立高校で、地域貢献に努めています。'),
+    (14, '金沢大学附属高等学校', 'かなざわだいがくふぞくこうとうがっこう', '石川県', 55, 'kanazawa_high.jpg', 'https://www.kanazawa-u.ac.jp', '石川県金沢市角間町', '0761234567', '共学', '国立', '北陸地域の教育をリードする高校です。'),
+    (15, '静岡大学附属高等学校', 'しずおかだいがくふぞくこうとうがっこう', '静岡県', 54, 'shizuoka_high.jpg', 'https://www.shizuoka.ac.jp', '静岡県静岡市駿河区大谷888', '0541234567', '共学', '国立', '地域貢献を重視した教育を行っています。'),
+    (16, '熊本大学附属高等学校', 'くまもとだいがくふぞくこうとうがっこう', '熊本県', 53, 'kumamoto_high.jpg', 'https://www.kumamoto-u.ac.jp', '熊本県熊本市中央区黒髪2-40-1', '0961234567', '共学', '国立', '九州の中心的な教育機関です。'),
+    (17, '大分大学附属高等学校', 'おおいただいがくふぞくこうとうがっこう', '大分県', 52, 'oita_high.jpg', 'https://www.oita-u.ac.jp', '大分県大分市津留323', '0971234567', '共学', '国立', '地方創生に貢献する教育を行っています。'),
+    (18, '長崎大学附属高等学校', 'ながさきだいがくふぞくこうとうがっこう', '長崎県', 51, 'nagasaki_high.jpg', 'https://www.nagasaki-u.ac.jp', '長崎県長崎市文教町1-14', '0951234567', '共学', '私立', '国際交流が盛んな私立高校です。'),
+    (19, '山山高等学校', 'やまやまこうとうがっこう', '東京都', 50, NULL, 'https://www.yamakou.ac.jp', '東京都山山市山山区本町1-1-1', '0311111111', '共学', '私立', 'よい'),
+    (20, '大阪先端高等学校', 'おおさかせんたんこうとうがっこう', '大阪府', 30, 'osaka.s.high.school.JPG', 'https://www.osaka.s.ac.jp', '大阪府大阪市北区4-3', '0612342222', '共学', '私立', '大阪で一番最先端技術に触れることができる'),
+    (21, '東京国立高等学校', 'とうきょうこくりつこうとうがっこう', '東京都', 60, 'tokyo.main.PNG', 'https://www.t.k.ac.jp', '東京都千代田区千代田1-2', '0300001111', '共学', '国立', '日本万歳'),
+    (22, '南山高等学校', 'みなみやまこうとうがっこう', '京都府', 45, NULL, 'https://www.t.k.ac.jp', '京都府京都市南区上鳥羽51-1', '0650001112', '男子校', '私立', '部活動実績日本一'),
+    (23, '東京都立東京女子高等学校', 'とうきょうとりつとうきょうじょしこうとうがっこう', '東京都', 67, NULL, 'https://www.t.k.ac.jp', '東京都千代田区千代田1-4', '0300001113', '女子校', '公立', '品性を大事にしています'),
+    (24, '煌々高等学校', 'こうこうこうとうがっこう', '鹿児島県', 39, NULL, 'https://www.t.k.ac.jp', '鹿児島県志布志市志布志町志布志6-6-6', '0990001114', '男子校', '私立', '煌々としております');
 
 
 
 INSERT INTO posts (
-    post_id, school_id, post_date,
-    post_gender, post_title, post_status, post_year
-) VALUES 
-    (DEFAULT, 1, '2024-10-30', '男性', '文化祭の準備', '公開', 2024),
-    (DEFAULT, 2, '2024-10-29', '女性', 'スポーツ大会の結果', '公開', 2024),
-    (DEFAULT, 3, '2024-10-28', '男女共学', '進路相談会のお知らせ', '非公開', 2024),
-    (DEFAULT, 4, '2024-10-27', '男性', '卒業旅行の計画', '公開', 2024);
+    id, school_id, posted_at,
+    gender, title, status, is_deleted
+) VALUES
+    (1, 1, '2024-10-30', '男性', '文化祭の準備', '公開', FALSE),
+    (2, 2, '2024-10-29', '女性', 'スポーツ大会の結果', '公開', FALSE),
+    (3, 3, '2024-10-28', 'その他', '進路相談会のお知らせ', '非公開', FALSE),
+    (4, 4, '2024-10-27', '男性', '卒業旅行の計画', '公開', FALSE);
 
 
-INSERT INTO items (
-    item_id, post_id, item_environment_score,
-    item_club_score, item_event_score, item_total_score,
-    item_environment_comment, item_club_comment,
-    item_event_comment, item_total_comment
-) VALUES 
-    (DEFAULT, 1, 8, 9, 7, 8.0,
+INSERT INTO school_evaluations (
+    school_id, post_id, environment_score,
+    club_score, event_score, total_score,
+    environment_comment, club_comment,
+    event_comment, total_comment
+) VALUES
+    (1, 1, 3, 5, 2, 4.0,
     '学校の環境は整備されており、快適です。',
     '部活動が盛んで、充実しています。',
     'イベントが多く、楽しい時間を過ごせました。',
     '総合的に満足しています。'),
     
-    (DEFAULT, 2, 7, 8, 9, 8.0,
+    (1, 2, 4, 3, 5, 4.3,
     '静かな環境で学びやすいです。',
     '部活動が活発で、仲間とともに成長できます。',
     'イベントが多彩で、楽しみました。',
     '全体的に良い体験でした。'),
     
-    (DEFAULT, 3, 9, 8, 6, 7.7,
+    (2, 3, 4, 1, 2, 2.7,
     '環境は良いが、一部施設が古いです。',
     '部活動の選択肢が豊富です。',
     'イベントが充実しており、参加しやすいです。',
     '総合的には良好です。'),
     
-    (DEFAULT, 4, 8, 7, 8, 7.7,
+    (2, 4, 3, 5, 5, 4.5,
     '環境が整備されており、安心して学べます。',
     '部活動が多く、選びやすいです。',
     'イベントが楽しく、参加する価値があります。',
     '全体的にポジティブな経験です。');
+
+
+
+ランキングSQL
+
+    SELECT
+    schools.image,
+    schools.name,
+    AVG(school_evaluations.total_score) AS avg_score,
+    COUNT(posts.id) AS post_count,
+    schools.deviation_value AS school_deviation_value
+FROM
+    school_evaluations
+LEFT JOIN posts ON school_evaluations.post_id = posts.id
+LEFT JOIN schools ON posts.school_id = schools.id
+WHERE
+	posts.is_deleted = false
+GROUP BY
+    schools.image,
+    schools.name,
+    schools.deviation_value
+ORDER BY
+    avg_score DESC;

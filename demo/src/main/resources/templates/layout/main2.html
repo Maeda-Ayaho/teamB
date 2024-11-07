@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学校詳細</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>学校情報</h1>
+        <div class="card">
+            <img th:src="${school.image}" class="card-img-top" alt="学校画像" />
+            <div class="card-body">
+                <h5 class="card-title" th:text="${school.name}">学校名</h5>
+                <p class="card-text"><strong>総合評価点数:</strong> <span th:text="${totalScore}">0</span></p>
+                <p class="card-text"><strong>都道府県:</strong> <span th:text="${school.prefecture}">未設定</span></p>
+                <p class="card-text"><strong>男女共学:</strong> <span th:text="${school.genderType}">未設定</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

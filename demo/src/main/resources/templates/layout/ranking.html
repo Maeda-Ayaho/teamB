@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>School Data</title>
+</head>
+<body>
+<h1>School Data</h1>
+<table border="1">
+    <tr>
+        <th>Image</th>
+        <th>School Name</th>
+        <th>Average Score</th>
+        <th>Post Count</th>
+        <th>Deviation Value</th>
+    </tr>
+    <tr th:each="ranking : ${rankingList}">
+        <td><img th:src="${RankingData.schoolImage}" alt="School Image" width="100"></td>
+        <td th:text="${RankingData.schoolName}"></td>
+        <td th:text="${RankingData.avgScore}"></td>
+        <td th:text="${RankingData.postCount}"></td>
+        <td th:text="${RankingData.schoolDeviationValue}"></td>
+    </tr>
+</table>
+</body>
+</html>

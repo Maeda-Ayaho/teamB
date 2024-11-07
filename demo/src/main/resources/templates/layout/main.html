@@ -216,15 +216,18 @@
                     </form>
                 </div>
                 <h2>総合ランキング</h2>
-                <div class="school_rank">
-                    <ul><!--やり方がスマートじゃないが、これしか思いつかなった-->
-                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
-                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
-                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
-                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
-                        <a href=""><li><img id="top" src="image.png" width="100" height="100" alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li></a>
-                    </ul>
-                </div>
+                    <div class="school_rank">
+                        <ul>
+                            <li th:each="school : ${school_evaluations}">
+                                <a th:href="@{/school/{id}(id=${school.id})}">
+                                    <img th:src="@{/images/{filename}(filename=${school.imageFilename})}" width="100" height="100" alt="高校の写真">
+                                    <br>
+                                    <span th:text="${school.name}">学校名</span><br>
+                                    <span th:text="${school.totalScore} + '点 / ' + ${school.prefecture} + ' / ' + ${school.gender}">評価/都道府県/男女共学</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 <h2>直近投稿</h2>
                 <div id="comment">
                     <div th:each="post : ${posts}">

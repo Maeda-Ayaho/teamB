@@ -39,9 +39,12 @@ public class SecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                     .permitAll() //全権限アクセス可能
                 
-                .requestMatchers("/")
+                .requestMatchers("/","/schools/**")
                 .permitAll() //★全権限参照可能となる
                 //.anyRequest().authenticated() // その他は認証を要求
+
+                .requestMatchers("/admin/**")
+                .hasRole("ADMIN")
             );
 
 

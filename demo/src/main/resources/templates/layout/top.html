@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>HIGH SCHOOL LIBRARY</title>
+        <link rel="stylesheet" th:href="@{/css/top.css}">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>HIGH SCHOOL LIBRARY</title>
-    <link rel="stylesheet" th:href="@{/css/top.css}">
-</head>
-<bo>
     <header>
         <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
         <div id="mng">
@@ -19,16 +19,14 @@
                     <input type="text" id="keyword" name="keyword">
                     <input type="submit" value="検索">
                 </span>
-
             </form>
         </div>
     </header>
-
     <body>
         <div class="contents_body">
             <h2>検索条件</h2>
             <div id="search"><!---->
-                <form th:action="@{school/add}" th:object="${school}" th:method="post">
+                <form th:action="@{schools/add}" th:object="${school}" th:method="post">
                     <p>
                         <label for="prefecture">都道府県：</label>
                         　　<select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
@@ -81,7 +79,6 @@
                             <option value="鹿児島県">鹿児島県</option>
                             <option value="沖縄県">沖縄県</option>
                         </select>
-
                     </p>
                     <p>
                         <label for="search_h">高校名で検索：</label>
@@ -201,14 +198,12 @@
                     </p>
                     <p>
                         <label for="institution">国公私立：</label>
-                        　　<!-- <input type="checkbox" name="立" value="すべて">すべて -->
                         <input type="checkbox" name="立" value="公立">公立
                         <input type="checkbox" name="立" value="私立">私立
                         <input type="checkbox" name="立" value="国立">国立
                     </p>
                     <p>
                         <label for="school_type">男女共学：</label>
-                        <!-- <input type="checkbox" name="学" value="すべて">すべて -->
                         　　<input type="checkbox" name="学" value="男子校">男子校
                         <input type="checkbox" name="学" value="女子校">女子校
                         <input type="checkbox" name="学" value="共学">共学
@@ -308,65 +303,50 @@
                         </div>
                     </div>
                 </div>
-                    <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
-
-                    <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                        <p
-                            th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
-                            [環境:3 | 部活動:3 | イベント:3]</p>
-
-                        <h3>総合評価</h3>
-                        <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
+            </div>
+            <div id="comment">
+                <div th:each="post : ${posts}">
+                    <div class="post-info" style="display: flex; align-items: center;">
+                        <p th:text="${post.postStatus} + ' / '">〇〇生 /</p>
+                        <p th:text="${post.postYear} + '年入学'">2000年入学</p>
                     </div>
-                </div>
-                <div id="comment">
-                    <div th:each="post : ${posts}">
-                        <div class="post-info" style="display: flex; align-items: center;">
-                            <p th:text="${post.postStatus} + ' / '">〇〇生 /</p>
-                            <p th:text="${post.postYear} + '年入学'">2000年入学</p>
+
+                    <div class="post-header">
+                        <div style="display: flex; align-items: center;">
+                            <img th:src="${post.postGender == '男' ? '/male.png' : (post.postGender == '女' ? '/female.png' : '/other.png')}"
+                                alt="性別アイコン" class="gender-image" />
                         </div>
+                        <h2 th:text="${post.postTitle}">タイトル</h2>
 
-                        <div class="post-header">
+                        <!-- 評価アイコンを表示 -->
+                        <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
                             <div style="display: flex; align-items: center;">
-                                <img th:src="${post.postGender == '男' ? '/male.png' : (post.postGender == '女' ? '/female.png' : '/other.png')}"
-                                    alt="性別アイコン" class="gender-image" />
-                            </div>
-                            <h2 th:text="${post.postTitle}">タイトル</h2>
-
-                            <!-- 評価アイコンを表示 -->
-                            <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                                <div style="display: flex; align-items: center;">
-                                    <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
+                                <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
                                                     item.itemTotalScore == 4 ? '/score_4.png' :
                                                     item.itemTotalScore == 3 ? '/score_3.png' :
                                                     item.itemTotalScore == 2 ? '/score_2.png' :
                                                     '/score_1.png'}" alt="評価アイコン" class="rating-image" />
-                                    <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点
-                                    </p>
-                                </div>
+                                <p th:text="'総合得点: ' + ${item.itemTotalScore}" style="margin-left: 10px;">総合得点
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
+                </div>
+                <p th:text="'投稿日付: ' + ${post.postDate}">投稿日付: 2000/04</p>
 
-                    <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
-                        <p
-                            th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
-                            [環境:3 | 部活動:3 | イベント:3]</p>
+                <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
+                    <p
+                        th:text="'環境: ' + ${item.itemEnvironmentScore} + ' | 部活動: ' + ${item.itemClubScore} + ' | イベント: ' + ${item.itemEventScore}">
+                        [環境:3 | 部活動:3 | イベント:3]</p>
 
-                        <h3>総合評価</h3>
-                        <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
-                    </div>
+                    <h3>総合評価</h3>
+                    <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
                 </div>
             </div>
         </div>
     </body>
     <footer>
-        <form th:action="@{school/add}" th:object="${admin}" th:method="post">
-            <label>お問い合わせ：000-0000-00000</label>　　　　　　
-            <input type="submit" value="管理者ログイン">
-        </form>
+        <label>お問い合わせ：000-0000-00000</label>　　　　　　
+        <a th:href="(ToDo ログインページに飛ぶリンクをcontrollerで定義する?)"><button>管理者ログイン</button></a>
     </footer>
-    </body>
-
 </html>

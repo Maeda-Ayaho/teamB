@@ -24,6 +24,7 @@ public class SecurityConfig {
             .formLogin(login -> login
                 .loginPage("/login") // ログインページの指定
                 .permitAll() // ログインページは誰でもアクセス可能
+                .defaultSuccessUrl("/home", true) // ログイン成功後に /home にリダイレクト
             )
             .logout(logout -> logout
                 .permitAll() // ログアウトは誰でも可能
@@ -37,6 +38,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(); // パスワードエンコーダーの設定
     }
 }
-
-
-

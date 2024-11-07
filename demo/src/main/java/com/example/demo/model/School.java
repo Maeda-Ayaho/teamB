@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
@@ -51,7 +52,7 @@ public class School {
 
     @NotNull
     @Column(name = "phone_number", nullable = false)
-    private Integer phoneNumber; // 電話番号
+    private String phoneNumber; // 電話番号
 
     @NotBlank
     @Column(name = "gender_type", nullable = false)
@@ -66,11 +67,14 @@ public class School {
     @Column(name = "description", nullable = false, length = 400)
     private String description; // 学校概要
 
+    @OneToOne(mappedBy = "school") // 1対1のリレーションを定義。`school`フィールドがリレーションを所有
+    private Post post; // 投稿と1対1リレーション
+
     public School() {
     }
 
     public School(String name, String nameFurigana, String prefecture, Integer deviationValue,
-                  String image, String homepage, String address, Integer phoneNumber,
+                  String image, String homepage, String address, String phoneNumber,
                   String genderType, String establishmentType, String description) {
         this.name = name;
         this.nameFurigana = nameFurigana;
@@ -85,7 +89,14 @@ public class School {
         this.description = description;
     }
 
-    // Getters and Setters
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public Long getId() {
         return id;
     }
@@ -150,11 +161,11 @@ public class School {
         this.address = address;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

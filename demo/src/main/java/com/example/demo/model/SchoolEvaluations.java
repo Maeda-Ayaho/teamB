@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -53,6 +55,11 @@ public class SchoolEvaluations {
     @Column(name = "total_comment", length = 400)
     private String totalComment; // 総合コメント
 
+    // 1対1のリレーションを設定
+    @OneToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Post post; // 投稿IDと関連付ける
+
     public SchoolEvaluations() {
     }
 
@@ -70,7 +77,14 @@ public class SchoolEvaluations {
         this.totalComment = totalComment;
     }
 
-    // Getter と Setter の追加
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public Long getId() {
         return id;
     }

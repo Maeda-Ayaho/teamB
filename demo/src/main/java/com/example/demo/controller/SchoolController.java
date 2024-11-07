@@ -2,6 +2,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/schools")
+@RequestMapping("/admin")
 public class SchoolController {
 
     @Autowired
@@ -25,7 +26,7 @@ public class SchoolController {
     @GetMapping("/new")
     public String addSchoolForm(Model model) {
         model.addAttribute("school", new School());
-        return "layout/edit_school";  // 新規登録フォーム
+        return "layout/edit-school";  // 新規登録フォーム
     }
 
     // 学校情報の確認画面に遷移
@@ -34,7 +35,7 @@ public class SchoolController {
         // モデルに追加することで、セッションに保存する
         session.setAttribute("school", school);  // セッションに学校情報を保存
         // 確認画面へリダイレクト
-        return "redirect:/schools/edit_school_check";  // /schools/edit_school_check へリダイレクト
+        return "redirect:/admin/edit_school_check";
     }
 
 
@@ -47,16 +48,23 @@ public class SchoolController {
             model.addAttribute("school", school);  // モデルに学校情報を追加
         }
         
-        return "layout/edit_school_check";  // 確認画面を表示
+        return "layout/edit-school-check";  // 確認画面を表示
     }
     // 学校情報を保存し、登録完了画面に遷移
     @PostMapping("/add2")
-    public String addSchool2(@ModelAttribute School school, Model model) {
-        System.out.println("登録完了ページにアクセスしました。");
+    public String addSchool2(@ModelAttribute School school, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            // バリデーションエラーがある場合
+            result.getAllErrors().forEach(error -> {
+                System.out.println("Error: " + error.getDefaultMessage());
+            });
+            return "error-404";
+        }
+        
         schoolService.save(school);
         model.addAttribute("school", school);
         // 登録完了ページにリダイレクト
-        return "redirect:/schools/thanks";  // /schools/thanks へリダイレクト
+        return "redirect:/admin/thanks";
     }
 
     // 学校情報を取得して編集画面に遷移
@@ -64,7 +72,7 @@ public class SchoolController {
     public String editSchool(@PathVariable Long id, Model model) {
         School school = schoolService.findById(id);
         model.addAttribute("school", school);
-        return "layout/edit_school";  // 編集画面
+        return "layout/edit-school";  // 編集画面
     }
 
     // 登録完了画面

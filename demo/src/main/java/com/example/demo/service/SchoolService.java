@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.School;
@@ -8,6 +9,7 @@ import com.example.demo.repository.SchoolRepository;
 @Service
 public class SchoolService {
 
+    @Autowired
     private SchoolRepository schoolRepository;
 
     // 学校情報を保存

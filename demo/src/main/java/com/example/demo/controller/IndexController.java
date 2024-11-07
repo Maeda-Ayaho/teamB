@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping
     public String index(@AuthenticationPrincipal UserDetails currentUser, Model model) {
-        model.addAttribute("username", currentUser.getUsername());
+        //model.addAttribute("username", currentUser.getUsername());
         return "layout/top";
     }
 }

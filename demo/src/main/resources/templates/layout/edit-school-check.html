@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>学校情報確認</title>
+    <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+    <header>
+        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <div id="mng">
+            <form>
+                <input type="submit" value="学校登録"><!--権限制御の追加がない-->
+                <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+            </form>
+            <form th:action="@{/schools/}" th:method="post">
+                <span>
+                    <label for="search_h">高校名で検索</label>
+                    <input type="text" id="keyword" name="keyword">
+                    <input type="submit" value="検索">
+                </span>
+            </form>
+        </div>
+    </header>
+
+    <h2>学校情報の確認</h2>
+
+    <div class="contents_body">
+        <div id="edit_school_check">
+            <form th:action="@{/admin/add2}" th:object="${school}" th:method="post">
+                <!-- 学校名 -->
+                <p>
+                    <label for="name">学校名</label><br>
+                    <span th:text="${school.name}">学校名</span>
+                    <!-- hiddenフィールドとして学校名を送信 -->
+                    <input type="hidden" th:field="*{name}">
+                </p>
+
+                <!-- 高校名（ふりがな） -->
+                <p>
+                    <label for="nameFurigana">高校名（ふりがな）</label><br>
+                    <span th:text="${school.nameFurigana}">高校名（ふりがな）</span>
+                    <!-- hiddenフィールドとしてふりがなを送信 -->
+                    <input type="hidden" th:field="*{nameFurigana}">
+                </p>
+
+                <!-- 都道府県 -->
+                <p>
+                    <label for="prefecture">都道府県</label><br>
+                    <span th:text="${school.prefecture}">都道府県</span>
+                    <!-- hiddenフィールドとして都道府県を送信 -->
+                    <input type="hidden" th:field="*{prefecture}">
+                </p>
+
+                <!-- 偏差値 -->
+                <p>
+                    <label for="deviationValue">偏差値</label><br>
+                    <span th:text="${school.deviationValue}">偏差値</span>
+                    <!-- hiddenフィールドとして偏差値を送信 -->
+                    <input type="hidden" th:field="*{deviationValue}">
+                </p>
+
+                <!-- 学校画像 -->
+                <p>
+                    <label for="image">高校画像</label><br>
+                    <span th:text="${school.image != null ? school.image : '画像なし'}">画像</span>
+                    <!-- hiddenフィールドとして画像URL（または画像名）を送信 -->
+                    <input type="hidden" th:field="*{image}">
+                </p>
+
+                <!-- 学校HP -->
+                <p>
+                    <label for="homepage">学校HP</label><br>
+                    <span th:text="${school.homepage}">学校HP</span>
+                    <!-- hiddenフィールドとして学校HPを送信 -->
+                    <input type="hidden" th:field="*{homepage}">
+                </p>
+
+                <!-- 所在地 -->
+                <p>
+                    <label for="address">所在地</label><br>
+                    <span th:text="${school.address}">所在地</span>
+                    <!-- hiddenフィールドとして所在地を送信 -->
+                    <input type="hidden" th:field="*{address}">
+                </p>
+
+                <!-- TEL -->
+                <p>
+                    <label for="phoneNumber">TEL</label><br>
+                    <span th:text="${school.phoneNumber}">TEL</span>
+                    <!-- hiddenフィールドとして電話番号を送信 -->
+                    <input type="hidden" th:field="*{phoneNumber}">
+                </p>
+
+                <!-- 男女共学 -->
+                <p>
+                    <label for="genderType">男女共学</label><br>
+                    <span th:text="${school.genderType}">男女共学</span>
+                    <!-- hiddenフィールドとして男女共学情報を送信 -->
+                    <input type="hidden" th:field="*{genderType}">
+                </p>
+
+                <!-- 国公私立 -->
+                <p>
+                    <label for="establishmentType">国公私立</label><br>
+                    <span th:text="${school.establishmentType}">国公私立</span>
+                    <!-- hiddenフィールドとして学校の区分を送信 -->
+                    <input type="hidden" th:field="*{establishmentType}">
+                </p>
+
+                <!-- 学校概要 -->
+                <p>
+                    <label for="description">学校概要</label><br>
+                    <span th:text="${school.description}">学校概要</span>
+                    <!-- hiddenフィールドとして学校概要を送信 -->
+                    <input type="hidden" th:field="*{description}">
+                </p>
+
+                <div>
+                    <input type="submit" value="登録">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <form th:action="@{/admin/login}" th:object="${admin}" th:method="post">
+            <label>お問い合わせ：000-0000-00000</label>
+            <input type="submit" value="管理者ログイン">
+        </form>
+    </footer>
+</body>
+</html>

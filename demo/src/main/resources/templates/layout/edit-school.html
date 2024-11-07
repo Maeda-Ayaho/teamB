@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>HIGH SCHOOL LIBRARY</title>
-        <link rel="stylesheet" href="highSchoolLib.css">
+        <link rel="stylesheet" href="edit.css">
     </head>
     <bo>
         <header>
@@ -24,6 +24,7 @@
             </div>
         </header>
         <body>
+            <h2>新規高校登録</h2>
             <div class="contents_body">
                 <div id="edit_school">
                     <form th:action="@{school/add}" th:object="${school}" th:method="post">

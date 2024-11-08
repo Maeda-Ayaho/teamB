@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.School;
+import com.example.demo.model.SearchSchoolDTO;
 
 @Repository
 public interface SearchSchoolRepository extends JpaRepository<School, Long> {
@@ -19,7 +20,7 @@ public interface SearchSchoolRepository extends JpaRepository<School, Long> {
     + "(:deviationValueMin IS NULL OR s.deviationValue >= :deviationValueMin) AND "
     + "(:deviationValueMax IS NULL OR s.deviationValue <= :deviationValueMax) AND "
     + "(:name IS NULL OR :name = '' OR s.name LIKE CONCAT('%', :name, '%'))")
-    List<School> searchschoolsByKanji(
+    List<SearchSchoolDTO> searchschoolsByKanji(
         @Param("prefecture") String prefecture,
         @Param("name") String name,
         @Param("establishmentType") List<String> establishmentType,
@@ -35,7 +36,7 @@ public interface SearchSchoolRepository extends JpaRepository<School, Long> {
     + "(:deviationValueMin IS NULL OR s.deviationValue >= :deviationValueMin) AND "
     + "(:deviationValueMax IS NULL OR s.deviationValue <= :deviationValueMax) AND "
     + "(:name IS NULL OR :name = '' OR s.nameFurigana LIKE CONCAT('%', :name, '%'))")
-    List<School> searchschoolsByFurigana(
+    List<SearchSchoolDTO> searchschoolsByFurigana(
         @Param("prefecture") String prefecture,
         @Param("name") String name,
         @Param("establishmentType") List<String> establishmentType,

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.School;
+import com.example.demo.model.SearchSchoolDTO;
 import com.example.demo.repository.SearchSchoolRepository;
 
 @Service
@@ -14,7 +14,7 @@ public class SearchSchoolService {
     @Autowired
     private SearchSchoolRepository searchschoolrepository;
 
-    public List<School> dynamicSearchSchools(String schoolNameInput, String prefecture,
+    public List<SearchSchoolDTO> dynamicSearchSchools(String schoolNameInput, String prefecture,
                                             List<String> establishmentType, List<String> genderType,
                                             Integer deviationValueMin, Integer deviationValueMax) {
     // 「高校」を除去

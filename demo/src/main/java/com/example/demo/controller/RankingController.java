@@ -1,3 +1,4 @@
+/*
 package com.example.demo.controller;
 
 import java.util.List;
@@ -25,3 +26,5 @@ public class RankingController {
         // 本来はmain.htmlに表示させる部分だが、一旦テストでranking.htmlに出力させる
     }
 }
+ * 
+ */

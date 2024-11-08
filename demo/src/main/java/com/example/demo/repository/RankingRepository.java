@@ -1,3 +1,4 @@
+/*
 package com.example.demo.repository;
 
 import java.util.List;
@@ -22,3 +23,5 @@ public interface RankingRepository extends JpaRepository<School, Long> {
             "ORDER BY AVG(se.totalScore) DESC")
     List<RankingData> findSchoolRankings();
 }
+ * 
+ */

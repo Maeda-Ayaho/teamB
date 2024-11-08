@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.School;
+import com.example.demo.model.SearchSchoolDTO;
 import com.example.demo.service.SearchSchoolService;
 
 @Controller
@@ -28,8 +28,8 @@ public class SearchSchoolController {
                                 @RequestParam(required = false) Integer deviationValueMax,
                                 Model model) {
 
-        List<School> schools = searchschoolservice.dynamicSearchSchools(prefecture, name, establishmentType, genderType, deviationValueMin, deviationValueMax);
+        List<SearchSchoolDTO> schools = searchschoolservice.dynamicSearchSchools(prefecture, name, establishmentType, genderType, deviationValueMin, deviationValueMax);
         model.addAttribute("schools", schools);
-        return "search-result"; // 検索結果を表示するページ
+        return "top"; // 検索結果を表示するページ
     }
 }

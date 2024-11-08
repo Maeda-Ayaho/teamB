@@ -32,10 +32,8 @@
             </div>
         </body>
         <footer>
-            <form th:action="@{school/add}" th:object="${admin}" th:method="post">
-                <label>お問い合わせ：000-0000-00000</label>　　　　　　
-                <input type="submit" value="管理者ログイン">
-            </form>
+            <label>お問い合わせ：000-0000-00000</label>　　　　　　
+            <a th:href="login"><button>管理者ログイン</button></a>
         </footer>
     </body>
 </html>

@@ -35,7 +35,7 @@ public class School {
 
     @NotNull
     @Column(name = "deviation_value", nullable = false)
-    private Integer deviationValue; // 偏差値
+    private int deviationValue; // 偏差値
 
     @Column(name = "image")
     private String image; // 学校画像
@@ -51,7 +51,7 @@ public class School {
 
     @NotNull
     @Column(name = "phone_number", nullable = false)
-    private Integer phoneNumber; // 電話番号
+    private String phoneNumber; // 電話番号
 
     @NotBlank
     @Column(name = "gender_type", nullable = false)
@@ -70,7 +70,7 @@ public class School {
     }
 
     public School(String name, String nameFurigana, String prefecture, Integer deviationValue,
-                  String image, String homepage, String address, Integer phoneNumber,
+                  String image, String homepage, String address, String phoneNumber,
                   String genderType, String establishmentType, String description) {
         this.name = name;
         this.nameFurigana = nameFurigana;
@@ -150,11 +150,11 @@ public class School {
         this.address = address;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

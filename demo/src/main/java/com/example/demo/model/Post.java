@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,12 +20,16 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 投稿ID
 
-    @NotNull
+    
     @Column(name = "school_id", nullable = false)
     private Long schoolId; // 学校ID (外部キー)
 
     @Column(name = "posted_at")
     private String postedAt; // 投稿日時
+
+    @NotBlank
+    @Column(name = "enrollment")
+    private String enrollment;//入学卒業年
 
     @NotBlank
     @Column(name = "gender", nullable = false)
@@ -36,7 +40,7 @@ public class Post {
     @Column(name = "title", nullable = false, length = 30)
     private String title; // タイトル
 
-    @NotBlank
+    
     @Column(name = "status", nullable = false)
     private String status; // ステータス
 
@@ -44,16 +48,17 @@ public class Post {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted; // 論理削除
 
-    @ManyToOne
-    @JoinColumn(name = "school_id", insertable = false, updatable = false)
-    private School school; // 学校エンティティとのリレーション
+    @OneToOne
+    @JoinColumn(name = "school_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private School school; // 学校エンティティとのリレーショ
 
     public Post() {
     }
 
-    public Post(Long schoolId, String postedAt, String gender, String title, String status, Boolean isDeleted) {
+    public Post(Long schoolId, String postedAt, String enrollment, String gender, String title, String status, Boolean isDeleted) {
         this.schoolId = schoolId;
         this.postedAt = postedAt;
+        this.enrollment = enrollment;
         this.gender = gender;
         this.title = title;
         this.status = status;
@@ -74,6 +79,14 @@ public class Post {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public String getEnrollment(){
+        return enrollment;
+    }
+
+    public void setEnrollment(String enrollment){
+        this.enrollment = enrollment;
     }
 
     public String getPostedAt() {

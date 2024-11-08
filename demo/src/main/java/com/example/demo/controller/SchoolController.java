@@ -70,10 +70,14 @@ public class SchoolController {
     // 学校情報を取得して編集画面に遷移
     @GetMapping("/edit/{id}")
     public String editSchool(@PathVariable Long id, Model model) {
+        // 学校情報をIDで検索
         School school = schoolService.findById(id);
+        // 学校情報をビューに渡す
         model.addAttribute("school", school);
-        return "layout/edit-school";  // 編集画面
+        // 編集画面のビューを返す
+        return "layout/edit-school";
     }
+
 
     // 登録完了画面
     @GetMapping("/thanks")

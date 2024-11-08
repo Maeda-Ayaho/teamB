@@ -19,6 +19,8 @@ public class SchoolService {
 
     // 学校IDで学校を取得
     public School findById(Long id) {
-        return schoolRepository.findById(id).orElse(null);
+        // IDを使ってデータベースから学校情報を取得
+        return schoolRepository.findById(id)
+                               .orElseThrow(() -> new ResourceNotFoundException("School not found with id " + id));
     }
 }

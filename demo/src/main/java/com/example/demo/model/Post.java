@@ -20,7 +20,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 投稿ID
 
-    
+    @NotNull
     @Column(name = "school_id", nullable = false)
     private Long schoolId; // 学校ID (外部キー)
 

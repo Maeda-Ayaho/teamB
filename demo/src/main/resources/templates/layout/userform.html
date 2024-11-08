@@ -36,10 +36,9 @@
             <h2>コメント送信フォーム</h2>
             <div id="search"><!---->
                 <form th:action="@{user/add/${id}}" th:method="post">
-                    <!--<p>
-                        <label for="id">学校ID:</label>
-                        <input type="text" id="id" name="schoolId" value="${id}" />
-                    </p>-->
+                    <p>
+                        <input hidden type="text" id="id" name="schoolId" value="${id}" />
+                    </p>
                     <p>
                         <label for="title">タイトル</label><!-- コメントタイトル -->
                         <label for="inputField"><span class="required">必須</span></label><br>

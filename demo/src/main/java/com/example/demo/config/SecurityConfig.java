@@ -20,31 +20,31 @@ public class SecurityConfig {
         http
             //ログイン成功時の処理
             .formLogin(login -> login
-                // ログインページを表示するURL(POST)
+                // ログインページを表示するURL(POST) →デフォルトのものを表示のため
                 //.loginPage("/login")
                 // ログイン処理を行うURL(GET)
                 //.loginProcessingUrl("/login")
+                .defaultSuccessUrl("/")
                 // ログインできなかった時のURL
                 .failureUrl("/login?error")
-                .defaultSuccessUrl("/")
                 // ログインページは誰でもアクセス可能
                 .permitAll()
             )
             .logout(logout -> logout
                 .logoutSuccessUrl("/login")
-                //.permitAll() // ログアウトは誰でも可能
+                //.permitAll() //★全権限参照可能となる
             )
             .authorizeHttpRequests(authz -> authz
                 // resourceフォルダ直下
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-                    .permitAll() //全権限アクセス可能
+                .permitAll() //★全権限参照可能となる
                 
                 .requestMatchers("/","/schools/**")
                 .permitAll() //★全権限参照可能となる
-                //.anyRequest().authenticated() // その他は認証を要求
-
+                
                 .requestMatchers("/admin/**")
                 .hasRole("ADMIN")
+                .anyRequest().authenticated() // その他は認証を要求
             );
 
 

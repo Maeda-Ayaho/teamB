@@ -13,4 +13,10 @@ public class IndexController {
         model.addAttribute("username", currentUser.getUsername());
         return "layout/top";
     }
+
+    // @GetMapping("/login")
+    // public String login() {
+        
+    //     return "";
+    // }
 }

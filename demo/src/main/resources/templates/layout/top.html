@@ -28,7 +28,7 @@
     <div class="contents_body">
         <h2>検索条件</h2>
         <div id="search"><!---->
-            <form th:action="@{schools/add}" th:object="${school}" th:method="post">
+            <form th:action="@{schools/search}" th:object="${school}" th:method="post">
                 <p>
                     <label for="prefecture">都道府県：</label>
                     　　<select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
@@ -213,9 +213,9 @@
                 <input type="submit" value="検索">
             </form>
         </div>
-        <h2>総合ランキング</h2>
+        <!-- <h2>総合ランキング</h2>
         <div class="school_rank">
-            <ul><!--やり方がスマートじゃないが、これしか思いつかなった-->
+            <ul>
                 <a href="">
                     <li><img id="top" src="image.png" width="100" height="100"
                             alt="高校の写真"><br>school.name<br>評価/都道府県/男女共学</li>
@@ -253,7 +253,7 @@
                     </div>
                     <h2 th:text="${post.postTitle}">タイトル</h2>
 
-                    <!-- 評価アイコンを表示 -->
+                    
                     <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
                         <div style="display: flex; align-items: center;">
                             <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
@@ -292,7 +292,6 @@
                     </div>
                     <h2 th:text="${post.postTitle}">タイトル</h2>
 
-                    <!-- 評価アイコンを表示 -->
                     <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
                         <div style="display: flex; align-items: center;">
                             <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
@@ -320,7 +319,6 @@
                     </div>
                     <h2 th:text="${post.postTitle}">タイトル</h2>
 
-                    <!-- 評価アイコンを表示 -->
                     <div th:each="item : ${@itemRepository.findByPostId(post.postId)}">
                         <div style="display: flex; align-items: center;">
                             <img th:src="${item.itemTotalScore == 5 ? '/score_5.png' :
@@ -344,11 +342,11 @@
                 <h3>総合評価</h3>
                 <p th:text="${item.itemTotalComment}">総合評価に関するコメント</p>
             </div>
-        </div>
+        </div> -->
     </div>
     <footer>
         <label>お問い合わせ：000-0000-00000</label>　　　　　　
-        <a th:href="(ToDo ログインページに飛ぶリンクをcontrollerで定義する?)"><button>管理者ログイン</button></a>
+        <a th:href="login"><button>管理者ログイン</button></a>
     </footer>
 </body>
 

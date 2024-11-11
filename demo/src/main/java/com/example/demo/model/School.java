@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -33,9 +35,10 @@ public class School {
     @Column(name = "prefecture", nullable = false)
     private String prefecture; // 都道府県
 
-    @NotNull
+    @Min(value = 0, message = "偏差値は28以上である必要があります")
+    @Max(value = 100, message = "偏差値は78以下である必要があります")
     @Column(name = "deviation_value", nullable = false)
-    private Integer deviationValue; // 偏差値
+    private int deviationValue;
 
     @Column(name = "image")
     private String image; // 学校画像
@@ -49,7 +52,7 @@ public class School {
     @Column(name = "address", nullable = false, length = 100)
     private String address; // 所在地
 
-    @NotNull
+    @NotBlank
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber; // 電話番号
 
@@ -66,10 +69,17 @@ public class School {
     @Column(name = "description", nullable = false, length = 400)
     private String description; // 学校概要
 
+    @OneToOne(mappedBy = "school") // 1対1のリレーションを定義。`school`フィールドがリレーションを所有
+    private Post post; // 投稿と1対1リレーション
+
     public School() {
     }
 
+<<<<<<< HEAD
     public School(String name, String nameFurigana, String prefecture, Integer deviationValue,
+=======
+    public School(String name, String nameFurigana, String prefecture, int deviationValue,
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
                   String image, String homepage, String address, String phoneNumber,
                   String genderType, String establishmentType, String description) {
         this.name = name;
@@ -85,7 +95,14 @@ public class School {
         this.description = description;
     }
 
-    // Getters and Setters
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public Long getId() {
         return id;
     }
@@ -118,11 +135,11 @@ public class School {
         this.prefecture = prefecture;
     }
 
-    public Integer getDeviationValue() {
+    public int getDeviationValue() {
         return deviationValue;
     }
 
-    public void setDeviationValue(Integer deviationValue) {
+    public void setDeviationValue(int deviationValue) {
         this.deviationValue = deviationValue;
     }
 

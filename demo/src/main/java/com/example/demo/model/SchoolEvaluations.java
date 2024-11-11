@@ -1,20 +1,31 @@
 package com.example.demo.model;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+<<<<<<< HEAD
 import jakarta.persistence.ManyToOne;
+=======
+import jakarta.persistence.OneToOne;
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "school_evaluations")
+=======
+@Table(name = "school_evaluations") // テーブル名も小文字にすることが一般的
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
 public class SchoolEvaluations {
 
     @Id
@@ -61,6 +72,7 @@ public class SchoolEvaluations {
     @Column(name = "total_comment", length = 400)
     private String totalComment; // 総合コメント
 
+<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name = "school_id", referencedColumnName = "id", insertable = false, updatable = false)
     private School school; // 学校エンティティとのリレーション
@@ -75,6 +87,19 @@ public class SchoolEvaluations {
     public SchoolEvaluations(Long postId, Long schoolId, Integer environmentScore, Integer clubScore, Integer eventScore,
                 Double totalScore, String environmentComment, String clubComment,
                 String eventComment, String totalComment) {
+=======
+    // 1対1のリレーションを設定
+    @OneToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Post post; // 投稿IDと関連付ける
+
+    public SchoolEvaluations() {
+    }
+
+    public SchoolEvaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
+                             Double totalScore, String environmentComment, String clubComment,
+                             String eventComment, String totalComment) {
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
         this.postId = postId;
         this.schoolId = schoolId;
         this.environmentScore = environmentScore;
@@ -87,6 +112,7 @@ public class SchoolEvaluations {
         this.totalComment = totalComment;
     }
 
+<<<<<<< HEAD
     public Long getSchoolId() {
         return schoolId;
     }
@@ -96,6 +122,16 @@ public class SchoolEvaluations {
     }
 
     // Getters and Setters
+=======
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+>>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
     public Long getId() {
         return id;
     }

@@ -1,12 +1,21 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.SearchSchoolDTO;
+import com.example.demo.model.School;
 import com.example.demo.repository.SearchSchoolRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 @Service
 public class SearchSchoolService {
@@ -14,34 +23,65 @@ public class SearchSchoolService {
     @Autowired
     private SearchSchoolRepository searchschoolrepository;
 
-    public List<SearchSchoolDTO> dynamicSearchSchools(String schoolNameInput, String prefecture,
-                                            List<String> establishmentType, List<String> genderType,
-                                            Integer deviationValueMin, Integer deviationValueMax) {
-    // 「高校」を除去
-    String processedName = schoolNameInput.replaceAll("高校", "").trim() ;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    // 名前の検索条件を設定
-    // String nameColumn = "name"; // デフォルトは name (漢字名) カラム
-    if (processedName.matches("^[ぁ-ん]+$")) {
-        // ひらがなのみの場合、ふりがなで検索
-            return searchschoolrepository.searchschoolsByFurigana(
-                prefecture,
-                processedName,
-                establishmentType,
-                genderType,
-                deviationValueMin,
-                deviationValueMax
-                );
-    }else{
-        // 漢字または混合入力の場合、漢字名で検索
-            return searchschoolrepository.searchschoolsByKanji(
-                prefecture,
-                processedName,
-                establishmentType,
-                genderType,
-                deviationValueMin,
-                deviationValueMax
-            );
+    public List<School> searchSchools(String prefecture, String name,  List<String> establishmentType, List<String> genderType, Integer deviationValueMin, Integer deviationValueMax) {
+        
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<School> query = cb.createQuery(School.class);
+        Root<School> school = query.from(School.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // 都道府県が指定された場合の検索条件
+        if (prefecture != null) {
+            predicates.add(cb.equal(school.get("prefecture"), prefecture));
+        }
+
+        // 学校名が指定された場合の検索条件
+        if (name != null) {
+            if (name.matches("^[あ-ん]+$"))  {
+                predicates.add(cb.or(
+                    cb.like(school.get("nameKana"), "%" + name + "%")));
+            }else{
+                predicates.add(cb.or(
+                    cb.like(school.get("nameKanji"), "%" + name + "%")));
+                }
+        }
+
+        // 学校の種類（国立・公立・私立）が指定された場合の検索条件
+        if (establishmentType != null) {
+            predicates.add(cb.equal(school.get("establishmentType"), establishmentType));
+        }
+
+        // 男女共学が指定された場合の検索条件
+        if (genderType != null) {
+            predicates.add(cb.equal(school.get("genderType"), genderType));
+        }
+
+        // 偏差値の範囲が指定された場合の検索条件
+        if (deviationValueMin != null) {
+            predicates.add(cb.greaterThanOrEqualTo(school.get("deviationValue"), deviationValueMin));
+        }
+        if (deviationValueMax != null) {
+            predicates.add(cb.lessThanOrEqualTo(school.get("deviationValue"), deviationValueMax));
+        }
+
+        // 条件が一つも指定されていない場合、全件取得
+        if (predicates.isEmpty()) {
+            return entityManager.createQuery(query).getResultList();  // 条件なしで全件取得
+        }
+
+        // WHERE句に全ての条件を追加
+        query.where(cb.and(predicates.toArray(new Predicate[0])));
+
+        // クエリを実行
+        TypedQuery<School> typedQuery = entityManager.createQuery(query);
+        return typedQuery.getResultList();
     }
-}
+
+    public School findSchoolById(Long schoolId) {
+        return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
+    }
 }

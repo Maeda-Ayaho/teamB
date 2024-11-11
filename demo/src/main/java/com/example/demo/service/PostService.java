@@ -30,7 +30,7 @@ public class PostService {
         post.setGender(postsDTO.getGender());//男女
         post.setTitle(postsDTO.getTitle());//タイトル
         post.setIsDeleted(false);//論理削除
-        //postRepository.save(post);//postテーブルに保存とpostIdが発生
+        postRepository.save(post);//postテーブルに保存とpostIdが発生 コメントアウト外した
         Post saveedPost = postRepository.save(post);//Postテーブルに保存とID取得
 
         //ポストテーブルからid取得→37行目のPostIdに挿入する

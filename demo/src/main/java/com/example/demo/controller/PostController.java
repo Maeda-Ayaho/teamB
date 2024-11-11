@@ -30,14 +30,16 @@ public class PostController {
 
     //確認ページに遷移userform_check
     @PostMapping("/schools/{schoolId}/user/add")
-    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable Long schoolId, BindingResult result, Model model){
+    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable("id") Long schoolId, BindingResult result, Model model){
+        //schoolIdをpostsDTOにセット
+        postsDTO.setSchoolId(schoolId);
         if(result.hasErrors()){
             return "error-other";
         }
 
         postsDTO.setSchoolId(schoolId);
         //postsDTO.setSchoolId(id);
-        model.addAttribute("PostsDTO", postsDTO); // キャメルケースにする
+        model.addAttribute("postsDTO", postsDTO); // キャメルケースにする
         model.addAttribute("title", "入力確認");
         return "layout/userform_check";
     }

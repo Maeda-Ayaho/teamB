@@ -22,22 +22,22 @@ public class PostController {
 
     //投稿入力ページ表示userform
     @GetMapping("/schools/{id}/userform")
-    public String showUserForm(@PathVariable Long id, Model model){
-        model.addAttribute("Id", id);
+    public String showUserForm(@PathVariable("id") Long id, Model model){
+        model.addAttribute("id", id);
         model.addAttribute("title", "投稿入力");
         return "layout/userForm";
     }
 
     //確認ページに遷移userform_check
-    @PostMapping("/schools/{schoolId}/user/add/{id}")
-    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable Long schoolId, @PathVariable Long id, BindingResult result, Model model){
+    @PostMapping("/schools/{schoolId}/user/add")
+    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable Long schoolId, BindingResult result, Model model){
         if(result.hasErrors()){
             return "error-other";
         }
 
         postsDTO.setSchoolId(schoolId);
         //postsDTO.setSchoolId(id);
-        model.addAttribute("PostsDTO", postsDTO);
+        model.addAttribute("PostsDTO", postsDTO); // キャメルケースにする
         model.addAttribute("title", "入力確認");
         return "layout/userform_check";
     }

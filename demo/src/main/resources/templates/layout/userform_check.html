@@ -35,9 +35,10 @@
         <div class="contents_body">
             <h2>コメント送信フォーム</h2>
             <div id="search"><!---->
-                <form th:action="@{/thanks}" th:object="${PostsDTO}" th:method="post">
+                <form th:action="@{/thanks}" th:method="post">
                     <p>
-                        <input hidden type="text" id="id" name="schoolId" value="${id}" />
+                        <!--<input hidden type="text" id="id" name="schoolId" value="${id}" />-->
+                        <input hidden th:field="{PostsDTO.schoolId}">
                     </p>
                     <p>
                         <label for="title">タイトル</label><!-- コメントタイトル -->

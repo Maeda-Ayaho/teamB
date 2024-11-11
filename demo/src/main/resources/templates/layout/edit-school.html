@@ -23,12 +23,12 @@
             </div>
         </header>
 
-        <h2>新規高校登録</h2>
+        <h2 th:text="${title}"></h2>
 
         <div class="contents_body">
             <div id="edit_school">
                 <form th:action="@{/admin/add}" th:object="${school}" th:method="post">
-                    <!-- 都道府県 -->
+                    <input type="hidden" th:field="*{id}">
                     <p>
                         <label for="prefecture">都道府県</label>
                         <label for="inputField"><span class="required">必須</span></label><br>

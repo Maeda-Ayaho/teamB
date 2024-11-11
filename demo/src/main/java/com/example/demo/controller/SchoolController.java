@@ -1,4 +1,6 @@
 package com.example.demo.controller;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class SchoolController {
     @GetMapping("/new")
     public String addSchoolForm(Model model) {
         model.addAttribute("school", new School());
+        model.addAttribute("title", "学校登録");
         return "layout/edit-school";  // 新規登録フォーム
     }
 
@@ -50,9 +53,11 @@ public class SchoolController {
         
         return "layout/edit-school-check";  // 確認画面を表示
     }
+    
     // 学校情報を保存し、登録完了画面に遷移
     @PostMapping("/add2")
     public String addSchool2(@ModelAttribute School school, BindingResult result, Model model) {
+        // バリデーションエラーの確認
         if (result.hasErrors()) {
             // バリデーションエラーがある場合
             result.getAllErrors().forEach(error -> {
@@ -60,24 +65,30 @@ public class SchoolController {
             });
             return "error-404";
         }
+            // 更新された学校情報を保存
+        schoolService.save(school); // Schholオブジェクトのフィールド確認する。id入ってなければupdate掛からない
         
-        schoolService.save(school);
-        model.addAttribute("school", school);
-        // 登録完了ページにリダイレクト
+        // 更新完了後に成功ページへリダイレクト
         return "redirect:/admin/thanks";
     }
 
+
     // 学校情報を取得して編集画面に遷移
     @GetMapping("/edit/{id}")
-    public String editSchool(@PathVariable Long id, Model model) {
+    public String editSchool(@PathVariable("id") Long id, Model model) {
         // 学校情報をIDで検索
-        School school = schoolService.findById(id);
+        Optional<School> optionalSchool = schoolService.findschoolById(id);
         // 学校情報をビューに渡す
-        model.addAttribute("school", school);
-        // 編集画面のビューを返す
-        return "layout/edit-school";
+        if (optionalSchool.isPresent()) {
+            // 値が存在する場合の処理
+            School school = optionalSchool.get();
+            model.addAttribute("school", school);
+            model.addAttribute("title", "学校登録");
+            // 編集画面のビューを返す
+            return "layout/edit-school";
+        }
+        return "error-404";
     }
-
 
     // 登録完了画面
     @GetMapping("/thanks")

@@ -29,6 +29,7 @@
         <div id="edit_school_check">
             <form th:action="@{/admin/add2}" th:object="${school}" th:method="post">
                 <!-- 学校名 -->
+                <input type="hidden" th:field="*{id}">
                 <p>
                     <label for="name">学校名</label><br>
                     <span th:text="${school.name}">学校名</span>

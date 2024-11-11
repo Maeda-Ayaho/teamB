@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,10 @@ public class SchoolService {
 
     // 学校IDで学校を取得
     public School findById(Long id) {
-        // IDを使ってデータベースから学校情報を取得
-        return schoolRepository.findById(id)
-                               .orElseThrow(() -> new ResourceNotFoundException("School not found with id " + id));
+        return schoolRepository.findById(id).orElse(null);
+    }
+
+    public Optional<School> findschoolById(Long id) {
+        return schoolRepository.findById(id);
     }
 }

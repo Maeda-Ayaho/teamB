@@ -75,11 +75,7 @@ public class School {
     public School() {
     }
 
-<<<<<<< HEAD
-    public School(String name, String nameFurigana, String prefecture, Integer deviationValue,
-=======
     public School(String name, String nameFurigana, String prefecture, int deviationValue,
->>>>>>> 7a45eebfaed19fbba18b96150900798bd1aea601
                   String image, String homepage, String address, String phoneNumber,
                   String genderType, String establishmentType, String description) {
         this.name = name;

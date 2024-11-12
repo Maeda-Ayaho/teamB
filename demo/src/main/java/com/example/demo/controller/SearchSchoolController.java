@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.School;
 import com.example.demo.service.SearchSchoolService;
 
 @Controller
+@RequestMapping("/")
 public class SearchSchoolController {
 
     private SearchSchoolService searchschoolservice;
@@ -19,7 +21,7 @@ public class SearchSchoolController {
         this.searchschoolservice = searchschoolservice;
     }
     // 学校検索結果を表示する
-    @GetMapping("/school-result")
+    @GetMapping("/schools/search")
     public String searchSchools(
             @RequestParam(value = "prefecture", required = false) String prefecture,
             @RequestParam(value = "name", required = false) String name,

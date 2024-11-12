@@ -28,7 +28,7 @@
     <div class="contents_body">
         <h2>検索条件</h2>
         <div id="search"><!---->
-            <form th:action="@{schools/search}" th:object="${school}" th:method="post">
+            <form th:action="@{schools/search}" th:object="${school}" th:method="get">
                 <p>
                     <label for="prefecture">都道府県：</label>
                     　　<select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->

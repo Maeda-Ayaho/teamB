@@ -35,76 +35,82 @@
         <div class="contents_body">
             <h2>コメント送信フォーム</h2>
             <div id="search"><!---->
-                <form th:action="@{/thanks}" th:method="post">
-                    <p>
-                        <!--<input hidden type="text" id="id" name="schoolId" value="${id}" />-->
-                        <input hidden th:field="{PostsDTO.schoolId}">
-                    </p>
+                <form th:action="@{/thanks}" th:object="${postsDTO}" th:method="post">
+
                     <p>
                         <label for="title">タイトル</label><!-- コメントタイトル -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="text" id="title" name="title" th:text="${PostsDTO.title}"></p>
+                        <p th:text="*{title}"></p>
                         <input hidden th:field="*{title}">
                     </p>
                     <p>
                         <label for="institution">ステータス</label><!-- 在校生か卒業生 -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="radio" id="radio" name="status" th:text="${PostsDTO.status}"></p>
+                        <p th:text="*{status}"></p>
                         <input hidden th:field="*{status}">
                     </p>
                     <p>
                         <label for="enrollment" >年度入力</label><!-- 何年に入学したか -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="text" id="enrollment" name="enrollment" th:text="${PostsDTO.enrollment}"></p>
+                        <p th:text="*{enrollment}"></p>
                         <input hidden th:field="*{enrollment}">
                     </p>
                     <p>
                         <label for="institution">性別</label><!-- 男性・女性・その他 -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="radio" id="radio" name="gender" th:text="${PostsDTO.gender}"></p>
+                        <p th:text="*{gender}"></p>
                         <input hidden th:field="*{gender}">
                     </p>
                     <p>
                         <label for="totalComment">総合評価コメント</label>
                         <label for="inputField"><span class="required">必須</span></label><br><!-- 総合評価に対するコメント -->
-                        <p type="text" id="totalComment" name="totalComment" th:text="${PostsDTO.totalComment}"></p>
+                        <p th:text="*{totalComment}"></p>
                         <textarea hidden th:field="*{totalComment}"></textarea>
                     </p>
                     <p>
                         <label for="environment">環境評価</label><!-- 環境評価点 -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="radio" id="radio" name="environmentScore" th:text="${PostsDTO.environmentScore}"></p>
+                        <p th:text="*{environmentScore}"></p>
                         <input hidden th:field="*{environmentScore}">
                     </p>
                     <p>
                         <label for="environmentComment">環境コメント</label>
                         <label for="inputField"><span class="required">必須</span></label><br><!-- 環境に関するコメント -->
-                        <p type="text" id="environmentComment" name="environmentComment" th:text="${PostsDTO.environmentComment}"></p>
+                        <p th:text="*{environmentComment}"></p>
                         <textarea hidden th:field="*{environmentComment}"></textarea>
                     </p>
                     <p>
                         <label for="clubScore">部活動評価</label><!-- 部活動評価点 -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="radio" id="radio" name="clubScore" th:text="${PostsDTO.clubScore}"></p>
+                        <p th:text="*{clubScore}"></p>
                         <input hidden th:field="*{clubScore}">
                     </p>
                     <p>
                         <label for="clubComment">部活動コメント</label>
                         <label for="inputField"><span class="required">必須</span></label><br><!-- 部活動に関するコメント -->
-                        <p type="text" id="clubComment" name="clubComment" th:text="${PostsDTO.clubComment}"></p>
+                        <p th:text="*{clubComment}"></p>
                         <textarea hidden th:field="*{clubComment}"></textarea>
                     </p>
                     <p>
                         <label for="eventScore">イベント評価</label><!-- イベントに対する評価点 -->
                         <label for="inputField"><span class="required">必須</span></label><br>
-                        <p type="radio" id="radio" name="eventScore" th:text="${PostsDTO.eventScore}"></p>
+                        <p th:text="*{eventScore}"></p>
                         <input hidden th:field="*{eventScore}">
                     </p>
                     <p>
                         <label for="eventComment">イベントコメント</label>
                         <label for="inputField"><span class="required">必須</span></label><br><!-- イベントに関するコメント -->
-                        <p type="text" id="eventComment" name="eventComment" th:text="${PostsDTO.eventComment}"></p>
+                        <p th:text="*{eventComment}"></p>
                         <textarea hidden th:field="*{eventComment}"></textarea>
+                    </p>
+                    <p>
+                        <input hidden th:field="*{postedAt}"><!--投稿日時-->
+                    </p>
+                    <p>
+                        <input hidden th:field="*{isDeleted}"><!--論理削除-->
+                    </p>
+                    <p>
+                        <input hidden th:field="*{schoolId}"><!--学校ID-->
                     </p>
                     <input type="submit" value="登録">
                     <button type="button" onclick="window.history.back()">戻る</button>

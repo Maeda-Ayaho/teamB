@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,24 +25,31 @@ public class PostController {
     //投稿入力ページ表示userform
     @GetMapping("/schools/{id}/userform")
     public String showUserForm(@PathVariable("id") Long id, Model model){
-        model.addAttribute("id", id);
-        model.addAttribute("title", "投稿入力");
+        model.addAttribute("schoolId", id);
+        PostsDTO postsDTO = new PostsDTO();
+        model.addAttribute("postsDTO", postsDTO);
+        //PostsDTOクラスでユーザーが入力しないカラムをセッターで送る
+        postsDTO.setPostedAt(LocalDateTime.now().toString());
+        postsDTO.setIsDeleted(false);
+        postsDTO.setSchoolId(id);
         return "layout/userForm";
     }
 
     //確認ページに遷移userform_check
     @PostMapping("/schools/{schoolId}/user/add")
-    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable("id") Long schoolId, BindingResult result, Model model){
+    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable(name = "schoolId") Long schoolId, BindingResult result, Model model){
         //schoolIdをpostsDTOにセット
         postsDTO.setSchoolId(schoolId);
         if(result.hasErrors()){
+            result.getAllErrors().forEach(error ->{
+                System.out.println("Error: " + error.getDefaultMessage());
+            });
             return "error-other";
         }
 
         postsDTO.setSchoolId(schoolId);
         //postsDTO.setSchoolId(id);
         model.addAttribute("postsDTO", postsDTO); // キャメルケースにする
-        model.addAttribute("title", "入力確認");
         return "layout/userform_check";
     }
 

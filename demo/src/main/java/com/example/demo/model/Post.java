@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -40,7 +40,7 @@ public class Post {
     @Column(name = "title", nullable = false, length = 30)
     private String title; // タイトル
 
-    
+    @NotBlank
     @Column(name = "status", nullable = false)
     private String status; // ステータス
 
@@ -48,7 +48,7 @@ public class Post {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted; // 論理削除
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "school_id", referencedColumnName = "id", insertable = false, updatable = false)
     private School school; // 学校エンティティとのリレーショ
 

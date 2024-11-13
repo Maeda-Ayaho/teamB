@@ -10,7 +10,9 @@
 <body>
 
     <header>
-        <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
+        <a href="">
+            <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
+        </a>
         <div id="mng">
             <form>
                 <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
@@ -346,7 +348,7 @@
     </div>
     <footer>
         <label>お問い合わせ：000-0000-00000</label>　　　　　　
-        <a th:href="login"><button>管理者ログイン</button></a>
+        <a th:href="@{/login}"><button>管理者ログイン</button></a>
     </footer>
 </body>
 

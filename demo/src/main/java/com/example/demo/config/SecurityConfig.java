@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .permitAll()
             )
             .logout(logout -> logout
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 //.permitAll() //★全権限参照可能となる
             )
             .authorizeHttpRequests(authz -> authz

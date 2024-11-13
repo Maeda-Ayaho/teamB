@@ -10,8 +10,10 @@
             <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
             <div id="mng">
                 <form>
-                    <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
                     <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+                </form>
+                <form action="/admin/new" method="get" target="_blank">
+                    <input type="submit" value="学校登録">
                 </form>
                 <form th:action="@{/schools/}" th:method="post">
                     <span>
@@ -33,7 +35,7 @@
                         <label for="prefecture">都道府県</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <select name="prefecture" id="prefecture" th:field="*{prefecture}">
-                            <option value=""></option>
+                            <option value="" selected style="color: #aaa;">選択</option>
                                 <option value="北海道">北海道</option>
                                 <option value="青森県">青森県</option>
                                 <option value="岩手県">岩手県</option>
@@ -152,7 +154,6 @@
                         <input type="radio" th:field="*{establishmentType}" value="私立">私立
                         <input type="radio" th:field="*{establishmentType}" value="国立">国立
                     </p>
-
                     <!-- 送信ボタン -->
                     <input type="submit" value="確認">
                 </form>

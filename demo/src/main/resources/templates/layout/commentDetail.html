@@ -57,8 +57,10 @@
     <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
     <div id="mng">
         <form>
-            <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
             <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+        </form>
+        <form action="/admin/new" method="get" target="_blank">
+            <input type="submit" value="学校登録">
         </form>
         <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
             <span>

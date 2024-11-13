@@ -83,7 +83,7 @@ public class SchoolController {
             // 値が存在する場合の処理
             School school = optionalSchool.get();
             model.addAttribute("school", school);
-            model.addAttribute("title", "学校登録");
+            model.addAttribute("title", "学校編集");
             // 編集画面のビューを返す
             return "layout/edit-school";
         }

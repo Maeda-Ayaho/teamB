@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dto.PostsDTO;
 import com.example.demo.service.PostService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/")
@@ -29,7 +29,6 @@ public class PostController {
         PostsDTO postsDTO = new PostsDTO();
         model.addAttribute("postsDTO", postsDTO);
         //PostsDTOクラスでユーザーが入力しないカラムをセッターで送る
-        postsDTO.setPostedAt(LocalDateTime.now().toString());
         postsDTO.setIsDeleted(false);
         postsDTO.setSchoolId(id);
         return "layout/userForm";
@@ -37,41 +36,44 @@ public class PostController {
 
     //確認ページに遷移userform_check
     @PostMapping("/schools/{schoolId}/user/add")
-    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable(name = "schoolId") Long schoolId, BindingResult result, Model model){
-        //schoolIdをpostsDTOにセット
-        postsDTO.setSchoolId(schoolId);
+    public String confirmPost(@Valid @ModelAttribute PostsDTO postsDTO,
+                                @PathVariable(name = "schoolId") Long schoolId,
+                                BindingResult result, Model model){
+        //エラーループして出力するのは本実装じゃない？エラーメッセージ用のモデルに値詰めて表示するとかやる必要ある
         if(result.hasErrors()){
             result.getAllErrors().forEach(error ->{
                 System.out.println("Error: " + error.getDefaultMessage());
             });
-            return "error-other";
+            return "layout/error-other";
         }
-
-        postsDTO.setSchoolId(schoolId);
-        //postsDTO.setSchoolId(id);
-        model.addAttribute("postsDTO", postsDTO); // キャメルケースにする
         return "layout/userform_check";
     }
 
-    @GetMapping("/layout/thanks")
-    //thanksページを表示する
-    public String viewThanksPage(Model model){
-        return "layout/thanks";
-    }
-
     //投稿完了Thanksページ
-    @PostMapping("/thanks")
-    public String registerPost (@ModelAttribute PostsDTO postsDTO, BindingResult result, Model model){
+    @PostMapping("/schools/thanks")
+    public String registerPost (@Valid @ModelAttribute PostsDTO postsDTO,
+                                    BindingResult result, Model model){
         if(result.hasErrors()){
             //バリデーションがある場合
+            //エラーループして出力するのは本実装じゃない？エラーメッセージ用のモデルに値詰めて表示するとかやる必要ある
             result.getAllErrors().forEach(error ->{
                 System.out.println("Error: " + error.getDefaultMessage());
             });
-            return "error-404";
+            return "layout/error-other";
         }
-        //投稿IDがないときに新規で投稿IDを作る
+        //DB操作をする
         
+        //投稿IDがないときに新規で投稿IDを作る
         postService.savePost(postsDTO);
-        return "redirect:/layout/thanks";
+        return "/schools/layout/thanks";
+    }
+
+    //ToDo これは正規のリダイレクト先にする事。いったん /layout/thanksにしています
+    @GetMapping("/layout/thanks")
+    //thanksページを表示する
+    /*public String viewThanksPage(Model model){
+        return "layout/thanks";*/
+    public String getMethodName() {
+        return "done";
     }
 }

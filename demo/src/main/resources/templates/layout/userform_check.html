@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>HIGH SCHOOL LIBRARY</title>
-        <link rel="stylesheet" href="highSchoolLib.css">
+        <link rel="stylesheet" href="postDetail.css">
     </head>
     <style>
         .required {
@@ -14,9 +14,47 @@
             border-radius: 3px; /* 角を少し丸める */
             font-size: 12px; /* 文字サイズを小さく */
         }
+        body{
+            background-color: #FFFFFF;
+            margin: 20px;
+            padding: 20px;
+        }
+        element.style {
+            margin-top: 0;
+            margin-left: 120px;
+            margin-right: 120px;
+        }
+        header{
+            font-size: 20px;
+            background-color: #d0dfec;
+            border-bottom: solid "808080";
+            height: 100px;
+            margin: 20px;
+            white-space: nowrap;
+            display:flex;
+            text-align: right;
+            align-items: flex-end;
+        }
+        footer{
+            background-color: #d0dfec;
+            height: 120px;
+            margin: 20px;
+            white-space: nowrap;
+        }
+        .contents_body {
+            background-color: #cbec9f;
+            border: solid 0.5px;
+            border-radius: 5ps;
+            margin: 20px;
+            padding: 20px;
+        }
+            
+        .h2{
+            margin: 20px;
+        }
     </style>
     <header>
-        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
         <div id="mng">
             <form>
                 <input type="submit" value="学校登録"><!--権限制御の追加がない-->
@@ -102,9 +140,6 @@
                         <label for="inputField"><span class="required">必須</span></label><br><!-- イベントに関するコメント -->
                         <p th:text="*{eventComment}"></p>
                         <textarea hidden th:field="*{eventComment}"></textarea>
-                    </p>
-                    <p>
-                        <input hidden th:field="*{postedAt}"><!--投稿日時-->
                     </p>
                     <p>
                         <input hidden th:field="*{isDeleted}"><!--論理削除-->

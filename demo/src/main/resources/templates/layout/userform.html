@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>HIGH SCHOOL LIBRARY</title>
-        <link rel="stylesheet" href="highSchoolLib.css">
+        <link rel="stylesheet" href="edit.css">
     </head>
     <style>
         .required {
@@ -13,6 +13,44 @@
             font-weight: bold; /* 太字 */
             border-radius: 3px; /* 角を少し丸める */
             font-size: 12px; /* 文字サイズを小さく */
+        }
+        body{
+            background-color: #FFFFFF;
+            margin: 20px;
+            padding: 20px;
+        }
+        element.style {
+            margin-top: 0;
+            margin-left: 120px;
+            margin-right: 120px;
+        }
+        header{
+            font-size: 20px;
+            background-color: #d0dfec;
+            border-bottom: solid "808080";
+            height: 100px;
+            margin: 20px;
+            white-space: nowrap;
+            display:flex;
+            text-align: right;
+            align-items: flex-end;
+        }
+        footer{
+            background-color: #d0dfec;
+            height: 120px;
+            margin: 20px;
+            white-space: nowrap;
+        }
+        .contents_body {
+            background-color: #cbec9f;
+            border: solid 0.5px;
+            border-radius: 5ps;
+            margin: 20px;
+            padding: 20px;
+        }
+            
+        .h2{
+            margin: 20px;
         }
     </style>
     <header>
@@ -36,6 +74,7 @@
             <h2>コメント送信フォーム</h2>
             <div id="search"><!---->
             <form th:action="@{/schools/{schoolId}/user/add(schoolId=${schoolId})}" th:object="${postsDTO}" th:method="post">
+                <input type="hidden" th:field="*{schoolId}">
                     <p>
                         <label for="title">タイトル</label><!-- コメントタイトル -->
                         <label for="inputField"><span class="required">必須</span></label><br>

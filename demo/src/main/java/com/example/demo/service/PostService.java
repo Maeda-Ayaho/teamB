@@ -25,7 +25,6 @@ public class PostService {
         SchoolEvaluations schoolEvaluations = new SchoolEvaluations();
         //入力内容をエンティティに設定
         post.setSchoolId(postsDTO.getSchoolId());//学校ID
-        post.setPostedAt(postsDTO.getPostedAt());//投稿日
         post.setEnrollment(postsDTO.getEnrollment());//入学卒業年
         post.setGender(postsDTO.getGender());//男女
         post.setTitle(postsDTO.getTitle());//タイトル
@@ -40,12 +39,10 @@ public class PostService {
         schoolEvaluations.setEnvironmentScore(postsDTO.getEnvironmentScore());//環境スコア
         schoolEvaluations.setClubScore(postsDTO.getClubScore());//部活動スコア
         schoolEvaluations.setEventScore(postsDTO.getEventScore());//イベントスコア
-        schoolEvaluations.setTotalScore(postsDTO.getTotalScore());//総合スコア
         schoolEvaluations.setEnvironmentComment(postsDTO.getEnvironmentComment());//環境コメント
         schoolEvaluations.setClubComment(postsDTO.getClubComment());//部活動コメント
         schoolEvaluations.setEventComment(postsDTO.getEventComment());//イベントコメント
         schoolEvaluations.setTotalComment(postsDTO.getTotalComment());//総合コメント
-
         schoolEvaluationsRepository.save(schoolEvaluations);
     }
 }

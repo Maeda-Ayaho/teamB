@@ -28,6 +28,10 @@ public class Post {
     private String postedAt; // 投稿日時
 
     @NotBlank
+    @Column(name = "enrollment")
+    private String enrollment;//入学卒業年
+
+    @NotBlank
     @Column(name = "gender", nullable = false)
     private String gender; // 男女
 
@@ -55,9 +59,10 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long schoolId, String postedAt, String gender, String title, String status, Boolean isDeleted) {
+    public Post(Long schoolId, String postedAt, String enrollment, String gender, String title, String status, Boolean isDeleted) {
         this.schoolId = schoolId;
         this.postedAt = postedAt;
+        this.enrollment = enrollment;
         this.gender = gender;
         this.title = title;
         this.status = status;
@@ -86,6 +91,14 @@ public class Post {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public String getEnrollment(){
+        return enrollment;
+    }
+
+    public void setEnrollment(String enrollment){
+        this.enrollment = enrollment;
     }
 
     public String getPostedAt() {

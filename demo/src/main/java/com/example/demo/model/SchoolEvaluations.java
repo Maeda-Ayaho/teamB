@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "school_evaluations") // テーブル名も小文字にすることが一般的
+@Table(name = "school_evaluations")
 public class SchoolEvaluations {
 
     @Id
@@ -64,8 +64,8 @@ public class SchoolEvaluations {
     }
 
     public SchoolEvaluations(Long postId, Integer environmentScore, Integer clubScore, Integer eventScore,
-                             Double totalScore, String environmentComment, String clubComment,
-                             String eventComment, String totalComment) {
+                Double totalScore, String environmentComment, String clubComment,
+                String eventComment, String totalComment) {
         this.postId = postId;
         this.environmentScore = environmentScore;
         this.clubScore = clubScore;

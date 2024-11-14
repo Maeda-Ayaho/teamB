@@ -14,7 +14,7 @@
                 <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
                 <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
             </form>
-            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+            <form th:action="@{schools/school-detail{id}}" th:object="${school_name}" th:method="get">
                 <span>
                     <label for="search_h">高校名で検索</label>
                     <input type="text" id="keyword" name="keyword">

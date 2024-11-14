@@ -15,6 +15,7 @@ import com.example.demo.model.School;
 import com.example.demo.service.SchoolService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -34,7 +35,11 @@ public class SchoolController {
 
     // 学校情報の確認画面に遷移
     @PostMapping("/add")
-    public String addSchool(@ModelAttribute School school, Model model, HttpSession session) {
+    public String addSchool(@Valid @ModelAttribute School school, BindingResult bindingResult, Model model, HttpSession session) {
+        // バリデーションエラーがあればフォームに戻す
+        if (bindingResult.hasErrors()) {
+            return "layout/edit-school";  // フォームに戻る（テンプレート名に合わせて変更）
+        }
         // モデルに追加することで、セッションに保存する
         session.setAttribute("school", school);  // セッションに学校情報を保存
         // 確認画面へリダイレクト

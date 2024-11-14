@@ -7,11 +7,13 @@
     </head>
     <body>
         <header>
-            <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+            <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
             <div id="mng">
                 <form>
-                    <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
                     <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
+                </form>
+                <form action="/admin/new" method="get" target="_blank">
+                    <input type="submit" value="学校登録">
                 </form>
                 <form th:action="@{/schools/}" th:method="post">
                     <span>
@@ -33,7 +35,7 @@
                         <label for="prefecture">都道府県</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <select name="prefecture" id="prefecture" th:field="*{prefecture}">
-                            <option value=""></option>
+                            <option value="" selected style="color: #aaa;">選択</option>
                                 <option value="北海道">北海道</option>
                                 <option value="青森県">青森県</option>
                                 <option value="岩手県">岩手県</option>
@@ -82,23 +84,27 @@
                                 <option value="鹿児島県">鹿児島県</option>
                                 <option value="沖縄県">沖縄県</option>
                         </select>
+                        <div th:if="${#fields.hasErrors('prefecture')}" th:errors="*{prefecture}"></div>
                     </p>
                     <p>
                         <label for="name">学校名</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="name" th:field="*{name}" placeholder="学校名を入力してください" required>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                     </p>
                     <!-- 高校名（ふりがな） -->
                     <p>
                         <label for="nameFurigana">高校名（ふりがな）</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="nameFurigana" th:field="*{nameFurigana}">
+                        <div th:if="${#fields.hasErrors('nameFurigana')}" th:errors="*{nameFurigana}"></div>
                     </p>
                     <!-- 偏差値 -->
                     <p>
                         <label for="deviationValue">偏差値</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="deviationValue" th:field="*{deviationValue}" placeholder="半角数字 28以上78以下">
+                        <div th:if="${#fields.hasErrors('deviationValue')}" th:errors="*{deviationValue}"></div>
                     </p>
 
                     <!-- 学校画像 -->
@@ -112,6 +118,7 @@
                         <label for="description">概要</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <textarea id="description" th:field="*{description}"></textarea>
+                        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
                     </p>
 
                     <!-- TEL -->
@@ -119,6 +126,7 @@
                         <label for="phoneNumber">TEL</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="半角数字10~11文字">
+                        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                     </p>
 
                     <!-- 所在地 -->
@@ -126,6 +134,7 @@
                         <label for="address">所在地</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="address" th:field="*{address}">
+                        <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                     </p>
 
                     <!-- 学校HP -->
@@ -133,6 +142,7 @@
                         <label for="homepage">学校HP</label>
                         <label for="inputField"><span class="required">必須</span></label><br>
                         <input type="text" id="homepage" th:field="*{homepage}">
+                        <div th:if="${#fields.hasErrors('homepage')}" th:errors="*{homepage}"></div>
                     </p>
 
                     <!-- 男女共学 -->
@@ -142,6 +152,8 @@
                         <input type="radio" th:field="*{genderType}" value="男子校">男子校
                         <input type="radio" th:field="*{genderType}" value="女子校">女子校
                         <input type="radio" th:field="*{genderType}" value="共学">共学
+                        <div th:if="${#fields.hasErrors('genderType')}" th:errors="*{genderType}"></div>
+                    </p>
                     </p>
 
                     <!-- 国公私立 -->
@@ -151,8 +163,8 @@
                         <input type="radio" th:field="*{establishmentType}" value="公立">公立
                         <input type="radio" th:field="*{establishmentType}" value="私立">私立
                         <input type="radio" th:field="*{establishmentType}" value="国立">国立
+                        <div th:if="${#fields.hasErrors('establishmentType')}" th:errors="*{establishmentType}"></div>
                     </p>
-
                     <!-- 送信ボタン -->
                     <input type="submit" value="確認">
                 </form>

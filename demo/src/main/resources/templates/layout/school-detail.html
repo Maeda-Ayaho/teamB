@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>HIGH SCHOOL LIBRARY</title>
-    <link rel="stylesheet" href="schoolDetail.css">
+    <link rel="stylesheet" href="/css/schoolDetail.css">
 </head>
 <bo>
     <header>
-        <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
+        <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
         <div id="mng">
             <form>
-                <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
                 <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
             </form>
-            <form th:action="@{schools/school-detail{id}}" th:object="${school_name}" th:method="get">
+            <form action="/admin/new" method="get" target="_blank">
+                <input type="submit" value="学校登録">
+            </form>
+            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
                 <span>
                     <label for="search_h">高校名で検索</label>
                     <input type="text" id="keyword" name="keyword">
@@ -34,7 +36,7 @@
                             <div class="mod-school-one">
                                 ○○○○高等学校　偏差値： {学校.偏差値}
                                 <form>
-                                    <input type="submit" value="ログアウト">
+                                    <input type="submit" value="編集" style="float: right;">
                                 </form>
                             </div>
                             <div class="mod-school-caption">(ふりがな)</div>

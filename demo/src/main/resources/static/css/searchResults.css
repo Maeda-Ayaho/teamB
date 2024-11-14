@@ -1,12 +1,16 @@
 body{
     background-color: #FFFFFF;
-    padding: 0;
     margin: 10;
+    padding: 0 120px;
+}
+element.style {
+    margin-top: 0;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 header{
     font-size: 20px;
     background-color: #d0dfec;
-    border-bottom: solid "808080";
     height: 100px;
     margin-top: 20px;
     white-space: nowrap;
@@ -16,21 +20,8 @@ header{
 }
 footer{
     background-color: #d0dfec;
-    height: 120px;
+    height: 100px;
     white-space: nowrap;
-}
-#search{
-    font-size: 18px;
-    padding: 20px;
-    background-color: #cbec9f;
-    border: solid 0.5px;
-    border-radius: 5ps;
-    field-sizing: 40px;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
 }
 .result {
     border: 1px solid #ccc;

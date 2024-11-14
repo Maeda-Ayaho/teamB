@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -48,9 +48,13 @@ public class Post {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted; // 論理削除
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "school_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private School school; // 学校エンティティとのリレーショ
+    private School school; // 1対1リレーションを設定
+
+    // 1対1のリレーションを設定
+    @OneToOne(mappedBy = "post") // 逆側で`post`が所有する
+    private SchoolEvaluations schoolEvaluations;
 
     public Post() {
     }
@@ -63,6 +67,14 @@ public class Post {
         this.title = title;
         this.status = status;
         this.isDeleted = isDeleted;
+    }
+
+    public SchoolEvaluations getSchoolEvaluations() {
+        return schoolEvaluations;
+    }
+
+    public void setSchoolEvaluations(SchoolEvaluations schoolEvaluations) {
+        this.schoolEvaluations = schoolEvaluations;
     }
 
     public Long getId() {

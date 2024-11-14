@@ -77,7 +77,14 @@ public class SchoolEvaluations {
         this.totalComment = totalComment;
     }
 
-    // Getters and Setters
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public Long getId() {
         return id;
     }

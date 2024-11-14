@@ -36,11 +36,39 @@ public class PostController {
 
     //確認ページに遷移userform_check
     @PostMapping("/schools/{schoolId}/user/add")
+<<<<<<< HEAD
     public String confirmPost(@Valid @ModelAttribute PostsDTO postsDTO,
                                 @PathVariable(name = "schoolId") Long schoolId,
                                 BindingResult result, Model model){
         //エラーループして出力するのは本実装じゃない？エラーメッセージ用のモデルに値詰めて表示するとかやる必要ある
         if(result.hasErrors()){
+=======
+    public String confirmPost(@ModelAttribute PostsDTO postsDTO, @PathVariable("id") Long schoolId, BindingResult result, Model model){
+        //schoolIdをpostsDTOにセット
+        postsDTO.setSchoolId(schoolId);
+        if(result.hasErrors()){
+            return "error-other";
+        }
+
+        postsDTO.setSchoolId(schoolId);
+        //postsDTO.setSchoolId(id);
+        model.addAttribute("postsDTO", postsDTO); // キャメルケースにする
+        model.addAttribute("title", "入力確認");
+        return "layout/userform_check";
+    }
+
+    @GetMapping("/layout/thanks")
+    //thanksページを表示する
+    public String viewThanksPage(Model model){
+        return "layout/thanks";
+    }
+
+    //投稿完了Thanksページ
+    @PostMapping("/thanks")
+    public String registerPost (@ModelAttribute PostsDTO postsDTO, BindingResult result, Model model){
+        if(result.hasErrors()){
+            //バリデーションがある場合
+>>>>>>> 6ab0cf0ce63c8643f4a6b69029b4d927edcc0c83
             result.getAllErrors().forEach(error ->{
                 System.out.println("Error: " + error.getDefaultMessage());
             });

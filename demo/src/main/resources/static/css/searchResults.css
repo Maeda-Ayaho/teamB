@@ -1,6 +1,27 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+body{
+    background-color: #FFFFFF;
+    margin: 10;
+    padding: 0 120px;
+}
+element.style {
+    margin-top: 0;
+    margin-left: 120px;
+    margin-right: 120px;
+}
+header{
+    font-size: 20px;
+    background-color: #d0dfec;
+    height: 100px;
+    margin-top: 20px;
+    white-space: nowrap;
+    display:flex;
+    text-align: right;
+    align-items: flex-end;
+}
+footer{
+    background-color: #d0dfec;
+    height: 100px;
+    white-space: nowrap;
 }
 .result {
     border: 1px solid #ccc;

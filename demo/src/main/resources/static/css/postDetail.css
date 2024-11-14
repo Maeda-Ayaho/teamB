@@ -1,29 +1,26 @@
-body {
+body{
     background-color: #FFFFFF;
-    margin: 20px;
-    padding: 20px;
+    margin: 10;
+    padding: 0 120px;
 }
 element.style {
     margin-top: 0;
     margin-left: 120px;
     margin-right: 120px;
 }
-header {
+header{
     font-size: 20px;
     background-color: #d0dfec;
-    border-bottom: solid "808080";
     height: 100px;
     margin-top: 20px;
     white-space: nowrap;
-    display: flex;
+    display:flex;
     text-align: right;
     align-items: flex-end;
 }
-
-footer {
+footer{
     background-color: #d0dfec;
-    height: 120px;
-    margin: 20px;
+    height: 100px;
     white-space: nowrap;
 }
 

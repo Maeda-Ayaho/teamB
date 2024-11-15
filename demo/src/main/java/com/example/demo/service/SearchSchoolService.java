@@ -26,7 +26,7 @@ public class SearchSchoolService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<School> searchSchools(String prefecture, String name,  List<String> establishmentType, List<String> genderType) {
+    public List<School> searchSchools(String prefecture, String name,  List<String> establishmentType, List<String> genderType, Integer deviationValueMin, Integer deviationValueMax) {
         
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<School> query = cb.createQuery(School.class);
@@ -59,16 +59,15 @@ public class SearchSchoolService {
         if (genderType != null && !genderType.isEmpty()) {
             predicates.add(school.get("genderType").in(genderType));
         }
-/* 
- * 
- // 偏差値の範囲が指定された場合の検索条件
- if (deviationValueMin != null) {
-    predicates.add(cb.greaterThanOrEqualTo(school.get("deviationValue"), deviationValue));
-}
-if (deviationValueMax != null) {
-    predicates.add(cb.lessThanOrEqualTo(school.get("deviationValue"), deviationValue));
-}
-*/
+
+        // 偏差値の範囲が指定された場合の検索条件
+        if (deviationValueMin != null) {
+            predicates.add(cb.greaterThanOrEqualTo(school.get("deviationValue"), deviationValueMin));
+        }
+        if (deviationValueMax != null) {
+            predicates.add(cb.lessThanOrEqualTo(school.get("deviationValue"), deviationValueMax));
+        }
+
 
         // 条件が一つも指定されていない場合、全件取得
         if (predicates.isEmpty()) {
@@ -76,15 +75,17 @@ if (deviationValueMax != null) {
         }
 
         // WHERE句に全ての条件を追加
-        // query.where(cb.and(predicates.toArray(new Predicate[0])));
+        query.where(cb.and(predicates.toArray(new Predicate[0])));
 
         // クエリを実行
         TypedQuery<School> typedQuery = entityManager.createQuery(query);
         return typedQuery.getResultList();
     }
-
-    // 学校を押下時の挙動
-    public School findBySchoolId(Long schoolId) {
-        return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
-    }
+/*
+ * 
+ // 学校を押下時の挙動
+ public School findBySchoolId(Long schoolId) {
+    return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
+}
+*/
 }

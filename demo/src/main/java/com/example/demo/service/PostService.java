@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,11 @@ import com.example.demo.model.SchoolEvaluations;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.SchoolEvaluationsRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -17,6 +24,9 @@ public class PostService {
     @Autowired//postRepositoryと依存関係
     private PostRepository postRepository;
     private SchoolEvaluationsRepository schoolEvaluationsRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     //投稿の新規登録
     @Transactional
@@ -44,5 +54,16 @@ public class PostService {
         schoolEvaluations.setEventComment(postsDTO.getEventComment());//イベントコメント
         schoolEvaluations.setTotalComment(postsDTO.getTotalComment());//総合コメント
         schoolEvaluationsRepository.save(schoolEvaluations);
+    }
+
+    // 特定の学校のポスト一覧を取得
+    public List<Post>  findPostList(Long id) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+        Root<Post> post = cq.from(Post.class);
+
+        cq.select(post);
+        cq.where(cb.equal(post.get("schoolId"), id));
+        return entityManager.createQuery(cq).getResultList();
     }
 }

@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
+        <img id="top" th:src="@{/images/image.png}" width="300" height="100" alt="高校の写真">
         <div id="mng">
             <form>
                 <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
@@ -30,7 +30,7 @@
     <div class="contents_body">
         <h2>検索条件</h2>
         <div id="search"><!---->
-            <form th:action="@{schools/search}" th:object="${school}" th:method="post">
+            <form th:action="@{schools/search}" th:object="${school}" th:method="get">
                 <p>
                     <label for="prefecture">都道府県：</label>
                     　　<select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
@@ -208,7 +208,7 @@
                 </p>
                 <p>
                     <label for="school_type">男女共学：</label>
-                    　　<input type="checkbox" name="学" value="男子校">男子校
+                    <input type="checkbox" name="学" value="男子校">男子校
                     <input type="checkbox" name="学" value="女子校">女子校
                     <input type="checkbox" name="学" value="共学">共学
                 </p>

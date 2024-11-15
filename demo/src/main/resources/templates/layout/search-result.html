@@ -1,12 +1,13 @@
-<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::title},~{::body/content()})}">
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>高校ナビ</title>
-    <link rel="stylesheet" th:href="{/css/searchResults.css}">
+    <link rel="stylesheet" th:href="@{/css/searchResults.css}">
 </head>
 <header>
-    <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
+    <img id="top" th:src="@{/images/image.png}" width="300" height="100" alt="高校の写真">
     <div id="mng">
         <form>
             <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
@@ -28,7 +29,7 @@
     <div class="contents_body">
         <h2>検索条件</h2>
         <div id="search"><!---->
-            <form th:action="@{school/add}" th:object="${school}" th:method="post">
+            <form th:action="@{schools/search}" th:object="${school}" th:method="get">
                 <p>
                     <label for="prefecture">都道府県</label>
                     <select name="pref" id="prefecture"><!-- 都道府県プルダウンリスト -->
@@ -200,18 +201,16 @@
                     </select>
                 </p>
                 <p>
-                    <label for="institution">国公私立</label>
-                    <input type="radio" name="立" value="すべて">すべて
-                    <input type="radio" name="立" value="公立">公立
-                    <input type="radio" name="立" value="私立">私立
-                    <input type="radio" name="立" value="国立">国立
+                    <label for="institution">国公私立：</label>
+                    <input type="checkbox" name="立" value="公立">公立
+                    <input type="checkbox" name="立" value="私立">私立
+                    <input type="checkbox" name="立" value="国立">国立
                 </p>
                 <p>
-                    <label for="school_type">男女共学</label>
-                    <input type="radio" name="学" value="すべて">すべて
-                    <input type="radio" name="学" value="男子校">男子校
-                    <input type="radio" name="学" value="女子校">女子校
-                    <input type="radio" name="学" value="共学">共学
+                    <label for="school_type">男女共学：</label>
+                    <input type="checkbox" name="学" value="男子校">男子校
+                    <input type="checkbox" name="学" value="女子校">女子校
+                    <input type="checkbox" name="学" value="共学">共学
                 </p>
                 <input type="submit" value="検索">
             </form>
@@ -225,66 +224,22 @@
         <button onclick="displaySchools(sortSchools('score'))">偏差値順</button>
     </div>
 
-    <div id="results"></div>
+    <div id="result">
+        <ul>
+            <li th:each="school : ${results}" class="school-card">
+                <div class="school-info">
+                    <h3 th:text="${school.name}"></h3>
+                    <span th:text="${school.prefecture}"></span>
+                    <span th:text="${school.establishmentType}"></span>
+                    <span th:text="${school.genderType}"></span>
+                </div>
+                <div class="school-image">
+                    <img src="placeholder.png" alt="学校の画像" width="150" height="150">
+                </div>
+            </li>
+        </ul>
     </div>
-
-    <script>
-        // サンプルデータ（実際にはサーバーから取得）
-        const schools = [
-            { name: "学校A", score: 70, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 120, url: "schoolA.html", gender: "共学", prefecture: "東京都" },
-            { name: "学校B", score: 65, image: "https://via.placeholder.com/100", rating: 3, ratingImage: "https://via.placeholder.com/20", postCount: 80, url: "schoolB.html", gender: "男子", prefecture: "大阪府" },
-            { name: "学校C", score: 75, image: "https://via.placeholder.com/100", rating: 5, ratingImage: "https://via.placeholder.com/20", postCount: 200, url: "schoolC.html", gender: "女子", prefecture: "北海道" },
-            { name: "学校D", score: 60, image: "https://via.placeholder.com/100", rating: 2, ratingImage: "https://via.placeholder.com/20", postCount: 50, url: "schoolD.html", gender: "共学", prefecture: "福岡県" },
-            { name: "学校E", score: 80, image: "https://via.placeholder.com/100", rating: 4, ratingImage: "https://via.placeholder.com/20", postCount: 150, url: "schoolE.html", gender: "女子", prefecture: "愛知県" },
-        ];
-
-        const resultsContainer = document.getElementById("results");
-
-        // 学校データを表示する関数
-        function displaySchools(schoolData) {
-            resultsContainer.innerHTML = ''; // クリア
-            schoolData.forEach(school => {
-                const resultDiv = document.createElement("div");
-                resultDiv.className = "result";
-                resultDiv.onclick = () => { location.href = school.url; }; // クリックで遷移
-
-                const infoDiv = document.createElement("div");
-                infoDiv.className = "info";
-                infoDiv.innerHTML = `<span class="title">${school.name}</span><br>
-                                    <span class="score">偏差値: ${school.score}</span>
-                                    <img src="${school.ratingImage}" alt="評価点: ${school.rating}" style="width: 20px; vertical-align: middle; margin-left: 5px;">
-                                    <span class="rating">${school.rating}</span>
-                                    <span class="postCount">口コミ件数: ${school.postCount}</span><br>
-                                    <span class="gender">${school.gender}</span>
-                                    <span class="prefecture">/ ${school.prefecture}</span>`;
-
-                const img = document.createElement("img");
-                img.src = school.image;
-                img.alt = school.name;
-                img.style.width = "100px";
-                img.style.height = "80px";
-
-                resultDiv.appendChild(infoDiv);
-                resultDiv.appendChild(img);
-                resultsContainer.appendChild(resultDiv);
-            });
-        }
-
-        // 学校情報をソートする関数
-        function sortSchools(criteria) {
-            return [...schools].sort((a, b) => {
-                if (criteria === 'name') {
-                    return a.name.localeCompare(b.name); // 五十音順
-                } else if (criteria === 'rating') {
-                    return b.rating - a.rating; // 評価点順
-                } else if (criteria === 'score') {
-                    return b.score - a.score; // 偏差値順
-                }
-            });
-        }
-        // 初期表示
-        displaySchools(schools);
-    </script>
+        
     <footer>
         <label>お問い合わせ：000-0000-00000</label>　　　　　　
         <a th:href="login"><button>管理者ログイン</button></a>

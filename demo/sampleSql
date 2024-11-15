@@ -64,3 +64,26 @@ INSERT INTO school_evaluations (
     '部活動が多く、選びやすいです。',
     'イベントが楽しく、参加する価値があります。',
     '全体的にポジティブな経験です。');
+
+
+
+ランキングSQL
+
+    SELECT
+    schools.image,
+    schools.name,
+    AVG(school_evaluations.total_score) AS avg_score,
+    COUNT(posts.id) AS post_count,
+    schools.deviation_value AS school_deviation_value
+FROM
+    school_evaluations
+LEFT JOIN posts ON school_evaluations.post_id = posts.id
+LEFT JOIN schools ON posts.school_id = schools.id
+WHERE
+	posts.is_deleted = false
+GROUP BY
+    schools.image,
+    schools.name,
+    schools.deviation_value
+ORDER BY
+    avg_score DESC;

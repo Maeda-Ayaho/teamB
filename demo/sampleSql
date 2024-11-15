@@ -31,10 +31,10 @@ INSERT INTO posts (
     school_id, posted_at,
     gender, title, status, is_deleted
 ) VALUES 
-    (1, '2024-10-30', '男性', '文化祭の準備', '公開', FALSE),
-    (2, '2024-10-29', '女性', 'スポーツ大会の結果', '公開', FALSE),
-    (3, '2024-10-28', '男女共学', '進路相談会のお知らせ', '非公開', FALSE),
-    (4, '2024-10-27', '男性', '卒業旅行の計画', '公開', FALSE);
+    (1, '2024-10-30', '男性', '文化祭の準備', '在校生', FALSE),
+    (2, '2024-10-29', '女性', 'スポーツ大会の結果', '在校生', FALSE),
+    (3, '2024-10-28', '男女共学', '進路相談会のお知らせ', '卒業生', FALSE),
+    (4, '2024-10-27', '男性', '卒業旅行の計画', '在校生', FALSE);
 INSERT INTO school_evaluations (
     post_id, environment_score,
     club_score, event_score, total_score,

@@ -15,7 +15,7 @@ public class LatestPostsService {
     private LatestPostsRepository latestPostsRepository;
 
     //最新の投稿3件取得 削除されていない 降順ソート
-    public List<Post> findAllPosts(){
+    public List<Post> findTop3Posts(){
         return latestPostsRepository.findTop3ByIsDeletedFalseOrderByIdDesc();
     }
 }

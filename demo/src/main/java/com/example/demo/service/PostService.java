@@ -16,6 +16,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
@@ -67,6 +69,20 @@ import jakarta.transaction.Transactional;
 
         cq.select(post);
         cq.where(cb.equal(post.get("schoolId"), id));
+        return entityManager.createQuery(cq).getResultList();
+    }
+
+    public List<Post>  ex(Long id) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+        Root<Post> post = cq.from(Post.class);
+
+
+        cq.select(post);
+        Join<Post, SchoolEvaluations> schoolEvaluations = post.join("schoolEvaluations");
+        Predicate condition = cb.equal(schoolEvaluations.get("schoolId"), id);
+        cq.where(condition);
+        
         return entityManager.createQuery(cq).getResultList();
     }
 }

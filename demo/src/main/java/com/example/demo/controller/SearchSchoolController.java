@@ -65,7 +65,7 @@ public class SearchSchoolController {
     }
     //Optional→School型
     School s = schools.get();
-
+    
     List<Post> postList = postService.findPostList(s.getId());
 
     // モデルに学校情報を追加

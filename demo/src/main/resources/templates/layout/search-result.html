@@ -236,7 +236,7 @@
 
     <div id="result" >
         <ul>
-            <a href="schools/detail/{id}(id=${school.id})">
+            <a href="detail/{id}(id=${school.id})">
                 <li th:each="school : ${results}" th:object="${searchResults}" class="school-card">
                     <div class="school-info">
                         <h3 th:text="${school.name}"></h3>

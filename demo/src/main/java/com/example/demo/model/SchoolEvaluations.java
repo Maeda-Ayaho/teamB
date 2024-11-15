@@ -77,6 +77,13 @@ public class SchoolEvaluations {
         this.totalComment = totalComment;
     }
 
+    // 総合スコアの平均値をセットする
+    public void setEventScore(int environmentScore, int clubScore, int eventScore) {
+        // 3つのスコアの平均値を計算し、double 型で設定
+        double averageScore = (environmentScore + clubScore + eventScore) / 3.0;
+        this.totalScore = averageScore;
+    }
+
     public Post getPost() {
         return post;
     }

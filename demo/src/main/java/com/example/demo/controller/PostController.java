@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +45,7 @@ public class PostController {
             });
             return "layout/error-other";
         }
-        return "layout/edit-psot-check";
+        return "layout/edit-post-check";
     }
 
     //投稿完了Thanksページ
@@ -61,19 +60,17 @@ public class PostController {
             });
             return "layout/error-other";
         }
-        //DB操作をする
-        
-        //投稿IDがないときに新規で投稿IDを作る
+        //入力された値を各テーブルに保存する処理
         postService.savePost(postsDTO);
-        return "/schools/layout/thanks";
+        return "redirect:/schools/thanks";
     }
 
     //ToDo これは正規のリダイレクト先にする事。いったん /layout/thanksにしています
-    @GetMapping("/layout/thanks")
+    @GetMapping("/schools/thanks")
     //thanksページを表示する
     /*public String viewThanksPage(Model model){
         return "layout/thanks";*/
     public String getMethodName() {
-        return "done";
+        return "layout/thanks";
     }
 }

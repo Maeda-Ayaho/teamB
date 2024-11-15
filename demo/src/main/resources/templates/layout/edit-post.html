@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HIGH SCHOOL LIBRARY</title>
-    <link rel="stylesheet" href="edit.css">
+    <link rel="stylesheet" href="/css/edit.css">
 </head>
 <header>
     <img id="top" src="images/image.png" width="300" height="100" alt="高校の写真">
@@ -39,8 +39,8 @@
                 <p>
                     <label for="institution">ステータス</label><!-- 在校生か卒業生 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <input type="radio" value="1" th:field="*{status}">在校生
-                    <input type="radio" value="2" th:field="*{status}">卒業生
+                    <input type="radio" value="在校生" th:field="*{status}">在校生
+                    <input type="radio" value="卒業生" th:field="*{status}">卒業生
                 </p>
                 <p>
                     <label for="enrollment" >年度入力</label><!-- 何年に入学したか -->
@@ -50,9 +50,9 @@
                 <p>
                     <label for="institution">性別</label><!-- 在校生か卒業生 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <input type="radio" value="1" th:field="*{gender}">男
-                    <input type="radio" value="2" th:field="*{gender}">女
-                    <input type="radio" value="3" th:field="*{gender}">その他
+                    <input type="radio" value="男" th:field="*{gender}">男
+                    <input type="radio" value="女" th:field="*{gender}">女
+                    <input type="radio" value="その他" th:field="*{gender}">その他
                 </p>
                 <p>
                     <label for="totalComment">総合評価コメント</label>

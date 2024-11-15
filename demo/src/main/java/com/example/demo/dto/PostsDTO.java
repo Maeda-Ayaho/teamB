@@ -1,45 +1,48 @@
 package com.example.demo.dto;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-//投稿情報を格納するDTOクラス
+// 投稿情報を格納するDTOクラス
 public class PostsDTO {
 
-    //Postの情報を保持するDTO
+    // Postの情報を保持するDTO
     @NotNull
-    private Long schoolId;//学校ID
+    private Long schoolId; // 学校ID
 
     @NotBlank(message = "必須です")
-    private String enrollment;//入学卒業年
+    private String enrollment; // 入学卒業年
 
     @NotBlank(message = "必須です")
-    private String gender;//男女
+    private String gender; // 男女
 
     @NotBlank(message = "必須です")
     @Size(max = 30, message = "タイトルは30文字以下です")
-    private String title;//タイトル
+    private String title; // タイトル
 
     @NotNull(message = "必須です")
     @NotBlank(message = "必須です")
-    private String status;//ステータス(在校生卒業生)
+    private String status; // ステータス(在校生卒業生)
+
+    private LocalDateTime postedAt;  // 投稿日時
 
     @NotNull
-    private Boolean isDeleted = false;//論理削除
+    private Boolean isDeleted = false; // 論理削除
 
-    //SchoolEvaluationsの情報を保持するDTO
-
+    // SchoolEvaluationsの情報を保持するDTO
     private Long postId = null; // 投稿ID (外部キー)
 
     @NotNull
-    private Integer environmentScore;//環境スコア
+    private int environmentScore; // 環境スコア
 
     @NotNull
-    private Integer clubScore; // 部活動スコア
+    private int clubScore; // 部活動スコア
 
     @NotNull
-    private Integer eventScore; // イベントスコア
+    private int eventScore; // イベントスコア
 
     @Size(max = 400, message = "400文字以下です")
     private String environmentComment; // 環境コメント
@@ -53,10 +56,42 @@ public class PostsDTO {
     @Size(max = 400, message = "400文字以下です")
     private String totalComment; // 総合コメント
 
-    //ゲッターセッター
+    public PostsDTO() {
+        // デフォルトコンストラクタ
+    }
+
+    public PostsDTO(Long schoolId, String enrollment, String gender, String title, String status,
+                    Boolean isDeleted, Long postId, int environmentScore, int clubScore,
+                    int eventScore, String environmentComment, String clubComment, 
+                    String eventComment, String totalComment) {
+        this.schoolId = schoolId;
+        this.enrollment = enrollment;
+        this.gender = gender;
+        this.title = title;
+        this.status = status;
+        this.isDeleted = isDeleted != null ? isDeleted : false;  // nullチェックを行い、デフォルト値を設定
+        this.postId = postId;
+        this.environmentScore = environmentScore;
+        this.clubScore = clubScore;
+        this.eventScore = eventScore;
+        this.environmentComment = environmentComment;
+        this.clubComment = clubComment;
+        this.eventComment = eventComment;
+        this.totalComment = totalComment;
+    }
+
+    // ゲッターセッター
+    public LocalDateTime getPostedAt() {
+        return postedAt;
+    }
+
+    public void setPostedAt(LocalDateTime postedAt) {
+        this.postedAt = postedAt;
+    }
+
     public Long getSchoolId() {
         return schoolId;
-    }//追加
+    }
 
     public String getEnrollment() {
         return enrollment;
@@ -80,17 +115,17 @@ public class PostsDTO {
 
     public Long getPostId() {
         return postId;
-    }//追加
+    }
 
-    public Integer getEnvironmentScore() {
+    public int getEnvironmentScore() {
         return environmentScore;
     }
 
-    public Integer getClubScore() {
+    public int getClubScore() {
         return clubScore;
     }
 
-    public Integer getEventScore() {
+    public int getEventScore() {
         return eventScore;
     }
 
@@ -112,7 +147,7 @@ public class PostsDTO {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
-    }//追加
+    }
 
     public void setEnrollment(String enrollment) {
         this.enrollment = enrollment;
@@ -138,15 +173,15 @@ public class PostsDTO {
         this.postId = postId;
     }
 
-    public void setEnvironmentScore(Integer environmentScore) {
+    public void setEnvironmentScore(int environmentScore) {
         this.environmentScore = environmentScore;
     }
 
-    public void setClubScore(Integer clubScore) {
+    public void setClubScore(int clubScore) {
         this.clubScore = clubScore;
     }
 
-    public void setEventScore(Integer eventScore) {
+    public void setEventScore(int eventScore) {
         this.eventScore = eventScore;
     }
 
@@ -165,6 +200,4 @@ public class PostsDTO {
     public void setTotalComment(String totalComment) {
         this.totalComment = totalComment;
     }
-
-    
 }

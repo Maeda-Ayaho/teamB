@@ -16,10 +16,10 @@
                 <input type="submit" value="学校登録"><!--権限制御の追加がない-->　　　　　　　　　
                 <input type="submit" value="ログアウト"><!--権限制御の追加がない-->
             </form>
-            <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+            <form th:action="@{schools/search}" th:object="${school}" th:method="get">
                 <span>
                     <label for="search_h">高校名で検索</label>
-                    <input type="text" id="keyword" name="keyword">
+                    <input type="text" id="keyword" name="name">
                     <input type="submit" value="検索">
                 </span>
             </form>
@@ -90,7 +90,7 @@
                     <label for="deviation">偏差値：</label>
                     <select name="min" id="select_min">
                         <option value="">--</option>
-                        <option value="2        8">28</option>
+                        <option value="2      8">28</option>
                         <option value="29">29</option>
                         <option value="30">30</option>
                         <option value="31">31</option>

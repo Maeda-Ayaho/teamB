@@ -25,9 +25,9 @@ public class SchoolEvaluations {
     @Column(name = "post_id", nullable = false)
     private Long postId; // 投稿ID (外部キー)
 
-    @NotNull
-    @Column(name = "school_id", nullable = false)
-    private Long schoolId; // 学校ID (外部キー)
+    // @NotNull
+    // @Column(name = "school_id", nullable = false)
+    // private Long schoolId; // 学校ID (外部キー)
 
     @NotNull
     @Column(name = "environment_score", nullable = false)
@@ -73,7 +73,6 @@ public class SchoolEvaluations {
                 Double totalScore, String environmentComment, String clubComment,
                 String eventComment, String totalComment) {
         this.postId = postId;
-        this.schoolId = schoolId;
         this.environmentScore = environmentScore;
         this.clubScore = clubScore;
         this.eventScore = eventScore;

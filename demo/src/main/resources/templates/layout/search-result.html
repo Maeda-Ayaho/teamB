@@ -15,7 +15,6 @@
         <form action="/admin/new" method="get" target="_blank">
             <input type="submit" value="学校登録">
         </form>
-        <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
         <form th:action="@{search}" th:object="${school}" th:method="get">
             <span>
                 <label for="search_h">高校名で検索</label>

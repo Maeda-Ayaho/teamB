@@ -66,8 +66,6 @@ button {
 }
 
 #comment {
-    background-color: #cbec9f;
-    border: solid 1px;
     margin: 10px;
     padding: 10px;
 }
@@ -147,4 +145,19 @@ body {
 .message2 {
     font-size: 24px;
     color: #5461db;
+}
+
+.post-card {
+    list-style: none; /* リストマーカーを非表示に */
+    margin: 0% 5% 2% 0%; /* 各カードの間隔を設定 */
+    padding: 1% 2%;
+    border-radius: 8px; /* 角を丸く */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 薄い影を付けてカード風に */
+    transition: box-shadow 0.3s ease-in-out; /* ホバー時に影が変化するように */
+    display: block;/*要素を縦並びに*/
+    border: solid 1px;
+}
+
+#comment p span {
+    margin-right: 10px;/*スペースを追加*/
 }

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,4 +50,9 @@ import jakarta.transaction.Transactional;
         schoolEvaluations.setEventScore(postsDTO.getEnvironmentScore(),postsDTO.getClubScore(),postsDTO.getEventScore());
         schoolEvaluationsRepository.save(schoolEvaluations);  // SchoolEvaluationsテーブルに保
     }
+    
+    public Optional<Post> findPostById(Long id) {
+        return postRepository.findById(id);  // ID で Post を取得
+    }
+
 }

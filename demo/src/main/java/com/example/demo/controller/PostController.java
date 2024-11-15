@@ -1,4 +1,6 @@
 package com.example.demo.controller;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dto.PostsDTO;
+import com.example.demo.model.Post;
 import com.example.demo.service.PostService;
 
 import jakarta.validation.Valid;
@@ -73,4 +76,19 @@ public class PostController {
     public String getMethodName() {
         return "layout/thanks";
     }
+
+    @GetMapping("schools/detail/{id}")
+    public String getPostDetail(@PathVariable("id") Long id, Model model) {
+        // id を基に Post を取得
+        Optional<Post> post = postService.findPostById(id);  // 例: postService.findPostById(id);
+        // Post が存在しない場合は、エラーハンドリング（例: 404 エラーページにリダイレクト）
+        if (post.isEmpty()) {
+            return "error/404";
+        }
+        // 取得した Post をモデルに追加
+        model.addAttribute("post", post.get());
+        // post-detail.html に遷移
+        return "layout/post-detail";  // 適切なテンプレート名に変更
+    }
+
 }

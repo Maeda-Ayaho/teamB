@@ -102,6 +102,11 @@ ul a{
     border-radius: 8px;
     border: 1px solid #ddd;
 }
+.furigana {
+    font-size: 12px;
+    color: #999; /* 薄い文字色 */
+    margin-left: 5px; /* 学校名から少し間隔を空ける */
+}
 #search{
     font-size: 18px;
     padding: 20px;

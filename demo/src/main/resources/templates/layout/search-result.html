@@ -16,9 +16,10 @@
             <input type="submit" value="学校登録">
         </form>
         <form th:action="@{/schools/}" th:object="${school_name}" th:method="post">
+        <form th:action="@{search}" th:object="${school}" th:method="get">
             <span>
                 <label for="search_h">高校名で検索</label>
-                <input type="text" id="keyword" name="keyword">
+                <input type="text" id="keyword" name="name">
                 <input type="submit" value="検索">
             </span>
         </form>
@@ -239,14 +240,17 @@
             <a href="schools/detail/{id}(id=${school.id})">
                 <li th:each="school : ${results}" th:object="${searchResults}" class="school-card">
                     <div class="school-info">
-                        <h3 th:text="${school.name}"></h3>
+                        <h3>
+                            <span th:text="${school.name}"></span>
+                            <span class="furigana" th:text="'(' + ${school.nameFurigana} + ') '"></span>
+                        </h3>
                         <span th:text="${school.prefecture}"></span>
                         <span th:text="${school.establishmentType}"></span>
                         <span th:text="${school.genderType}"></span>
                         <span class="deviation" th:text="'偏差値：' + ${school.deviationValue}"></span>
                     </div>
                     <div class="school-image">
-                        <img src="placeholder.png" alt="学校の画像" width="150" height="150">
+                        <img src="@{${school.image}}" alt="学校の画像" width="150" height="150">
                     </div>
                 </li>
             </a>

@@ -41,12 +41,16 @@ public class SearchSchoolService {
 
         // 学校名が指定された場合の検索条件
         if (name != null && !name.isEmpty()) {
-            if (name.matches("^[あ-ん]+$"))  {
+
+            // 入力された学校名から「高校」を除去
+            String searchName = name.replace("高校", "");
+
+            if (searchName.matches("^[あ-ん]+$"))  {
                 predicates.add(cb.or(
-                    cb.like(school.get("nameFurigana"), "%" + name + "%")));
+                    cb.like(school.get("nameFurigana"), "%" + searchName + "%")));
             }else{
                 predicates.add(cb.or(
-                    cb.like(school.get("name"), "%" + name + "%")));
+                    cb.like(school.get("name"), "%" + searchName + "%")));
                 }
         }
 
@@ -83,9 +87,9 @@ public class SearchSchoolService {
     }
 /*
  * 
- // 学校を押下時の挙動
- public School findBySchoolId(Long schoolId) {
-    return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
-}
+        // 学校を押下時の挙動
+    public School findBySchoolId(Long schoolId) {
+        return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
+    }
 */
 }

@@ -21,12 +21,12 @@ public class SearchSchoolController {
     // 学校検索結果を表示する
     @GetMapping("/schools/search")
     public String searchSchools(
-            @RequestParam(required = false) String prefecture,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) List<String> establishmentType,
-            @RequestParam(required = false) List<String> genderType,
-            @RequestParam(required = false) Integer deviationValueMin,
-            @RequestParam(required = false) Integer deviationValueMax,
+            @RequestParam(name = "pref", required = false) String prefecture,
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "est", required = false) List<String> establishmentType,
+            @RequestParam(name = "gen", required = false) List<String> genderType,
+            @RequestParam(name = "min", required = false) Integer deviationValueMin,
+            @RequestParam(name = "max", required = false) Integer deviationValueMax,
             Model model) {
 
         // 学校を検索

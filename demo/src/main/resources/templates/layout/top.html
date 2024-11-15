@@ -84,11 +84,11 @@
                 </p>
                 <p>
                     <label for="search_h">高校名で検索：</label>
-                    <input type="text" id="keyword" name="keyword">
+                    <input type="text" id="keyword" name="name">
                 </p>
                 <p>
                     <label for="deviation">偏差値：</label>
-                    　　　<select name="max" id="select_max">
+                    <select name="min" id="select_min">
                         <option value="">--</option>
                         <option value="2        8">28</option>
                         <option value="29">29</option>
@@ -143,7 +143,7 @@
                         <option value="78">78</option>
                     </select>
                     ~
-                    <select name="min" id="select_min">
+                    <select name="max" id="select_max">
                         <option value="">--</option>
                         <option value="28">28</option>
                         <option value="29">29</option>
@@ -199,16 +199,26 @@
                     </select>
                 </p>
                 <p>
-                    <label for="institution">国公私立：</label>
-                    <input type="checkbox" name="立" value="公立">公立
-                    <input type="checkbox" name="立" value="私立">私立
-                    <input type="checkbox" name="立" value="国立">国立
+                    <label>国公私立：</label>
+                    <input type="checkbox" id="公立" name="est" value="公立">
+                    <label for="公立">公立</label>
+                
+                    <input type="checkbox" id="私立" name="est" value="私立">
+                    <label for="私立">私立</label>
+                
+                    <input type="checkbox" id="国立" name="est" value="国立">
+                    <label for="国立">国立</label>
                 </p>
                 <p>
-                    <label for="school_type">男女共学：</label>
-                    <input type="checkbox" name="学" value="男子校">男子校
-                    <input type="checkbox" name="学" value="女子校">女子校
-                    <input type="checkbox" name="学" value="共学">共学
+                    <label>男女共学：</label>
+                    <input type="checkbox" id="男子校" name="gen" value="男子校">
+                    <label for="男子校">男子校</label>
+                
+                    <input type="checkbox" id="女子校" name="gen" value="女子校">
+                    <label for="女子校">女子校</label>
+                
+                    <input type="checkbox" id="共学" name="gen" value="共学">
+                    <label for="共学">共学</label>
                 </p>
                 <input type="submit" value="検索">
             </form>

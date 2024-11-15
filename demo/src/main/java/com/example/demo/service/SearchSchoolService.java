@@ -75,15 +75,17 @@ public class SearchSchoolService {
         }
 
         // WHERE句に全ての条件を追加
-        // query.where(cb.and(predicates.toArray(new Predicate[0])));
+        query.where(cb.and(predicates.toArray(new Predicate[0])));
 
         // クエリを実行
         TypedQuery<School> typedQuery = entityManager.createQuery(query);
         return typedQuery.getResultList();
     }
-
-    // 学校を押下時の挙動
-    public School findBySchoolId(Long schoolId) {
-        return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
-    }
+/*
+ * 
+ // 学校を押下時の挙動
+ public School findBySchoolId(Long schoolId) {
+    return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
+}
+*/
 }

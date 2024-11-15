@@ -25,9 +25,9 @@ public class SchoolEvaluations {
     @Column(name = "post_id", nullable = false)
     private Long postId; // 投稿ID (外部キー)
 
-    @NotNull
-    @Column(name = "school_id", nullable = false)
-    private Long schoolId; // 学校ID (外部キー)
+    // @NotNull
+    // @Column(name = "school_id", nullable = false)
+    // private Long schoolId; // 学校ID (外部キー)
 
     @NotNull
     @Column(name = "environment_score", nullable = false)
@@ -73,7 +73,6 @@ public class SchoolEvaluations {
                 Double totalScore, String environmentComment, String clubComment,
                 String eventComment, String totalComment) {
         this.postId = postId;
-        this.schoolId = schoolId;
         this.environmentScore = environmentScore;
         this.clubScore = clubScore;
         this.eventScore = eventScore;
@@ -82,6 +81,13 @@ public class SchoolEvaluations {
         this.clubComment = clubComment;
         this.eventComment = eventComment;
         this.totalComment = totalComment;
+    }
+
+    // 総合スコアの平均値をセットする
+    public void setEventScore(int environmentScore, int clubScore, int eventScore) {
+        // 3つのスコアの平均値を計算し、double 型で設定
+        double averageScore = (environmentScore + clubScore + eventScore) / 3.0;
+        this.totalScore = averageScore;
     }
 
     public Post getPost() {

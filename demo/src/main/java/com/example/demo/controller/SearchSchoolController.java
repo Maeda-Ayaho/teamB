@@ -35,16 +35,17 @@ public class SearchSchoolController {
     // 学校検索結果を表示する
     @GetMapping("/schools/search")
     public String searchSchools(
-            @RequestParam(value = "prefecture", required = false) String prefecture,
-            @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "establishmentType", required = false) List<String> establishmentType,
-            @RequestParam(value = "genderType", required = false) List<String> genderType,
-            // @RequestParam(value = "deviationValue", required = false) Integer deviationValue,
+            @RequestParam(name = "pref", required = false) String prefecture,
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "est", required = false) List<String> establishmentType,
+            @RequestParam(name = "gen", required = false) List<String> genderType,
+            @RequestParam(name = "min", required = false) Integer deviationValueMin,
+            @RequestParam(name = "max", required = false) Integer deviationValueMax,
             Model model) {
 
         // 学校を検索
         List<School> results = searchschoolservice.searchSchools(
-                prefecture, name, establishmentType, genderType
+                prefecture, name, establishmentType, genderType, deviationValueMin, deviationValueMax
         );
 
         // 検索結果をビューに渡す

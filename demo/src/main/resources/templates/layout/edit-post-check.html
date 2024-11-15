@@ -1,11 +1,10 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-    <!--th:replace="~{base :: layout(~{::title},~{::body/content()})}"-->
-
 <head>
     <meta charset="UTF-8">
     <title>HIGH SCHOOL LIBRARY</title>
-    <link rel="stylesheet" href="edit.css">
+    <link rel="stylesheet" href="/css/edit2.css">
 </head>
+
 <header>
     <img id="top" src="image.png" width="300" height="100" alt="高校の写真">
     <div id="mng">
@@ -26,81 +25,99 @@
 <body>
     <div class="contents_body">
         <h2>コメント送信フォーム</h2>
-        <div id="search"><!---->
-            <form th:action="@{/thanks}" th:object="${postsDTO}" th:method="post">
+        <div id="search">
+            <form th:action="@{/schools/thanks}" th:object="${postsDTO}" th:method="post">
 
+                <!-- タイトル -->
                 <p>
                     <label for="title">タイトル</label><!-- コメントタイトル -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{title}"></p>
-                    <input hidden th:field="*{title}">
+                    <span th:text="*{title}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{title}">
                 </p>
+
+                <!-- ステータス -->
                 <p>
                     <label for="institution">ステータス</label><!-- 在校生か卒業生 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{status}"></p>
-                    <input hidden th:field="*{status}">
+                    <span th:text="*{status}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{status}">
                 </p>
+
+                <!-- 年度入力 -->
                 <p>
-                    <label for="enrollment" >年度入力</label><!-- 何年に入学したか -->
+                    <label for="enrollment">年度入力</label><!-- 何年に入学したか -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{enrollment}"></p>
-                    <input hidden th:field="*{enrollment}">
+                    <span th:text="*{enrollment}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{enrollment}">
                 </p>
+
+                <!-- 性別 -->
                 <p>
                     <label for="institution">性別</label><!-- 男性・女性・その他 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{gender}"></p>
-                    <input hidden th:field="*{gender}">
+                    <span th:text="*{gender}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{gender}">
                 </p>
+
+                <!-- 総合評価コメント -->
                 <p>
                     <label for="totalComment">総合評価コメント</label>
-                    <label for="inputField"><span class="required">必須</span></label><br><!-- 総合評価に対するコメント -->
-                    <p th:text="*{totalComment}"></p>
+                    <label for="inputField"><span class="required">必須</span></label><br>
+                    <span th:text="*{totalComment}" class="highlight-background"></span> <!-- 表示用 -->
                     <textarea hidden th:field="*{totalComment}"></textarea>
                 </p>
+
+                <!-- 環境評価 -->
                 <p>
                     <label for="environment">環境評価</label><!-- 環境評価点 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{environmentScore}"></p>
-                    <input hidden th:field="*{environmentScore}">
+                    <span th:text="*{environmentScore}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{environmentScore}">
                 </p>
+
+                <!-- 環境コメント -->
                 <p>
-                    <label for="environmentComment">環境コメント</label>
-                    <label for="inputField"><span class="required">必須</span></label><br><!-- 環境に関するコメント -->
-                    <p th:text="*{environmentComment}"></p>
+                    <label for="environmentComment">環境コメント</label><br>
+                    <span th:text="*{environmentComment}" class="highlight-background"></span> <!-- 表示用 -->
                     <textarea hidden th:field="*{environmentComment}"></textarea>
                 </p>
+
+                <!-- 部活動評価 -->
                 <p>
                     <label for="clubScore">部活動評価</label><!-- 部活動評価点 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{clubScore}"></p>
-                    <input hidden th:field="*{clubScore}">
+                    <span th:text="*{clubScore}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{clubScore}">
                 </p>
+
+                <!-- 部活動コメント -->
                 <p>
-                    <label for="clubComment">部活動コメント</label>
-                    <label for="inputField"><span class="required">必須</span></label><br><!-- 部活動に関するコメント -->
-                    <p th:text="*{clubComment}"></p>
+                    <label for="clubComment">部活動コメント</label><br>
+                    <span th:text="*{clubComment}" class="highlight-background"></span> <!-- 表示用 -->
                     <textarea hidden th:field="*{clubComment}"></textarea>
                 </p>
+
+                <!-- イベント評価 -->
                 <p>
                     <label for="eventScore">イベント評価</label><!-- イベントに対する評価点 -->
                     <label for="inputField"><span class="required">必須</span></label><br>
-                    <p th:text="*{eventScore}"></p>
-                    <input hidden th:field="*{eventScore}">
+                    <span th:text="*{eventScore}" class="highlight-background"></span> <!-- 表示用 -->
+                    <input type="hidden" th:field="*{eventScore}">
                 </p>
+
+                <!-- イベントコメント -->
                 <p>
-                    <label for="eventComment">イベントコメント</label>
-                    <label for="inputField"><span class="required">必須</span></label><br><!-- イベントに関するコメント -->
-                    <p th:text="*{eventComment}"></p>
+                    <label for="eventComment">イベントコメント</label><br>
+                    <span th:text="*{eventComment}" class="highlight-background"></span> <!-- 表示用 -->
                     <textarea hidden th:field="*{eventComment}"></textarea>
                 </p>
-                <p>
-                    <input hidden th:field="*{isDeleted}"><!--論理削除-->
-                </p>
-                <p>
-                    <input hidden th:field="*{schoolId}"><!--学校ID-->
-                </p>
+
+                <!-- 論理削除 -->
+                <input type="hidden" th:field="*{isDeleted}">
+                <!-- 学校ID -->
+                <input type="hidden" th:field="*{schoolId}">
+
                 <input type="submit" value="登録">
                 <button type="button" onclick="window.history.back()">戻る</button>
             </form>

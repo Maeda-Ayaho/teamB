@@ -102,3 +102,16 @@ ul a{
     border-radius: 8px;
     border: 1px solid #ddd;
 }
+#search{
+    font-size: 18px;
+    padding: 20px;
+    background-color: #cbec9f;
+    border: solid 0.5px;
+    border-radius: 5ps;
+    field-sizing: 40px;
+}
+
+#mng{
+    color: gray;
+    padding-left:0;
+}

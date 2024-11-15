@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,13 @@ import com.example.demo.model.SchoolEvaluations;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.SchoolEvaluationsRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -19,6 +27,9 @@ import jakarta.transaction.Transactional;
         private PostRepository postRepository;
         @Autowired
         private SchoolEvaluationsRepository schoolEvaluationsRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
         //投稿の新規登録
         @Transactional
@@ -48,5 +59,30 @@ import jakarta.transaction.Transactional;
         schoolEvaluations.setTotalComment(postsDTO.getTotalComment());  // 総合コメント
         schoolEvaluations.setEventScore(postsDTO.getEnvironmentScore(),postsDTO.getClubScore(),postsDTO.getEventScore());
         schoolEvaluationsRepository.save(schoolEvaluations);  // SchoolEvaluationsテーブルに保
+    }
+
+    // 特定の学校のポスト一覧を取得
+    public List<Post>  findPostList(Long id) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+        Root<Post> post = cq.from(Post.class);
+
+        cq.select(post);
+        cq.where(cb.equal(post.get("schoolId"), id));
+        return entityManager.createQuery(cq).getResultList();
+    }
+
+    public List<Post>  ex(Long id) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+        Root<Post> post = cq.from(Post.class);
+
+
+        cq.select(post);
+        Join<Post, SchoolEvaluations> schoolEvaluations = post.join("schoolEvaluations");
+        Predicate condition = cb.equal(schoolEvaluations.get("schoolId"), id);
+        cq.where(condition);
+        
+        return entityManager.createQuery(cq).getResultList();
     }
 }

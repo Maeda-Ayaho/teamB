@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +28,7 @@ public class Post {
     private Long schoolId; // 学校ID (外部キー)
 
     @Column(name = "posted_at")
-    private String postedAt; // 投稿日時
+    private LocalDateTime postedAt;
 
     @NotBlank
     @Column(name = "enrollment")
@@ -59,7 +62,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long schoolId, String postedAt, String enrollment, String gender, String title, String status, Boolean isDeleted) {
+    public Post(Long schoolId, LocalDateTime postedAt, String enrollment, String gender, String title, String status, Boolean isDeleted) {
         this.schoolId = schoolId;
         this.postedAt = postedAt;
         this.enrollment = enrollment;
@@ -67,6 +70,21 @@ public class Post {
         this.title = title;
         this.status = status;
         this.isDeleted = isDeleted;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (postedAt == null) {
+            postedAt = LocalDateTime.now();  // エンティティが保存される前に現在時刻を設定
+        }
+    }
+
+    public LocalDateTime getPostedAt() {
+        return postedAt;
+    }
+
+    public void setPostedAt(LocalDateTime postedAt) {
+        this.postedAt = postedAt;
     }
 
     public SchoolEvaluations getSchoolEvaluations() {
@@ -99,14 +117,6 @@ public class Post {
 
     public void setEnrollment(String enrollment){
         this.enrollment = enrollment;
-    }
-
-    public String getPostedAt() {
-        return postedAt;
-    }
-
-    public void setPostedAt(String postedAt) {
-        this.postedAt = postedAt;
     }
 
     public String getGender() {

@@ -33,7 +33,14 @@ footer{
 .result img {
     width: 100px; /* 画像のサイズ */
     height: auto;
-    margin-left: 10px; /* 画像と情報の間に余白を追加 */
+    padding-left: 20px;
+}
+.deviation {
+    font-weight: bold;        /* 太字 */
+    color: #d9534f;           /* 赤色（強調色） */
+    font-size: 1.2em;         /* フォントサイズを少し大きく */
+    margin-top: 2px;          /* 少しスペースを開ける */
+    display: block;           /* 単独で表示する */
 }
 .info {
     flex-grow: 1; /* 情報部分が残りのスペースを占める */
@@ -50,6 +57,11 @@ ul {
     padding: 0;
     margin: 0;
 }
+ul a{
+    text-decoration: none; /* 下線を非表示にする */
+    color: inherit; /* テキストカラーを継承 */
+    display: block; /* カード全体がリンクとして機能するように */
+}
 
 .school-card {
     display: flex;
@@ -60,6 +72,14 @@ ul {
     margin-bottom: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
+.school-card:hover {
+    background-color: #f0f8ff; /* カーソルを合わせた時の背景色 */
+    transform: scale(1.02); /* 少し拡大 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加して浮いて見える効果 */
+}
+
 
 .school-info {
     flex: 1;
@@ -81,4 +101,22 @@ ul {
 .school-image img {
     border-radius: 8px;
     border: 1px solid #ddd;
+}
+.furigana {
+    font-size: 12px;
+    color: #999; /* 薄い文字色 */
+    margin-left: 5px; /* 学校名から少し間隔を空ける */
+}
+#search{
+    font-size: 18px;
+    padding: 20px;
+    background-color: #cbec9f;
+    border: solid 0.5px;
+    border-radius: 5ps;
+    field-sizing: 40px;
+}
+
+#mng{
+    color: gray;
+    padding-left:0;
 }

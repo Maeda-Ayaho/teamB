@@ -18,41 +18,42 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            //ログイン成功時の処理
+            // ログインの設定
             .formLogin(login -> login
-                // ログインページを表示するURL(POST) →デフォルトのものを表示のため
-                //.loginPage("/login")
-                // ログイン処理を行うURL(GET)
-                //.loginProcessingUrl("/login")
-                .defaultSuccessUrl("/")
-                // ログインできなかった時のURL
-                .failureUrl("/login?error")
-                // ログインページは誰でもアクセス可能
-                .permitAll()
+                .defaultSuccessUrl("/")  // ログイン成功後に遷移するURL
+                .failureUrl("/login?error")  // ログイン失敗時のURL
+                .permitAll()  // ログインページは誰でもアクセス可能
             )
+            // ログアウトの設定
             .logout(logout -> logout
-                .logoutSuccessUrl("/login")
-                //.permitAll() //★全権限参照可能となる
+                .logoutUrl("/logout")  // ログアウトを行うURL（デフォルトの"/logout"を指定）
+                .logoutSuccessUrl("/") // ログアウト成功後にリダイレクトするURL
+                .invalidateHttpSession(true)  // セッションを無効化
+                .deleteCookies("JSESSIONID")  // JSESSIONIDを削除
+                .permitAll()  // ログアウトURLも全ユーザーがアクセスできるようにする
             )
             .authorizeHttpRequests(authz -> authz
-                // resourceフォルダ直下
+                // 静的リソースのアクセス許可
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-                .permitAll() //★全権限参照可能となる
+                .permitAll()  // 静的リソースは誰でもアクセス可能
                 
-                .requestMatchers("/","/schools/**")
-                .permitAll() //★全権限参照可能となる
+                // パブリックなページ
+                .requestMatchers("/", "/schools/**")
+                .permitAll()  // これらのURLは全ユーザーがアクセス可能
                 
+                // 管理者用ページ
                 .requestMatchers("/admin/**")
-                .hasRole("ADMIN")
-                .anyRequest().authenticated() // その他は認証を要求
+                .hasRole("ADMIN")  // "ADMIN" ロールが必要
+                
+                // その他は認証が必要
+                .anyRequest().authenticated()
             );
-
 
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // パスワードエンコーダーの設定
+        return new BCryptPasswordEncoder();  // パスワードエンコーダーの設定
     }
 }

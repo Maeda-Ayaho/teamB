@@ -83,9 +83,9 @@ public class SearchSchoolService {
     }
 /*
  * 
- // 学校を押下時の挙動
- public School findBySchoolId(Long schoolId) {
-    return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
-}
+        // 学校を押下時の挙動
+    public School findBySchoolId(Long schoolId) {
+        return searchschoolrepository.findById(schoolId).orElse(null);  // 存在しない場合はnullを返す
+    }
 */
 }

@@ -40,18 +40,18 @@ public class SearchSchoolController {
     }
 /* 以下　作りかけです　井口
  * 
- // 学校詳細ページに遷移するメソッド
- @GetMapping("schools/detail/{id}")
- public String getSchoolDetail(@RequestParam("id") Long schoolId, Model model) {
-    // IDに基づいて学校の詳細を検索
-    School schools = searchschoolservice.findBySchoolId(schoolId);
-    
-    // モデルに学校情報を追加
-    model.addAttribute("schools", schools);
-    
-    // school-detail.htmlに遷移
-    return "layout/school-detail";
-}
+        // 学校詳細ページに遷移するメソッド
+    @GetMapping("schools/detail/{id}")
+    public String getSchoolDetail(@RequestParam("id") Long schoolId, Model model) {
+        // IDに基づいて学校の詳細を検索
+        School schools = searchschoolservice.findBySchoolId(schoolId);
+        
+        // モデルに学校情報を追加
+        model.addAttribute("schools", schools);
+        
+        // school-detail.htmlに遷移
+        return "layout/school-detail";
+    }
 */
 
 }

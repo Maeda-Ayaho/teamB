@@ -124,3 +124,8 @@ p {
 #comment {
     border-top: solid 0.5px;
 }
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

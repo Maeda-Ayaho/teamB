@@ -233,26 +233,26 @@
         <button onclick="displaySchools(sortSchools('rating'))">評価点順</button>
         <button onclick="displaySchools(sortSchools('score'))">偏差値順</button>
     </div>
-
     <div id="result" >
         <ul>
-            <a href="detail/{id}(id=${school.id})">
                 <li th:each="school : ${results}" th:object="${searchResults}" class="school-card">
-                    <div class="school-info">
-                        <h3>
-                            <span th:text="${school.name}"></span>
-                            <span class="furigana" th:text="'(' + ${school.nameFurigana} + ') '"></span>
-                        </h3>
-                        <span th:text="${school.prefecture}"></span>
-                        <span th:text="${school.establishmentType}"></span>
-                        <span th:text="${school.genderType}"></span>
-                        <span class="deviation" th:text="'偏差値：' + ${school.deviationValue}"></span>
-                    </div>
-                    <div class="school-image">
-                        <img src="@{${school.image}}" alt="学校の画像" width="150" height="150">
-                    </div>
+                    <a th:href="@{/schools/detail/{id}(id=${school.id})}">
+                        <div class="school-info">
+                            <h3>
+                                <span th:text="${school.name}"></span>
+                                <span class="furigana" th:text="'(' + ${school.nameFurigana} + ') '"></span>
+                            </h3>
+                            <span th:text="${school.prefecture}"></span>
+                            <span th:text="${school.establishmentType}"></span>
+                            <span th:text="${school.genderType}"></span>
+                            <span class="deviation" th:text="'偏差値：' + ${school.deviationValue}"></span>
+                        </div>
+                        <div class="school-image">
+                            <img src="@{${school.image}}" alt="学校の画像" width="150" height="150">
+                        </div>
+                    </a>
                 </li>
-            </a>
+            
         </ul>
     </div>
         

@@ -251,24 +251,24 @@
                 </a>
             </ul>
         </div>-->
+        </div>
         
         <div id="comment">
             <h2>最新投稿</h2>
             <ul>
-                    <!--投稿リストを繰り返し処理-->
-                    <li th:each="post : ${posts}" class="post-card" th:method="get">
-                        <p th:text="'投稿日付: ' + ${#temporals.format(post.postedAt, 'yyyy-MM-dd HH:mm:ss')}">投稿日付></p>
-                        <!--投稿タイトルを見出しとして表示-->
-                        <h2 th:text="${post.title}">タイトル</h2>
-                        <!--ステータスを表示-->
-                        <p>
-                            <span th:text="${post.status}">ステータス</span>
-                            <span th:text="${post.gender}">性別</span>
-                        </p>
-                        <p th:if="${post.status == '卒業生'}" th:text="${post.enrollment} + '年卒業'">年度</p>
-                        <p th:if="${post.status == '在校生'}" th:text="${post.enrollment} + '年入学'">年度</p>
-                    </li>
-                
+                <!--投稿リストを繰り返し処理-->
+                <li th:each="post : ${posts}" class="post-card" th:method="get">
+                    <p th:text="'投稿日付: ' + ${#temporals.format(post.postedAt, 'yyyy-MM-dd HH:mm:ss')}">投稿日付></p>
+                    <!--投稿タイトルを見出しとして表示-->
+                    <h2 th:text="${post.title}">タイトル</h2>
+                    <!--ステータスを表示-->
+                    <p>
+                        <span th:text="${post.status}">ステータス</span>
+                        <span th:text="${post.gender}">性別</span>
+                    </p>
+                    <!-- <p th:if="${post.status == '卒業生'}" th:text="${post.enrollment} + '年卒業'">年度</p>
+                    <p th:if="${post.status == '在校生'}" th:text="${post.enrollment} + '年入学'">年度</p> -->
+                </li>
             </ul>
             <!--<ul>
                 <table th:each="post : ${posts}" th:method="get">
@@ -299,7 +299,6 @@
                         </div>-->
                 <!--</table>
             </ul>-->
-        </div>
 
                 <!--<p th:text="'投稿日付: ' + ${posted_at}">
 
@@ -313,6 +312,7 @@
                 </div>
             </div>
         </div>-->
+        </div>
     </div>
     <footer>
         <form th:action="@{school/add}" th:object="${admin}" th:method="post">

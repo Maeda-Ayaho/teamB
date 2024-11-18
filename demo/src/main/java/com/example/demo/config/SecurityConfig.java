@@ -27,10 +27,10 @@ public class SecurityConfig {
             // ログアウトの設定
             .logout(logout -> logout
                 .logoutUrl("/logout")  // ログアウトを行うURL（デフォルトの"/logout"を指定）
-                .logoutSuccessUrl("/") // ログアウト成功後にリダイレクトするURL
-                .invalidateHttpSession(true)  // セッションを無効化
-                .deleteCookies("JSESSIONID")  // JSESSIONIDを削除
-                .permitAll()  // ログアウトURLも全ユーザーがアクセスできるようにする
+                // .logoutSuccessUrl("/") // ログアウト成功後にリダイレクトするURL
+                // .invalidateHttpSession(true)  // セッションを無効化
+                // .deleteCookies("JSESSIONID")  // JSESSIONIDを削除
+                // .permitAll()  // ログアウトURLも全ユーザーがアクセスできるようにする
             )
             .authorizeHttpRequests(authz -> authz
                 // 静的リソースのアクセス許可

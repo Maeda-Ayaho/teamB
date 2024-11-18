@@ -63,3 +63,8 @@ h3 {
 p {
     margin: 5px 0; /* 各段落の上下にスペースを追加 */
 }
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

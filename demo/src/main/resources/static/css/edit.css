@@ -46,3 +46,9 @@ footer{
 h2 {
     margin: 20px;
 }
+
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

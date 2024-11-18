@@ -75,3 +75,8 @@ p {
     padding: 20px;
     background-color: #cbec9f;
 }
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

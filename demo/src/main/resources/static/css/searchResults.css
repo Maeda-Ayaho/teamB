@@ -120,3 +120,8 @@ ul a{
     color: gray;
     padding-left:0;
 }
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

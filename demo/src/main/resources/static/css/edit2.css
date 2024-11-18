@@ -52,3 +52,9 @@ h2 {
     padding: 0 5px;  /* 少しの余白を追加 */
     border-radius: 5px;  /* 角を丸くする */
 }
+
+button {
+    width: 75px;  /* 幅を固定 */
+    font-size: 12px;
+    white-space: nowrap;
+}

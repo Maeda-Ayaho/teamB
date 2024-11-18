@@ -257,7 +257,7 @@
             <ul>
                     <!--投稿リストを繰り返し処理-->
                     <li th:each="post : ${posts}" class="post-card" th:method="get">
-                        <p th:text="'投稿日付: ' + ${post.postedAt}">投稿日付></p>
+                        <p th:text="'投稿日付: ' + ${#temporals.format(post.postedAt, 'yyyy-MM-dd HH:mm:ss')}">投稿日付></p>
                         <!--投稿タイトルを見出しとして表示-->
                         <h2 th:text="${post.title}">タイトル</h2>
                         <!--ステータスを表示-->
